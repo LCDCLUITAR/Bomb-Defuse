@@ -1,0 +1,64 @@
+﻿  pch.cpp
+  WICTextureLoader.cpp
+  VertexTypes.cpp
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(273): warning C4458: declaration of 'color' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(325): warning C4458: declaration of 'weights' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\vertextypes.cpp(119): warning C4458: declaration of 'color' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\vertextypes.cpp(145): warning C4458: declaration of 'indices' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(288): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::indices'
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\vertextypes.cpp(150): warning C4458: declaration of 'weights' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  SpriteFont.cpp
+  PrimitiveBatch.cpp
+  SpriteBatch.cpp
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(273): warning C4458: declaration of 'color' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(325): warning C4458: declaration of 'weights' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  SkinnedEffect.cpp
+  ScreenGrab.cpp
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\screengrab.cpp(925): warning C4838: conversion from 'UINT' to 'INT' requires a narrowing conversion
+  ModelLoadSDKMESH.cpp
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(273): warning C4458: declaration of 'color' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(325): warning C4458: declaration of 'weights' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  ModelLoadCMO.cpp
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(273): warning C4458: declaration of 'color' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(325): warning C4458: declaration of 'weights' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  Model.cpp
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\model.cpp(45): warning C4458: declaration of 'effect' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\model.h(67): note: see declaration of 'DirectX::ModelMeshPart::effect'
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\model.cpp(45): warning C4458: declaration of 'inputLayout' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\model.h(64): note: see declaration of 'DirectX::ModelMeshPart::inputLayout'
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\model.cpp(74): warning C4458: declaration of 'effect' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\model.h(67): note: see declaration of 'DirectX::ModelMeshPart::effect'
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\model.cpp(74): warning C4458: declaration of 'inputLayout' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\model.h(64): note: see declaration of 'DirectX::ModelMeshPart::inputLayout'
+c:\users\ldc0119\desktop\luisrepo\directxtk\src\model.cpp(97): warning C4458: declaration of 'effect' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\model.h(67): note: see declaration of 'DirectX::ModelMeshPart::effect'
+  GeometricPrimitive.cpp
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(273): warning C4458: declaration of 'color' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(325): warning C4458: declaration of 'weights' hides class member
+  c:\users\ldc0119\desktop\luisrepo\directxtk\inc\vertextypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  EnvironmentMapEffect.cpp
+  EffectFactory.cpp
+  EffectCommon.cpp
+  BinaryReader.cpp
+  DualTextureEffect.cpp
+  DGSLEffectFactory.cpp
+  DGSLEffect.cpp
+  DDSTextureLoader.cpp
+  CommonStates.cpp
+  Generating Code...
+  Compiling...
+  BasicEffect.cpp
+  AlphaTestEffect.cpp
+  Generating Code...
+  DirectXTK_Desktop_2013.vcxproj -> C:\Users\ldc0119\Desktop\luisRepo\DirectXTK\Bin\Desktop_2013\Win32\Debug\DirectXTK.lib
