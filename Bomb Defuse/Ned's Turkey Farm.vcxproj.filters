@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>Renderer</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>Renderer</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Code\abort.cpp">
+      <Filter>Debug Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\debug.cpp">
+      <Filter>Debug Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\IPMgr.cpp">
+      <Filter>Debug Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\GameRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Renderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Shader.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Sprite.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\ImageFileNameList.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Timer.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\tinyxml2.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Object.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Window.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Code\abort.h">
+      <Filter>Debug Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\debug.h">
+      <Filter>Debug Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\IPMgr.h">
+      <Filter>Debug Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\GameRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Renderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Shader.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Sprite.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ImageFileNameList.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Timer.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\tinyxml2.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Defines.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Object.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{d46552d0-adc3-4765-830b-6750017ce6f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{173f66f9-8537-4d53-985b-9033ae5c6e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug Tools">
+      <UniqueIdentifier>{b7973785-a9b7-4ec6-a3bc-d33ea527a53c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{4285cfb5-d521-49f8-a12b-13c947ac4df0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{cd38c74f-dfe0-420d-b872-c97e3fe76917}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="gamesettings.xml">
+      <Filter>Game</Filter>
+    </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Ned%27s Turkey Farm.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="redned.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

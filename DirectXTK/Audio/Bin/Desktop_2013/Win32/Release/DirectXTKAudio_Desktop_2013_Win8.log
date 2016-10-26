@@ -1,0 +1,12 @@
+﻿  AudioEngine.cpp
+AudioEngine.cpp(1021): warning C4838: conversion from 'int' to 'UINT32' requires a narrowing conversion
+  DynamicSoundEffectInstance.cpp
+  SoundCommon.cpp
+  SoundEffect.cpp
+  SoundEffectInstance.cpp
+  WaveBank.cpp
+  WaveBankReader.cpp
+WaveBankReader.cpp(824): warning C4456: declaration of 'params' hides previous local declaration
+  WaveBankReader.cpp(521): note: see declaration of 'params'
+  WAVFileReader.cpp
+  DirectXTKAudio_Desktop_2013_Win8.vcxproj -> C:\Users\ldc0119\Desktop\luisRepo\DirectXTK\Audio\Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.lib
