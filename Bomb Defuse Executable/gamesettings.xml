@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings for Ned's Turkey Farm -->
+
+<settings>
+
+  <!-- general settings -->
+
+  <game name="Bomb Diffuse Game" />
+  
+  <!-- renderer settings -->
+
+  <renderer width="1024" height="768" shadermodel="5_0"/>
+
+  <!-- image file names -->
+
+    <images>
+      <image src="Images\background.png" />
+      <image src="Images\floor.png" />
+      <image src="Images\black.png" />
+      <image src="Images\clues.png" />
+      <image src="Images\briefcase.png" />
+    </images>
+  
+  <!-- debugger settings -->
+
+    <debug linenumber="1" header="1">
+      <file select="1" name="debug.txt"/>
+      <debugger select="1"/>
+      <ip select="1" address="127.0.0.1" port="1617"/>
+    </debug>
+
+</settings>
