@@ -18,7 +18,10 @@
       <image src="Images\floor.png" />
       <image src="Images\black.png" />
       <image src="Images\clues.png" />
-      <image src="Images\briefcase.png" />
+      <image src="Images\briefcase.png" /> <!-- Front 4 -->
+      <image src="Images\caseFront.png" /> <!-- Top   5 -->
+      <image src="Images\caseRight.png" /> <!-- Right 6 -->
+      <image src="Images\caseLeft.png" />  <!-- Left  7-->
     </images>
   
   <!-- debugger settings -->
