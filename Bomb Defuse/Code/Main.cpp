@@ -34,6 +34,10 @@ char g_szGameName[256]; ///< Name of this game
 char g_szShaderModel[256]; ///< The shader model version used
 CImageFileNameList g_cImageFileName; ///< List of image file names.
 CTimer g_cTimer; ///< The game timer
+static int currLocation = 0; // 0: Front, 1: Top, 2: Left, 3: Right, 4: Bottom  'Rotation Location of Briefcase
+
+int xPos;
+int yPos;
 
 C3DSprite* g_pPlaneSprite = nullptr; ///< Pointer to the plane sprite.
 CGameObject* g_pPlane = nullptr; ///< Pointer to the plane object.
@@ -71,9 +75,83 @@ HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
 /// cannot load the file or cannot find settings tag in loaded file.
 
 
+void briefcaseRotation(int x, int y){
+	// Rotations from Front View
+	if (currLocation == 0) {
+		// Top Arrow Selected from Front View
+		if (x >= 0 && y >= 100 && y <= 144) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Top
+			if (!g_pPlatformSprite->Load(g_cImageFileName[5]))
+				ABORT("Platform image %s not found.", g_cImageFileName[5]);
+			currLocation = 1; // Top Location
+		}
+		// Bottom Arrow Selected
+		if (x >= 0 && y >= 680 && y <= 768) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Front
+			if (!g_pPlatformSprite->Load(g_cImageFileName[5]))
+				ABORT("Platform image %s not found.", g_cImageFileName[5]);
+			currLocation = 4;
+		}
+		// Left Arrow Selected
+		if (x <= 160 && y >= 100 && y <= 768) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Left
+			if (!g_pPlatformSprite->Load(g_cImageFileName[7]))
+				ABORT("Platform image %s not found.", g_cImageFileName[7]);
+			currLocation = 2;
+		}
+		// Right Arrow Selected
+		if (x >= 865 && y >= 100 && y <= 768) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Right
+			if (!g_pPlatformSprite->Load(g_cImageFileName[6]))
+				ABORT("Platform image %s not found.", g_cImageFileName[6]);
+			currLocation = 3;
+		}
+	}
+	// Rotations from Top View
+	else if (currLocation == 1) {
+		// Bottom Arrow Selected
+		if (x >= 0 && y >= 600 && y <= 768) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Front
+			if (!g_pPlatformSprite->Load(g_cImageFileName[4]))
+				ABORT("Platform image %s not found.", g_cImageFileName[4]);
+			currLocation = 0;
+		}
+	}
+	// Rotations from Left View
+	else if (currLocation == 2) {
+		// Right Arrow Selected
+		if (x >= 800 && y >= 100 && y <= 768) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Front
+			if (!g_pPlatformSprite->Load(g_cImageFileName[4]))
+				ABORT("Platform image %s not found.", g_cImageFileName[4]);
+			currLocation = 0;
+		}		
+	}
+	// Rotations from Right View
+	else if (currLocation == 3) {
+		// Left Arrow Selected
+		if (x <= 160 && y >= 100 && y <= 768) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Front
+			if (!g_pPlatformSprite->Load(g_cImageFileName[4]))
+				ABORT("Platform image %s not found.", g_cImageFileName[4]);
+			currLocation = 0;
+		}
+	}
+	// Rotations from Bottom View
+	else if (currLocation == 4) {
+		// Top Arrow Selected
+		if (x >= 0 && y >= 100 && y <= 160) {
+			g_pPlatformSprite = new C3DSprite();				// Briefcase Front
+			if (!g_pPlatformSprite->Load(g_cImageFileName[4]))
+				ABORT("Platform image %s not found.", g_cImageFileName[4]);
+			currLocation = 0;
+		}
+	}
+}
+
 void DrawPlatforms() {
-	float y = g_nScreenHeight - 425;
-	g_pPlatformSprite->Draw(Vector3(515,y, 700));
+	float y = g_nScreenHeight - 410;
+	g_pPlatformSprite->Draw(Vector3(515, y, 450));
 	 //for
 } //DrawPlatforms
 
@@ -180,10 +258,17 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
   switch(message){ //handle message
     case WM_ACTIVATEAPP: g_bActiveApp = (BOOL)wParam; break; //iconize
 
-    case WM_KEYDOWN: //keyboard hit
+	case WM_KEYDOWN: //keyboard hit
       if(KeyboardHandler(wParam))DestroyWindow(hwnd);
       break;
-
+	case WM_LBUTTONDOWN:
+	{
+		xPos = GET_X_LPARAM(lParam);
+		yPos = GET_Y_LPARAM(lParam);
+		printf("x: %d - y: %d", xPos, yPos);
+		briefcaseRotation(xPos, yPos);
+	}
+		break;
     case WM_DESTROY: //on exit
       GameRenderer.Release(); //release textures
       delete g_pPlane; //delete the plane object
@@ -230,12 +315,12 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
   g_pPlaneSprite = new C3DSprite(); //make a sprite
   GameRenderer.LoadTextures(); //load images
 
-  if(!g_pPlaneSprite->Load(g_cImageFileName[3])) //plane sprite
+  if(!g_pPlaneSprite->Load(g_cImageFileName[3])) // Top Clues Banner
     ABORT("Plane image %s not found.", g_cImageFileName[3]);
 
   CreateObjects(); //create game objects
 
-  g_pPlatformSprite = new C3DSprite();
+  g_pPlatformSprite = new C3DSprite();				// Briefcase 
   if (!g_pPlatformSprite->Load(g_cImageFileName[4]))
 	  ABORT("Platform image %s not found.", g_cImageFileName[4]);
 
