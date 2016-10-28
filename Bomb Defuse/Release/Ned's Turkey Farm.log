@@ -1,28 +1,9 @@
-﻿Build started 10/26/2016 9:18:22 PM.
+﻿Build started 10/27/2016 6:52:28 PM.
      1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" on node 2 (Build target(s)).
-     1>FxCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T ps_4_0_level_9_1 /Fo "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\PixelShader.cso" PixelShader.hlsl 
-         compilation object save succeeded; see C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\PixelShader.cso
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T vs_4_0_level_9_1 /Fo "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\VertexShader.cso" VertexShader.hlsl 
-         compilation object save succeeded; see C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\VertexShader.cso
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\DirectXTK\Inc /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Code\GameRenderer.cpp Code\IPMgr.cpp Code\ImageFileNameList.cpp Code\Main.cpp Code\Object.cpp Code\Renderer.cpp Code\Shader.cpp Code\Sprite.cpp Code\Timer.cpp Code\Window.cpp Code\abort.cpp Code\debug.cpp Code\tinyxml2.cpp
-         GameRenderer.cpp
-         IPMgr.cpp
-         ImageFileNameList.cpp
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\DirectXTK\Inc /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Code\Main.cpp
          Main.cpp
-     1>Code\Main.cpp(153): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-         Object.cpp
-         Renderer.cpp
-         Shader.cpp
-         Sprite.cpp
-         Timer.cpp
-         Window.cpp
-         abort.cpp
-         debug.cpp
-         tinyxml2.cpp
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Release\Ned's Turkey Farm.res" "Ned's Turkey Farm.rc" 
+     1>Code\Main.cpp(155): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.exe" /INCREMENTAL:NO /NOLOGO D3DCompiler.lib DXGI.lib D3D11.lib Winmm.lib DirectXTK.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.lib" /MACHINE:X86 /SAFESEH "Release\Ned's Turkey Farm.res"
          Release\abort.obj
@@ -39,13 +20,13 @@
          Release\tinyxml2.obj
          Release\Window.obj
          Generating code
-         33 of 428 functions ( 7.7%) were compiled, the rest were copied from previous compilation.
-           1 functions were new in current compilation
-           7 functions had inline decision re-evaluated but remain unchanged
+         1 of 428 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+           0 functions were new in current compilation
+           1 functions had inline decision re-evaluated but remain unchanged
          Finished generating code
          Ned's Turkey Farm.vcxproj -> C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.exe
      1>Done Building Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:13.72
+Time Elapsed 00:00:01.88

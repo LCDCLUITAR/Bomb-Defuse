@@ -23,7 +23,6 @@ extern XMLElement* g_xmlSettings;
 CGameObject::CGameObject(const Vector3& s, const Vector3& v, C3DSprite *sprite){ 
   m_nLastMoveTime = g_cTimer.time(); //time
   m_vPos =s; //location
-  m_vVelocity = v; //velocity
   m_pSprite = sprite; //sprite pointer
 } //constructor
 
