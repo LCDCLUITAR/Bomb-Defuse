@@ -1,4 +1,4 @@
-﻿Build started 10/27/2016 6:52:28 PM.
+﻿Build started 10/31/2016 11:39:40 AM.
      1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\DirectXTK\Inc /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Code\Main.cpp
@@ -20,7 +20,7 @@
          Release\tinyxml2.obj
          Release\Window.obj
          Generating code
-         1 of 428 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+         2 of 428 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
            0 functions were new in current compilation
            1 functions had inline decision re-evaluated but remain unchanged
          Finished generating code
@@ -29,4 +29,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.88
+Time Elapsed 00:00:02.61

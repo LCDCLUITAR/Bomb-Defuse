@@ -90,8 +90,8 @@ void briefcaseRotation(int x, int y){
 		// Bottom Arrow Selected
 		if (x >= 0 && y >= 680 && y <= 768) {
 			g_pCluesSprite = new C3DSprite();				// Briefcase Front
-			if (!g_pCluesSprite->Load(g_cImageFileName[5]))
-				ABORT("Platform image %s not found.", g_cImageFileName[5]);
+			if (!g_pCluesSprite->Load(g_cImageFileName[8]))
+				ABORT("Platform image %s not found.", g_cImageFileName[8]);
 			currLocation = 4;
 		}
 		// Left Arrow Selected
@@ -327,8 +327,8 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
   if(!g_pPlaneSprite->Load(g_cImageFileName[3])) // Top Clues Banner
     ABORT("Plane image %s not found.", g_cImageFileName[3]);
 
-  if (!g_pBarcodeSprite->Load(g_cImageFileName[8]))
-	  ABORT("Platform image %s not found.", g_cImageFileName[8]);
+  if (!g_pBarcodeSprite->Load(g_cImageFileName[9]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[9]);
 
   CreateObjects(); //create game objects
 

@@ -22,7 +22,8 @@
       <image src="Images\caseFront.png" /> <!-- Top   5 -->
       <image src="Images\caseRight.png" /> <!-- Right 6 -->
       <image src="Images\caseLeft.png" />  <!-- Left  7-->
-      <image src="Images\Clues\barcode.png"/> <!-- Barcode Clue 8 -->
+      <image src="Images\caseBottom.png" />  <!-- Bottom  8-->
+      <image src="Images\Clues\barcodeClue.png"/> <!-- Barcode Clue 9 -->
     </images>
   
   <!-- debugger settings -->
