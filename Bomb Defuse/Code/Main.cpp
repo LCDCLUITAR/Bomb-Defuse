@@ -39,13 +39,27 @@ static int currLocation = 0; // 0: Front, 1: Top, 2: Left, 3: Right, 4: Bottom  
 
 int xPos;
 int yPos;
+int step0 = 9;
+int step1 = 9;
+int step2 = 9;
+int step3 = 9;
+bool win = false;
 
 C3DSprite* g_pPlaneSprite = nullptr; ///< Pointer to the plane sprite.
 C3DSprite* g_pBarcodeSprite = nullptr; ///< Pointer to the barcode sprite
 CGameObject* g_pPlane = nullptr; ///< Pointer to the plane object.
+
 CGameObject* g_pBarcode = nullptr;
+CGameObject* g_pBarcodeCase = nullptr;
+
+C3DSprite* g_pBarcodeCaseSprite = nullptr;
 
 C3DSprite* g_pCluesSprite = nullptr;
+C3DSprite* g_numberSprite0 = nullptr;
+C3DSprite* g_numberSprite1 = nullptr;
+C3DSprite* g_numberSprite2 = nullptr;
+C3DSprite* g_numberSprite3 = nullptr;
+C3DSprite* g_winScreen = nullptr;
 
 const float HAMSTER_HT = 128.0f;
 const float HALF_HAMSTER_HT = HAMSTER_HT / 2.0f;
@@ -68,6 +82,7 @@ XMLElement* g_xmlSettings = nullptr; ///< TinyXML element for settings tag.
 CGameRenderer GameRenderer; ///< The game renderer.
 //functions in Window.cpp
 void InitGraphics();
+void CreateObjects();
 
 HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
 
@@ -78,6 +93,57 @@ HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
 /// cannot load the file or cannot find settings tag in loaded file.
 
 void briefcaseRotation(int x, int y){
+	//lock number control
+	if (x >= 420 && x <= 445 && y <= 450 && y >= 380) {
+		g_numberSprite0 = new C3DSprite();	//digit
+		step0++;
+		if (!g_numberSprite0->Load(g_cImageFileName[step0]))
+			ABORT("Platform image %s not found.", g_cImageFileName[step0]);
+
+		if (step0 == 18)
+			step0 = 8;
+		
+	}//number0 controller
+	 // Rotations from Front View
+	if (x >= 455 && x <= 485 && y <= 450 && y >= 380) {
+		g_numberSprite1 = new C3DSprite();	//digit
+		step1++;
+		if (!g_numberSprite1->Load(g_cImageFileName[step1]))
+			ABORT("Platform image %s not found.", g_cImageFileName[step1]);
+		
+		if (step1 == 18)
+			step1 = 8;
+	}//number1 controller
+	 // Rotations from Front View
+	if (x >= 490 && x <= 520 && y <= 450 && y >= 380) {
+		g_numberSprite2 = new C3DSprite();	//digit
+		step2++;
+		if (!g_numberSprite2->Load(g_cImageFileName[step2]))
+			ABORT("Platform image %s not found.", g_cImageFileName[step2]);
+		
+		if (step2 == 18)
+			step2 = 8;
+	}//number2 controller
+	 // Rotations from Front View
+	if (x >= 525 && x <= 555 && y <= 450 && y >= 380) {
+		g_numberSprite3 = new C3DSprite();	//digit
+		step3++;
+		if (!g_numberSprite3->Load(g_cImageFileName[step3]))
+			ABORT("Platform image %s not found.", g_cImageFileName[step3]);
+		
+		if (step3 == 18)
+			step3 = 8;
+	}//number3 controller
+
+	if (x >= 555 && x <= 600 && y <= 450 && y >= 380) {
+		if ((step0 == 11) && (step1 == 12) && (step2 == 16) && (step3 == 17)) {
+			win = true;
+			g_winScreen = new C3DSprite();	
+			if (!g_winScreen->Load(g_cImageFileName[21]))
+				ABORT("Platform image %s not found.", g_cImageFileName[21]);
+		}
+	}//win controller
+
 	// Rotations from Front View
 	if (currLocation == 0) {
 		// Top Arrow Selected from Front View
@@ -86,6 +152,7 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[5]))
 				ABORT("Platform image %s not found.", g_cImageFileName[5]);
 			currLocation = 1; // Top Location
+			CreateObjects();
 		}
 		// Bottom Arrow Selected
 		if (x >= 0 && y >= 680 && y <= 768) {
@@ -93,6 +160,7 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[8]))
 				ABORT("Platform image %s not found.", g_cImageFileName[8]);
 			currLocation = 4;
+			CreateObjects();
 		}
 		// Left Arrow Selected
 		if (x <= 160 && y >= 100 && y <= 768) {
@@ -100,6 +168,7 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[7]))
 				ABORT("Platform image %s not found.", g_cImageFileName[7]);
 			currLocation = 2;
+			CreateObjects();
 		}
 		// Right Arrow Selected
 		if (x >= 865 && y >= 100 && y <= 768) {
@@ -107,6 +176,7 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[6]))
 				ABORT("Platform image %s not found.", g_cImageFileName[6]);
 			currLocation = 3;
+			CreateObjects();
 		}
 	}
 	// Rotations from Top View
@@ -117,6 +187,7 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[4]))
 				ABORT("Platform image %s not found.", g_cImageFileName[4]);
 			currLocation = 0;
+			CreateObjects();
 		}
 	}
 	// Rotations from Left View
@@ -127,6 +198,7 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[4]))
 				ABORT("Platform image %s not found.", g_cImageFileName[4]);
 			currLocation = 0;
+			CreateObjects();
 		}		
 	}
 	// Rotations from Right View
@@ -137,6 +209,7 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[4]))
 				ABORT("Platform image %s not found.", g_cImageFileName[4]);
 			currLocation = 0;
+			CreateObjects();
 		}
 	}
 	// Rotations from Bottom View
@@ -147,14 +220,24 @@ void briefcaseRotation(int x, int y){
 			if (!g_pCluesSprite->Load(g_cImageFileName[4]))
 				ABORT("Platform image %s not found.", g_cImageFileName[4]);
 			currLocation = 0;
+			CreateObjects();
 		}
 	}
 }
 
 void DrawBriefcase() {
 	float y = g_nScreenHeight - 410;
-	if(currLocation == 1 || currLocation == 4)
-		g_pCluesSprite->Draw(Vector3(515, y-40, 450));
+	if (currLocation == 1 || currLocation == 4) {
+		if (currLocation == 1) {
+			g_numberSprite0->Draw(Vector3(444, 360, 450));
+			g_numberSprite1->Draw(Vector3(476, 360, 450));
+			g_numberSprite2->Draw(Vector3(508, 360, 450));
+			g_numberSprite3->Draw(Vector3(541, 360, 450));
+		}
+		g_pCluesSprite->Draw(Vector3(515, y - 40, 450));
+		if(win==true)
+			g_winScreen->Draw(Vector3(515, y, 445));
+	}
 	else
 		g_pCluesSprite->Draw(Vector3(515, y, 450));
 } //DrawBriefcase
@@ -215,6 +298,7 @@ void LoadGameSettings(){
 /// Create a plane object, we'll add more objects in later demos.
 
 void CreateObjects() {
+	float y = g_nScreenHeight - 410;
 	g_pPlane = new CGameObject(
 		Vector3((float)g_nScreenWidth / 2.0f, 718, 580),
 		Vector3(0, 0, 0), g_pPlaneSprite);
@@ -222,6 +306,18 @@ void CreateObjects() {
 	g_pBarcode = new CGameObject(
 		Vector3(150, 720, 579),
 		Vector3(0, 0, 0), g_pBarcodeSprite);
+
+	g_pBarcodeCase = new CGameObject(
+		Vector3(780, y - 40, 450),
+		Vector3(0, 0, 0), g_pBarcodeCaseSprite);
+
+	if (currLocation == 4) {
+		g_pBarcodeCase = new CGameObject(
+			Vector3(780, y - 40, 445),
+			Vector3(0, 0, 0), g_pBarcodeCaseSprite);
+	}
+
+
 } //CreateObjects
 
 /// \brief Keyboard handler.
@@ -322,19 +418,39 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
   InitGraphics(); //initialize graphics
   g_pPlaneSprite = new C3DSprite(); //make a sprite
   g_pBarcodeSprite = new C3DSprite();
+  g_pBarcodeCaseSprite = new C3DSprite();
   GameRenderer.LoadTextures(); //load images
 
   if(!g_pPlaneSprite->Load(g_cImageFileName[3])) // Top Clues Banner
     ABORT("Plane image %s not found.", g_cImageFileName[3]);
 
-  if (!g_pBarcodeSprite->Load(g_cImageFileName[9]))
-	  ABORT("Platform image %s not found.", g_cImageFileName[9]);
+  if (!g_pBarcodeSprite->Load(g_cImageFileName[19]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[19]);
+
+  if (!g_pBarcodeCaseSprite->Load(g_cImageFileName[20]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[20]);
 
   CreateObjects(); //create game objects
 
   g_pCluesSprite = new C3DSprite();				// Briefcase 
   if (!g_pCluesSprite->Load(g_cImageFileName[4]))
 	  ABORT("Platform image %s not found.", g_cImageFileName[4]);
+
+  g_numberSprite0 = new C3DSprite();				// digits 
+  if (!g_numberSprite0->Load(g_cImageFileName[step0]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[step0]);
+  g_numberSprite1 = new C3DSprite();				// digits 
+  if (!g_numberSprite1->Load(g_cImageFileName[step1]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[step1]);
+  g_numberSprite2 = new C3DSprite();				// digits 
+  if (!g_numberSprite2->Load(g_cImageFileName[step2]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[step2]);
+  g_numberSprite3 = new C3DSprite();				// digits 
+  if (!g_numberSprite3->Load(g_cImageFileName[step3]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[step3]);
+  g_winScreen = new C3DSprite();
+  if (!g_winScreen->Load(g_cImageFileName[21]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[21]);
   //message loop
   while(TRUE)
     if(PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)){ //if message waiting

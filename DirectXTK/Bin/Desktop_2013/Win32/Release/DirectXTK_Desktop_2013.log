@@ -1,9 +1,1 @@
-﻿Build started 10/26/2016 9:33:09 PM.
-     1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\DirectXTK\DirectXTK_Desktop_2013.vcxproj" on node 2 (Build target(s)).
-     1>Lib:
-         DirectXTK_Desktop_2013.vcxproj -> C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\DirectXTK\Bin\Desktop_2013\Win32\Release\DirectXTK.lib
-     1>Done Building Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\DirectXTK\DirectXTK_Desktop_2013.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.21
+﻿  DirectXTK_Desktop_2013.vcxproj -> C:\Users\ldc0119\Downloads\bomb-defuse-game-master\bomb-defuse-game-master\DirectXTK\Bin\Desktop_2013\Win32\Release\DirectXTK.lib

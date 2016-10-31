@@ -22,8 +22,20 @@
       <image src="Images\caseFront.png" /> <!-- Top   5 -->
       <image src="Images\caseRight.png" /> <!-- Right 6 -->
       <image src="Images\caseLeft.png" />  <!-- Left  7-->
-      <image src="Images\caseBottom.png" />  <!-- Bottom  8-->
-      <image src="Images\Clues\barcodeClue.png"/> <!-- Barcode Clue 9 -->
+      <image src="Images\caseBottom.png" /> <!-- Bottom  8-->
+      <image src="Images\Font\0.png" />      <!-- Number 0: 9 -->
+      <image src="Images\Font\1.png" />      <!-- Number 1: 10 -->
+      <image src="Images\Font\2.png" />      <!-- Number 2: 11 -->
+      <image src="Images\Font\3.png" />      <!-- Number 3: 12 -->
+      <image src="Images\Font\4.png" />      <!-- Number 4: 13 -->
+      <image src="Images\Font\5.png" />      <!-- Number 5: 14 -->
+      <image src="Images\Font\6.png" />      <!-- Number 6: 15 -->
+      <image src="Images\Font\7.png" />      <!-- Number 7: 16 -->
+      <image src="Images\Font\8.png" />      <!-- Number 8: 17 -->
+      <image src="Images\Font\9.png" />      <!-- Number 9: 18 -->
+      <image src="Images\Clues\barcodeClue.png"/> <!-- Barcode Clue 19 -->
+      <image src="Images\Clues\barcodeCase.png"/><!-- Barcode Clue 20 -->
+      <image src="Images\win.png"/>      <!-- 21 -->
     </images>
   
   <!-- debugger settings -->

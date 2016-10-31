@@ -17,11 +17,18 @@ extern int g_nScreenWidth;
 extern int g_nScreenHeight;
 extern BOOL g_bWireFrame;
 extern C3DSprite* g_pCluesSprite;
+extern C3DSprite* g_numberSprite0;
+extern C3DSprite* g_numberSprite1;
+extern C3DSprite* g_numberSprite2;
+extern C3DSprite* g_numberSprite3;
+extern C3DSprite* g_winScreen;
+extern C3DSprite* g_pBarcodeCaseSprite;
 extern CImageFileNameList g_cImageFileName;
 extern C3DSprite* g_pPlaneSprite;
 void DrawBriefcase();
 extern CGameObject* g_pPlane; 
 extern CGameObject* g_pBarcode;
+extern CGameObject* g_pBarcodeCase;
 
 CGameRenderer::CGameRenderer(): m_bCameraDefaultMode(TRUE){
 } //constructor
@@ -141,6 +148,12 @@ void CGameRenderer::LoadTextures(){
 void CGameRenderer::Release(){ 
   g_pPlaneSprite->Release();
   g_pCluesSprite->Release();
+  g_numberSprite0->Release();
+  g_numberSprite1->Release();
+  g_numberSprite2->Release();
+  g_numberSprite3->Release();
+  g_winScreen->Release();
+  g_pBarcodeCaseSprite->Release();
 
   SAFE_RELEASE(m_pWallTexture);
   SAFE_RELEASE(m_pFloorTexture);
@@ -169,6 +182,7 @@ void CGameRenderer::ComposeFrame(){
   DrawBriefcase(); 
   g_pPlane->draw(); //draw plane
   g_pBarcode->draw(); // draw barcode
+  g_pBarcodeCase->draw();//Draw barcode on case
 } //ComposeFrame
  
 /// Compose a frame of animation and present it to the video card.
