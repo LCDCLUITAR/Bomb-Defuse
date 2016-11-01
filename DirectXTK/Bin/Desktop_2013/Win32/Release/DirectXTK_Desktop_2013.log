@@ -1,1 +1,62 @@
-﻿  DirectXTK_Desktop_2013.vcxproj -> C:\Users\ldc0119\Downloads\bomb-defuse-game-master\bomb-defuse-game-master\DirectXTK\Bin\Desktop_2013\Win32\Release\DirectXTK.lib
+﻿  pch.cpp
+  AlphaTestEffect.cpp
+  BasicEffect.cpp
+  CommonStates.cpp
+  DDSTextureLoader.cpp
+  DGSLEffect.cpp
+  DGSLEffectFactory.cpp
+  DualTextureEffect.cpp
+  BinaryReader.cpp
+  EffectCommon.cpp
+  EffectFactory.cpp
+  EnvironmentMapEffect.cpp
+  GeometricPrimitive.cpp
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(273): warning C4458: declaration of 'color' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(325): warning C4458: declaration of 'weights' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  Model.cpp
+Src\Model.cpp(45): warning C4458: declaration of 'effect' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\Model.h(67): note: see declaration of 'DirectX::ModelMeshPart::effect'
+Src\Model.cpp(45): warning C4458: declaration of 'inputLayout' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\Model.h(64): note: see declaration of 'DirectX::ModelMeshPart::inputLayout'
+Src\Model.cpp(74): warning C4458: declaration of 'effect' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\Model.h(67): note: see declaration of 'DirectX::ModelMeshPart::effect'
+Src\Model.cpp(74): warning C4458: declaration of 'inputLayout' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\Model.h(64): note: see declaration of 'DirectX::ModelMeshPart::inputLayout'
+Src\Model.cpp(97): warning C4458: declaration of 'effect' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\Model.h(67): note: see declaration of 'DirectX::ModelMeshPart::effect'
+  ModelLoadCMO.cpp
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(273): warning C4458: declaration of 'color' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(325): warning C4458: declaration of 'weights' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  ModelLoadSDKMESH.cpp
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(273): warning C4458: declaration of 'color' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(325): warning C4458: declaration of 'weights' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  ScreenGrab.cpp
+Src\ScreenGrab.cpp(925): warning C4838: conversion from 'UINT' to 'INT' requires a narrowing conversion
+  SkinnedEffect.cpp
+  SpriteBatch.cpp
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(273): warning C4458: declaration of 'color' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(325): warning C4458: declaration of 'weights' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  PrimitiveBatch.cpp
+  SpriteFont.cpp
+  Compiling...
+  VertexTypes.cpp
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(273): warning C4458: declaration of 'color' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(325): warning C4458: declaration of 'weights' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+Src\VertexTypes.cpp(119): warning C4458: declaration of 'color' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(233): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTexture::color'
+Src\VertexTypes.cpp(145): warning C4458: declaration of 'indices' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(288): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::indices'
+Src\VertexTypes.cpp(150): warning C4458: declaration of 'weights' hides class member
+  C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Inc\VertexTypes.h(289): note: see declaration of 'DirectX::VertexPositionNormalTangentColorTextureSkinning::weights'
+  WICTextureLoader.cpp
+  DirectXTK_Desktop_2013.vcxproj -> C:\Users\iansc\Documents\bomb-defuse-game-master\DirectXTK\Bin\Desktop_2013\Win32\Release\DirectXTK.lib

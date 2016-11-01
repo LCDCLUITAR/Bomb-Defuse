@@ -44,7 +44,7 @@ int step1 = 9;
 int step2 = 9;
 int step3 = 9;
 bool win = false;
-
+bool fail = false;
 C3DSprite* g_pPlaneSprite = nullptr; ///< Pointer to the plane sprite.
 C3DSprite* g_pBarcodeSprite = nullptr; ///< Pointer to the barcode sprite
 CGameObject* g_pPlane = nullptr; ///< Pointer to the plane object.
@@ -60,6 +60,7 @@ C3DSprite* g_numberSprite1 = nullptr;
 C3DSprite* g_numberSprite2 = nullptr;
 C3DSprite* g_numberSprite3 = nullptr;
 C3DSprite* g_winScreen = nullptr;
+C3DSprite* g_failScreen = nullptr;
 
 const float HAMSTER_HT = 128.0f;
 const float HALF_HAMSTER_HT = HAMSTER_HT / 2.0f;
@@ -141,6 +142,13 @@ void briefcaseRotation(int x, int y){
 			g_winScreen = new C3DSprite();	
 			if (!g_winScreen->Load(g_cImageFileName[21]))
 				ABORT("Platform image %s not found.", g_cImageFileName[21]);
+		}
+		else {
+
+			fail = true;
+			g_winScreen = new C3DSprite();
+			if (!g_failScreen->Load(g_cImageFileName[22]))
+				ABORT("Platform image %s not found.", g_cImageFileName[22]);
 		}
 	}//win controller
 
@@ -237,6 +245,8 @@ void DrawBriefcase() {
 		g_pCluesSprite->Draw(Vector3(515, y - 40, 450));
 		if(win==true)
 			g_winScreen->Draw(Vector3(515, y, 445));
+		else if(fail==true)
+			g_failScreen->Draw(Vector3(515, y, 445));
 	}
 	else
 		g_pCluesSprite->Draw(Vector3(515, y, 450));
@@ -451,6 +461,9 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
   g_winScreen = new C3DSprite();
   if (!g_winScreen->Load(g_cImageFileName[21]))
 	  ABORT("Platform image %s not found.", g_cImageFileName[21]);
+  g_failScreen = new C3DSprite();
+  if (!g_winScreen->Load(g_cImageFileName[22]))
+	  ABORT("Platform image %s not found.", g_cImageFileName[22]);
   //message loop
   while(TRUE)
     if(PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)){ //if message waiting

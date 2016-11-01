@@ -1,5 +1,5 @@
 ﻿  Main.cpp
-c:\users\ldc0119\downloads\bomb-defuse-game-master\bomb-defuse-game-master\bomb defuse\code\main.cpp(229): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\ldc0119\downloads\bomb-defuse-game-master\bomb-defuse-game-master\bomb defuse\code\main.cpp(301): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  Ned's Turkey Farm.vcxproj -> C:\Users\ldc0119\Downloads\bomb-defuse-game-master\bomb-defuse-game-master\Bomb Defuse\Debug\Ned's Turkey Farm.exe
-  Ned's Turkey Farm.vcxproj -> C:\Users\ldc0119\Downloads\bomb-defuse-game-master\bomb-defuse-game-master\Bomb Defuse\Debug\Ned's Turkey Farm.pdb (Full PDB)
+c:\users\iansc\documents\bomb-defuse-game-master\bomb defuse\code\main.cpp(237): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\documents\bomb-defuse-game-master\bomb defuse\code\main.cpp(311): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Documents\bomb-defuse-game-master\Bomb Defuse\Debug\Ned's Turkey Farm.exe
+  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Documents\bomb-defuse-game-master\Bomb Defuse\Debug\Ned's Turkey Farm.pdb (Full PDB)

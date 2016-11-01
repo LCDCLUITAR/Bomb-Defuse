@@ -36,6 +36,7 @@
       <image src="Images\Clues\barcodeClue.png"/> <!-- Barcode Clue 19 -->
       <image src="Images\Clues\barcodeCase.png"/><!-- Barcode Clue 20 -->
       <image src="Images\win.png"/>      <!-- 21 -->
+      <image src="Images\fail.png"/>      <!-- 2 -->
     </images>
   
   <!-- debugger settings -->

@@ -22,6 +22,7 @@ extern C3DSprite* g_numberSprite1;
 extern C3DSprite* g_numberSprite2;
 extern C3DSprite* g_numberSprite3;
 extern C3DSprite* g_winScreen;
+extern C3DSprite* g_failScreen;
 extern C3DSprite* g_pBarcodeCaseSprite;
 extern CImageFileNameList g_cImageFileName;
 extern C3DSprite* g_pPlaneSprite;
@@ -153,6 +154,7 @@ void CGameRenderer::Release(){
   g_numberSprite2->Release();
   g_numberSprite3->Release();
   g_winScreen->Release();
+  g_failScreen->Release();
   g_pBarcodeCaseSprite->Release();
 
   SAFE_RELEASE(m_pWallTexture);
