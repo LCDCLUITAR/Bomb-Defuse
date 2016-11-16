@@ -21,3 +21,13 @@
 |          |Create solution function            	|              
 |Luis:     |Framework                           	|Hover clues
 |          |Mouse methods                       	|    
+
+## Week 2 of coding
+|          | Priority 								| Push|
+|--------- |--------- 								|---- |
+|Cameron:  |Finish Stage 2 images  |Animate case  
+|          |Puzzle design         |Draw open case
+|Ian:      |Modular print function|      
+|          |Placeholder for function calls      	|               
+|Luis:     |Functions clean up                   | 
+|          |Place placeholders                   | Main Puzzle build
