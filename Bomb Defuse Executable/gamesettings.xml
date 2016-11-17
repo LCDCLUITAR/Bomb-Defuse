@@ -35,8 +35,8 @@
       <image src="Images\Font\9.png" />      <!-- Number 9: 18 -->
       <image src="Images\Clues\barcodeClue.png"/> <!-- Barcode Clue 19 -->
       <image src="Images\Clues\barcodeCase.png"/><!-- Barcode Clue 20 -->
-      <image src="Images\win.png"/>      <!-- 21 -->
-      <image src="Images\fail.png"/>      <!-- 2 -->
+      <image src="Images\caseOpen.png"/>      <!-- 21 -->
+      <image src="Images\fail.png"/>      <!-- 22 -->
     </images>
   
   <!-- debugger settings -->

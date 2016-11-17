@@ -6,7 +6,7 @@ public:
 	GameClues();
 	~GameClues();
 
-	int getLockNum(int[]);
+	void getLockNum(int[]);
 };
 
 int randomNumGen();

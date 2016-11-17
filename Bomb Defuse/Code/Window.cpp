@@ -8,13 +8,15 @@
 
 #include "gamerenderer.h"
 #include "abort.h"
+#include "GameController.h"
 
 #include "..\resource.h" //for IDI_ICON1, the red plane icon
 
 extern HWND g_HwndApp; 
 extern HINSTANCE g_hInstance;
 extern int g_nScreenWidth; 
-extern int g_nScreenHeight; 
+extern int g_nScreenHeight;
+extern GameController mainController;
 
 extern CGameRenderer GameRenderer; 
 

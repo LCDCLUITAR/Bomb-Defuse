@@ -1,24 +1,9 @@
-﻿  compilation object save succeeded; see C:\Users\iansc\Documents\bomb-defuse-game-master\Bomb Defuse\Release\PixelShader.cso
-  compilation object save succeeded; see C:\Users\iansc\Documents\bomb-defuse-game-master\Bomb Defuse\Release\VertexShader.cso
-  abort.cpp
-  debug.cpp
-  GameRenderer.cpp
-  ImageFileNameList.cpp
-  IPMgr.cpp
-  Main.cpp
-Code\Main.cpp(237): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-Code\Main.cpp(311): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  Object.cpp
-  Renderer.cpp
-  Shader.cpp
-  Sprite.cpp
-  Timer.cpp
-  tinyxml2.cpp
-  Window.cpp
-  Generating code
-  423 of 428 functions (98.8%) were compiled, the rest were copied from previous compilation.
-    8 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Documents\bomb-defuse-game-master\Bomb Defuse\Release\Ned's Turkey Farm.exe
-  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Documents\bomb-defuse-game-master\Bomb Defuse\Release\Ned's Turkey Farm.pdb (Full PDB)
+﻿Build started 11/17/2016 1:06:27 AM.
+     1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb defuse v2\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         Ned's Turkey Farm.vcxproj -> C:\Users\LCDCLUITAR\Documents\GitHub\bomb defuse v2\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.exe
+     1>Done Building Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb defuse v2\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.05

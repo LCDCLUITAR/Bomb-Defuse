@@ -11,7 +11,7 @@ GameClues::~GameClues(){
 
 }
 
-int GameClues::getLockNum(int clueBarcode[]){
+void GameClues::getLockNum(int clueBarcode[]){
 	clueBarcode = barcodeAnswer;
 }
 

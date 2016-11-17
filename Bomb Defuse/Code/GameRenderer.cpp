@@ -12,6 +12,7 @@
 #include "debug.h"
 #include "sprite.h"
 #include "object.h"
+#include "GameController.h"
 
 extern int g_nScreenWidth;
 extern int g_nScreenHeight;
@@ -26,10 +27,12 @@ extern C3DSprite* g_failScreen;
 extern C3DSprite* g_pBarcodeCaseSprite;
 extern CImageFileNameList g_cImageFileName;
 extern C3DSprite* g_pPlaneSprite;
+void briefcaseRotation(int x, int y);
 void DrawBriefcase();
 extern CGameObject* g_pPlane; 
 extern CGameObject* g_pBarcode;
 extern CGameObject* g_pBarcodeCase;
+extern GameController mainController;
 
 CGameRenderer::CGameRenderer(): m_bCameraDefaultMode(TRUE){
 } //constructor
@@ -153,8 +156,6 @@ void CGameRenderer::Release(){
   g_numberSprite1->Release();
   g_numberSprite2->Release();
   g_numberSprite3->Release();
-  g_winScreen->Release();
-  g_failScreen->Release();
   g_pBarcodeCaseSprite->Release();
 
   SAFE_RELEASE(m_pWallTexture);
