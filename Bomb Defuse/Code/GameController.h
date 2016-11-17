@@ -1,0 +1,33 @@
+#pragma once
+#include <windows.h>
+#include <windowsx.h>
+
+#include "defines.h"
+#include "abort.h"
+#include "gamerenderer.h"
+
+#include "imagefilenamelist.h"
+#include "debug.h"
+#include "timer.h"
+#include "sprite.h"
+#include "object.h"
+#include "GameClues.h"
+
+class GameController{
+private:
+	int caseLocation;  // 0: Front, 1: Top, 2: Left, 3: Right, 4: Bottom  'Rotation Location of Briefcase'
+
+	int lockNum0;
+	int lockNum1;
+	int lockNum2;
+	int lockNum3;
+	int barcodeNum[4];
+	int strike;
+public:
+	GameController();
+	~GameController();
+
+	int caseRotation(int, int, int&);
+	int lockNumberCtrl(int, int, int&, int&);
+	int checkStage1();
+};
