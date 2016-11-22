@@ -1,4 +1,7 @@
 #include "GameController.h"
+#include <stdlib.h>     /* srand, rand */
+#include <stdio.h>  
+#include <time.h>       /* time */
 
 GameController::GameController(){
 	caseLocation = 0;
@@ -7,6 +10,7 @@ GameController::GameController(){
 	lockNum2 = 9;
 	lockNum3 = 9;
 	strike = 0;
+	randomNumGen(9, 0);
 }					 
 GameController::~GameController(){
 
@@ -108,7 +112,7 @@ int GameController::lockNumberCtrl(int x, int y, int& currLoc, int& step){
 }
 
 int GameController::checkStage1(){
-	if ((lockNum0 == 9) && (lockNum1 == 9) && (lockNum2 == 10) && (lockNum3 == 10)) {
+	if ((lockNum0 == barcodeNum[4]+9) && (lockNum1 == barcodeNum[1]+9) && (lockNum2 == barcodeNum[2]+9) && (lockNum3 == barcodeNum[3]+9)) {
 		return 1;
 	}
 	else if(strike >= 2) {
@@ -118,4 +122,18 @@ int GameController::checkStage1(){
 		strike = strike + 1;
 		return 0;
 	}
+}
+
+void GameController::getBarcodeArr(int arr[]) {
+	for (int i = 0; i < 5; i++)
+		arr[i] = barcodeNum[i];
+}
+
+void GameController::randomNumGen(int range_max, int range_min){
+	srand((unsigned)time(0));
+	// Generate random numbers in the half-closed interval  
+	// [range_min, range_max). In other words,  
+	// range_min <= random number < range_max  
+	for (int i = 0; i < 5; i++)
+		barcodeNum[i] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
 }

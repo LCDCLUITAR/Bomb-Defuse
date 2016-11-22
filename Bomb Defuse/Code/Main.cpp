@@ -61,6 +61,12 @@ C3DSprite* g_numberSprite0 = nullptr;
 C3DSprite* g_numberSprite1 = nullptr;
 C3DSprite* g_numberSprite2 = nullptr;
 C3DSprite* g_numberSprite3 = nullptr;
+
+C3DSprite* g_numberBarcodeSprite0 = nullptr;
+C3DSprite* g_numberBarcodeSprite1 = nullptr;
+C3DSprite* g_numberBarcodeSprite2 = nullptr;
+C3DSprite* g_numberBarcodeSprite3 = nullptr;
+
 C3DSprite* g_winScreen = nullptr;
 C3DSprite* g_failScreen = nullptr;
 
@@ -135,6 +141,9 @@ void briefcaseRotation(int caseImage) {
 			ABORT("Platform image %s not found.", g_cImageFileName[caseImage]);
 		CreateObjects();
 	}
+	if (caseImage == 4) {
+		
+	}
 }
 
 void DrawBriefcase() {
@@ -163,6 +172,18 @@ void DrawBriefcase() {
 	}
 	else
 		g_pCluesSprite->Draw(Vector3(515, y, 450));
+
+
+	g_numberBarcodeSprite2->Draw(Vector3(200, 690, 556));
+	g_numberBarcodeSprite3->Draw(Vector3(215, 690, 556));
+	if (currLocation == 4) {
+		g_numberBarcodeSprite0->Draw(Vector3(780, y - 50, 445));
+		g_numberBarcodeSprite1->Draw(Vector3(795, y - 50, 445));
+	}											  
+	else {
+		g_numberBarcodeSprite0->Draw(Vector3(780, y - 40, 6000));
+		g_numberBarcodeSprite1->Draw(Vector3(781, y - 40, 6000));
+	}
 } //DrawBriefcase
 
 BOOL inRange(const int index, const int limit) {
@@ -378,6 +399,23 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	g_numberSprite3 = new C3DSprite();				// digits 
 	if (!g_numberSprite3->Load(g_cImageFileName[lockNum]))
 		ABORT("Platform image %s not found.", g_cImageFileName[lockNum]);
+
+	int arr[4];
+	mainController.getBarcodeArr(arr);
+
+	g_numberBarcodeSprite0 = new C3DSprite();	//digit
+	if (!g_numberBarcodeSprite0->Load(g_cImageFileName[ arr[4]+9 ]))
+		ABORT("Platform image %s not found.", g_cImageFileName[arr[4] + 9]);
+	g_numberBarcodeSprite1 = new C3DSprite();	//digit
+	if (!g_numberBarcodeSprite1->Load(g_cImageFileName[arr[1] + 9]))
+		ABORT("Platform image %s not found.", g_cImageFileName[arr[1] + 9]);
+	g_numberBarcodeSprite2 = new C3DSprite();	//digit
+	if (!g_numberBarcodeSprite2->Load(g_cImageFileName[arr[2] + 9]))
+		ABORT("Platform image %s not found.", g_cImageFileName[arr[2] + 9]);
+	g_numberBarcodeSprite3 = new C3DSprite();	//digit
+	if (!g_numberBarcodeSprite3->Load(g_cImageFileName[arr[3] + 9]))
+		ABORT("Platform image %s not found.", g_cImageFileName[arr[3] + 9]);
+
 	//message loop
 	while (TRUE)
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)) { //if message waiting

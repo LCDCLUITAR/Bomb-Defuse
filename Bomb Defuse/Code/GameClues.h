@@ -5,8 +5,4 @@ protected:
 public:
 	GameClues();
 	~GameClues();
-
-	void getLockNum(int[]);
 };
-
-int randomNumGen();

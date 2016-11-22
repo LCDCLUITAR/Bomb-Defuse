@@ -13,7 +13,7 @@
 #include "object.h"
 #include "GameClues.h"
 
-class GameController{
+class GameController : public GameClues{
 private:
 	int caseLocation;  // 0: Front, 1: Top, 2: Left, 3: Right, 4: Bottom  'Rotation Location of Briefcase'
 
@@ -21,7 +21,7 @@ private:
 	int lockNum1;
 	int lockNum2;
 	int lockNum3;
-	int barcodeNum[4];
+	int barcodeNum[5];
 	int strike;
 public:
 	GameController();
@@ -30,4 +30,6 @@ public:
 	int caseRotation(int, int, int&);
 	int lockNumberCtrl(int, int, int&, int&);
 	int checkStage1();
+	void randomNumGen(int range_max, int range_min);
+	void getBarcodeArr(int arr[]);
 };
