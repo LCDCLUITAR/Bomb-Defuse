@@ -16,7 +16,7 @@
     <images>
       <image src="Images\background.png" />
       <image src="Images\floor.png" />
-      <image src="Images\black.png" />
+      <image src="Images\mainMenu.png" />
       <image src="Images\clues.png" />
       <image src="Images\briefcase.png" /> <!-- Front 4 -->
       <image src="Images\caseFront.png" /> <!-- Top   5 -->

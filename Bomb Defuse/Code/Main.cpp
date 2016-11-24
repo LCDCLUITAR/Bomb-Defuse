@@ -47,16 +47,18 @@ int lockNum = 9;
 bool stage1Complete = false;
 bool win = false;
 bool fail = false;
+bool menu_Screen = true;
 C3DSprite* g_pPlaneSprite = nullptr; ///< Pointer to the plane sprite.
 C3DSprite* g_pBarcodeSprite = nullptr; ///< Pointer to the barcode sprite
 CGameObject* g_pPlane = nullptr; ///< Pointer to the plane object.
+C3DSprite* g_mainMenu = nullptr;
 
 CGameObject* g_pBarcode = nullptr;
 CGameObject* g_pBarcodeCase = nullptr;
 
 C3DSprite* g_pBarcodeCaseSprite = nullptr;
 
-C3DSprite* g_pCluesSprite = nullptr;
+C3DSprite* g_pBriefcaseSprite = nullptr;
 C3DSprite* g_numberSprite0 = nullptr;
 C3DSprite* g_numberSprite1 = nullptr;
 C3DSprite* g_numberSprite2 = nullptr;
@@ -91,6 +93,15 @@ void InitGraphics();
 void CreateObjects();
 
 HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
+
+void drawMenuScreen() {
+	float y = g_nScreenHeight - 410;
+
+	g_mainMenu = new C3DSprite();
+	if (!g_mainMenu->Load(g_cImageFileName[2]))
+		ABORT("Platform image %s not found.", g_cImageFileName[2]);
+	g_mainMenu->Draw(Vector3(515, y, 445));
+}
 
 void checkStageOne(int complete) {
 	if (complete == 1) {
@@ -136,13 +147,10 @@ void lockNumCtrl(int step, int fieldLoc) {
 void briefcaseRotation(int caseImage) {
 	// Briefcase Rotations
 	if (caseImage != -1) {
-		g_pCluesSprite = new C3DSprite();
-		if (!g_pCluesSprite->Load(g_cImageFileName[caseImage]))
+		g_pBriefcaseSprite = new C3DSprite();
+		if (!g_pBriefcaseSprite->Load(g_cImageFileName[caseImage]))
 			ABORT("Platform image %s not found.", g_cImageFileName[caseImage]);
 		CreateObjects();
-	}
-	if (caseImage == 4) {
-		
 	}
 }
 
@@ -168,18 +176,18 @@ void DrawBriefcase() {
 			g_numberSprite2->Release();
 			g_numberSprite3->Release();
 			g_pBarcodeCaseSprite->Release();
-			g_pCluesSprite->Release();
+			g_pBriefcaseSprite->Release();
 		}
 		else if (fail == true)
 			g_failScreen->Draw(Vector3(515, y, 445));
 		else
-			g_pCluesSprite->Draw(Vector3(515, y - 40, 450));
+			g_pBriefcaseSprite->Draw(Vector3(515, y - 40, 450));
 	}
 	else if (currLocation == 5){
 		g_StageTwo->Draw(Vector3(515, y+50, 700));	
 	}
 	else
-		g_pCluesSprite->Draw(Vector3(515, y, 450));
+		g_pBriefcaseSprite->Draw(Vector3(515, y, 450));
 
 
 	g_numberBarcodeSprite2->Draw(Vector3(200, 690, 556));
@@ -321,8 +329,14 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 	{
 		xPos = GET_X_LPARAM(lParam);
 		yPos = GET_Y_LPARAM(lParam);
+		int x = xPos;
+		int y = yPos;
+
+		if ( menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497 ) {
+			menu_Screen = false;
+		}
 		// Stage One rotation mouse methods briefcase
-		if (!stage1Complete)
+		if (!stage1Complete && !menu_Screen)
 			briefcaseRotation(mainController.caseRotation(xPos, yPos, currLocation));
 		// Stage One lock number controller mouse methods
 		if (currLocation == 1 && !stage1Complete)
@@ -336,7 +350,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		GameRenderer.Release(); //release textures
 		delete g_pPlane; //delete the plane object
 		delete g_pPlaneSprite; //delete the plane sprite
-		delete g_pCluesSprite;
+		delete g_pBriefcaseSprite;
 		PostQuitMessage(0); //this is the last thing to do on exit
 		break;
 
@@ -391,8 +405,8 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 
 	CreateObjects(); //create game objects
 
-	g_pCluesSprite = new C3DSprite();				// Briefcase 
-	if (!g_pCluesSprite->Load(g_cImageFileName[4]))
+	g_pBriefcaseSprite = new C3DSprite();				// Briefcase 
+	if (!g_pBriefcaseSprite->Load(g_cImageFileName[4]))
 		ABORT("Platform image %s not found.", g_cImageFileName[4]);
 
 	g_numberSprite0 = new C3DSprite();				// digits 
@@ -408,21 +422,23 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	if (!g_numberSprite3->Load(g_cImageFileName[lockNum]))
 		ABORT("Platform image %s not found.", g_cImageFileName[lockNum]);
 
-	int arr[4];
-	mainController.getBarcodeArr(arr);
+	if (!stage1Complete) {
+		int arr[5];
+		mainController.getBarcodeArr(arr);
 
-	g_numberBarcodeSprite0 = new C3DSprite();	//digit
-	if (!g_numberBarcodeSprite0->Load(g_cImageFileName[ arr[4]+9 ]))
-		ABORT("Platform image %s not found.", g_cImageFileName[arr[4] + 9]);
-	g_numberBarcodeSprite1 = new C3DSprite();	//digit
-	if (!g_numberBarcodeSprite1->Load(g_cImageFileName[arr[1] + 9]))
-		ABORT("Platform image %s not found.", g_cImageFileName[arr[1] + 9]);
-	g_numberBarcodeSprite2 = new C3DSprite();	//digit
-	if (!g_numberBarcodeSprite2->Load(g_cImageFileName[arr[2] + 9]))
-		ABORT("Platform image %s not found.", g_cImageFileName[arr[2] + 9]);
-	g_numberBarcodeSprite3 = new C3DSprite();	//digit
-	if (!g_numberBarcodeSprite3->Load(g_cImageFileName[arr[3] + 9]))
-		ABORT("Platform image %s not found.", g_cImageFileName[arr[3] + 9]);
+		g_numberBarcodeSprite0 = new C3DSprite();	//digit
+		if (!g_numberBarcodeSprite0->Load(g_cImageFileName[arr[4] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[4] + 9]);
+		g_numberBarcodeSprite1 = new C3DSprite();	//digit
+		if (!g_numberBarcodeSprite1->Load(g_cImageFileName[arr[1] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[1] + 9]);
+		g_numberBarcodeSprite2 = new C3DSprite();	//digit
+		if (!g_numberBarcodeSprite2->Load(g_cImageFileName[arr[2] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[2] + 9]);
+		g_numberBarcodeSprite3 = new C3DSprite();	//digit
+		if (!g_numberBarcodeSprite3->Load(g_cImageFileName[arr[3] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[3] + 9]);
+	}
 
 	//message loop
 	while (TRUE)

@@ -86,7 +86,7 @@ HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow){
   
   //center window on screen
   int x = (nDevScreenWidth - g_nScreenWidth)/2;
-  int y = (nDevScreenHeight - g_nScreenHeight)/2;
+  int y = (nDevScreenHeight - g_nScreenHeight) / 2;
   ::SetWindowPos(hwnd, nullptr, x, y, w, h, SWP_NOZORDER | SWP_SHOWWINDOW);
 
   if(hwnd){ //if successfully created window

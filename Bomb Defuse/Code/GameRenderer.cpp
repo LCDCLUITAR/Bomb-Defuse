@@ -17,7 +17,9 @@
 extern int g_nScreenWidth;
 extern int g_nScreenHeight;
 extern BOOL g_bWireFrame;
-extern C3DSprite* g_pCluesSprite;
+extern bool menu_Screen;
+extern C3DSprite* g_pBriefcaseSprite;
+extern C3DSprite* g_mainMenu;
 extern C3DSprite* g_numberSprite0;
 extern C3DSprite* g_numberSprite1;
 extern C3DSprite* g_numberSprite2;
@@ -33,6 +35,7 @@ extern CImageFileNameList g_cImageFileName;
 extern C3DSprite* g_pPlaneSprite;
 void briefcaseRotation(int x, int y);
 void DrawBriefcase();
+void drawMenuScreen();
 extern CGameObject* g_pPlane; 
 extern CGameObject* g_pBarcode;
 extern CGameObject* g_pBarcodeCase;
@@ -155,7 +158,7 @@ void CGameRenderer::LoadTextures(){
 
 void CGameRenderer::Release(){ 
   g_pPlaneSprite->Release();
-  g_pCluesSprite->Release();
+  g_pBriefcaseSprite->Release();
   g_numberSprite0->Release();
   g_numberSprite1->Release();
   g_numberSprite2->Release();
@@ -186,10 +189,15 @@ void CGameRenderer::ComposeFrame(){
 
   //draw
   DrawBackground(); //draw background 
-  DrawBriefcase(); 
-  g_pPlane->draw(); //draw plane
-  g_pBarcode->draw(); // draw barcode
-  g_pBarcodeCase->draw();//Draw barcode on case
+  if(!menu_Screen) {
+	  DrawBriefcase();
+	  g_pPlane->draw(); //draw plane
+	  g_pBarcode->draw(); // draw barcode
+	  g_pBarcodeCase->draw();//Draw barcode on case
+  }
+  else {
+	  drawMenuScreen();
+  }
 } //ComposeFrame
  
 /// Compose a frame of animation and present it to the video card.
