@@ -26,7 +26,7 @@ extern C3DSprite* g_numberBarcodeSprite0;
 extern C3DSprite* g_numberBarcodeSprite1;
 extern C3DSprite* g_numberBarcodeSprite2;
 extern C3DSprite* g_numberBarcodeSprite3;
-extern C3DSprite* g_winScreen;
+extern C3DSprite* g_StageTwo;
 extern C3DSprite* g_failScreen;
 extern C3DSprite* g_pBarcodeCaseSprite;
 extern CImageFileNameList g_cImageFileName;

@@ -31,5 +31,9 @@ public:
 	int lockNumberCtrl(int, int, int&, int&);
 	int checkStage1();
 	void randomNumGen(int range_max, int range_min);
+
 	void getBarcodeArr(int arr[]);
+	void setCaseLocation(int newLoc) {
+		caseLocation = newLoc;
+	}
 };

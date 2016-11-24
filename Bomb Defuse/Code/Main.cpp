@@ -67,7 +67,7 @@ C3DSprite* g_numberBarcodeSprite1 = nullptr;
 C3DSprite* g_numberBarcodeSprite2 = nullptr;
 C3DSprite* g_numberBarcodeSprite3 = nullptr;
 
-C3DSprite* g_winScreen = nullptr;
+C3DSprite* g_StageTwo = nullptr;
 C3DSprite* g_failScreen = nullptr;
 
 
@@ -94,8 +94,8 @@ HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
 
 void checkStageOne(int complete) {
 	if (complete == 1) {
-		g_winScreen = new C3DSprite();
-		if (!g_winScreen->Load(g_cImageFileName[21]))
+		g_StageTwo = new C3DSprite();
+		if (!g_StageTwo->Load(g_cImageFileName[21]))
 			ABORT("Platform image %s not found.", g_cImageFileName[21]);
 		win = true;
 	}
@@ -158,17 +158,25 @@ void DrawBriefcase() {
 		}
 		// If player advances to stage 2
 		if (win == true) {
-			g_winScreen->Draw(Vector3(515, y, 800));
+			g_StageTwo->Draw(Vector3(515, y + 50, 700));
+			currLocation = 5;
+			mainController.setCaseLocation(5);
+			stage1Complete = true;
+
 			g_numberSprite0->Release();
 			g_numberSprite1->Release();
 			g_numberSprite2->Release();
 			g_numberSprite3->Release();
 			g_pBarcodeCaseSprite->Release();
+			g_pCluesSprite->Release();
 		}
 		else if (fail == true)
 			g_failScreen->Draw(Vector3(515, y, 445));
 		else
 			g_pCluesSprite->Draw(Vector3(515, y - 40, 450));
+	}
+	else if (currLocation == 5){
+		g_StageTwo->Draw(Vector3(515, y+50, 700));	
 	}
 	else
 		g_pCluesSprite->Draw(Vector3(515, y, 450));
