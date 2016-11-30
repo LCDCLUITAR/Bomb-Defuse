@@ -3,7 +3,7 @@
 #include <stdio.h>  
 #include <time.h>       /* time */
 
-GameController::GameController(){
+GameController::GameController() {
 	caseLocation = 0;
 	lockNum0 = 9;
 	lockNum1 = 9;
@@ -13,8 +13,8 @@ GameController::GameController(){
 	randomNumGen(9, 0, "barcode");
 	randomNumGen(23, 40, "shapes");
 	fixShapeIndex();
-}					 
-GameController::~GameController(){
+}
+GameController::~GameController() {
 
 }
 
@@ -78,7 +78,7 @@ int GameController::caseRotation(int x, int y, int &currLoc) {
 	return -1;
 }
 
-int GameController::lockNumberCtrl(int x, int y, int& currLoc, int& step){
+int GameController::lockNumberCtrl(int x, int y, int& currLoc, int& step) {
 	//lock number control
 	if (x >= 420 && x <= 445 && y <= 450 && y >= 380 && currLoc == 1) {
 		lockNum0++;
@@ -113,12 +113,12 @@ int GameController::lockNumberCtrl(int x, int y, int& currLoc, int& step){
 	return -1;
 }
 
-int GameController::checkStage1(){
+int GameController::checkStage1() {
 	//if ((lockNum0 == barcodeNum[4]+9) && (lockNum1 == barcodeNum[1]+9) && (lockNum2 == barcodeNum[2]+9) && (lockNum3 == barcodeNum[3]+9)) {
 	if ((lockNum0 == 9) && (lockNum1 == 9) && (lockNum2 == 9) && (lockNum3 == 10)) {
 		return 1;
 	}
-	else if(strike >= 2) {
+	else if (strike >= 2) {
 		return 2;
 	}
 	else {
@@ -132,17 +132,22 @@ void GameController::getBarcodeArr(int arr[]) {
 		arr[i] = barcodeNum[i];
 }
 
-void GameController::randomNumGen(int range_max, int range_min, string clue){
+void GameController::randomNumGen(int range_max, int range_min, string clue) {
 	srand((unsigned)time(0));
 	// Generate random numbers in the half-closed interval  
 	// [range_min, range_max). In other words,  
 	// range_min <= random number < range_max  
-	if(clue == "barcode")
+	if (clue == "barcode")
 		for (int i = 0; i < 5; i++)
 			barcodeNum[i] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
 	else if (clue == "shapes") {
 		for (int i = 0; i < 5; i++)
 			shapeResult[i] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
+
+		//shapeResult[0] = 32;
+		//shapeResult[1] = 32;
+		//shapeResult[2] = 26;
+		//shapeResult[3] = 27;
 	}
 }
 
@@ -151,19 +156,19 @@ int GameController::shapeScreen(int x, int y) {
 	// Circle
 	if (x >= 232 && x <= 265 && y >= 363 && y <= 394)
 		shapeIndex = 29;// "Circle";  29 - 31
-	// Triangle
+						// Triangle
 	if (x >= 288 && x <= 320 && y >= 363 && y <= 394)
 		shapeIndex = 35;// "Triangle";  35 - 37
-	// Star
+						// Star
 	if (x >= 345 && x <= 380 && y >= 363 && y <= 394)
 		shapeIndex = 32;// "Star";  32 - 34
-	// Trapezoid
+						// Trapezoid
 	if (x >= 232 && x <= 265 && y >= 420 && y <= 449)
 		shapeIndex = 38;// "Trapezoid";  38 - 40
-	// Plus
+						// Plus
 	if (x >= 288 && x <= 320 && y >= 420 && y <= 449)
 		shapeIndex = 26;// "Plus";  26 - 28
-	// Square
+						// Square
 	if (x >= 345 && x <= 380 && y >= 420 && y <= 449)
 		shapeIndex = 23;// "Square";  23 - 25
 
@@ -174,10 +179,11 @@ int GameController::shapeScreen(int x, int y) {
 string GameController::isShapeResult(int shapeIndex, int position, bool& clear) {
 	static int shapeRep[6];
 	static int x = 0;
-	
+	int spacer = 0;
+
 	x++;
 	if (clear == true) {
-		x = 0;
+		x = 1;
 		clear = false;
 	}
 	if (x <= 1) {
@@ -187,13 +193,43 @@ string GameController::isShapeResult(int shapeIndex, int position, bool& clear) 
 
 	for (int i = 0; i < 5; i++) {
 		if (shapeIndex == shapeResult[i] && i == (position - 1)) {
-			//shapeRep[i]--;
+
+			if (shapeResult[i] == 23)
+				spacer = 23;
+			else if (shapeResult[i] == 26)
+				spacer = 25;
+			else if (shapeResult[i] == 29)
+				spacer = 27;
+			else if (shapeResult[i] == 32)
+				spacer = 29;
+			else if (shapeResult[i] == 35)
+				spacer = 31;
+			else if (shapeResult[i] == 38)
+				spacer = 33;
+
+			shapeRep[shapeIndex - spacer]--;
 			return "Green";
 		}
 	}
-	for (int i = 0; i < 5; i++){
-		if (shapeIndex == shapeResult[i]/* && shapeRep[i] >= 1*/)
-			return "Yellow";
+	for (int i = 0; i < 5; i++) {
+		if (shapeIndex == shapeResult[i]) {
+
+			if (shapeResult[i] == 23)
+				spacer = 23;
+			else if (shapeResult[i] == 26)
+				spacer = 25;
+			else if (shapeResult[i] == 29)
+				spacer = 27;
+			else if (shapeResult[i] == 32)
+				spacer = 29;
+			else if (shapeResult[i] == 35)
+				spacer = 31;
+			else if (shapeResult[i] == 38)
+				spacer = 33;
+
+			if (shapeRep[shapeIndex - spacer] >= 1)
+				return "Yellow";
+		}
 	}
 
 	return "Red";

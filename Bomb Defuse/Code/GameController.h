@@ -13,7 +13,7 @@
 #include "object.h"
 #include "GameClues.h"
 
-class GameController : public GameClues{
+class GameController : public GameClues {
 private:
 	int caseLocation;  // 0: Front, 1: Top, 2: Left, 3: Right, 4: Bottom  'Rotation Location of Briefcase'
 
@@ -48,4 +48,6 @@ public:
 	int getShapeToDraw() {
 		return shapeToDraw;
 	}
+	void addStrike() { strike++; }
+	int getStrikes() { return strike; }
 };

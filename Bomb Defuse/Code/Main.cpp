@@ -44,6 +44,7 @@ static int currLocation = 0; // 0: Front, 1: Top, 2: Left, 3: Right, 4: Bottom  
 int xPos;
 int yPos;
 int lockNum = 9;
+int strikes = 0;
 bool stage1Complete = false;
 bool win = false;
 bool fail = false;
@@ -51,6 +52,7 @@ bool menu_Screen = true;
 bool shapeOnScreen = false;
 bool clearShapes = false;
 static int counterShape = 0;
+int shapeResult = 0;
 C3DSprite* g_pTopCluesBannerSprite = nullptr; ///< Pointer to the plane sprite.
 C3DSprite* g_pBarcodeSprite = nullptr; ///< Pointer to the barcode sprite
 CGameObject* g_pTopClues = nullptr; ///< Pointer to the plane object.
@@ -102,10 +104,22 @@ void CreateObjects();
 
 HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
 
+void checkStage2(string clue) {
+	if (clue == "CheckShape") {
+		if (shapeResult != 4) {
+			mainController.addStrike();
+			strikes = mainController.getStrikes();
+		}
+		else {
+			// Puzzle solved
+		}
+	}
+}
+
 void drawShapeScreen() {
 	float y = g_nScreenHeight - 410;
 
-	if(counterShape >= 1)
+	if (counterShape >= 1)
 		g_shapeClueSprite1->Draw(Vector3(502, y + 20, 500));
 	if (counterShape >= 2)
 		g_shapeClueSprite2->Draw(Vector3(562, y + 20, 500));
@@ -115,7 +129,7 @@ void drawShapeScreen() {
 		g_shapeClueSprite4->Draw(Vector3(682, y + 20, 500));
 }
 
-void loadShapeScreen(int shapeIndex, bool clear) {
+void loadShapeScreen(int shapeIndex) {
 	if (shapeIndex == -1)
 		return;
 
@@ -123,9 +137,11 @@ void loadShapeScreen(int shapeIndex, bool clear) {
 	counterShape++;
 	shapeOnScreen = true;
 
-	string indexColor = mainController.isShapeResult(shapeIndex, counterShape, clear);
-	if (indexColor == "Green")
+	string indexColor = mainController.isShapeResult(shapeIndex, counterShape, clearShapes);
+	if (indexColor == "Green") {
 		colorShifter = 0;
+		shapeResult++;
+	}
 	else if (indexColor == "Yellow")
 		colorShifter = 1;
 	else if (indexColor == "Red")
@@ -135,7 +151,7 @@ void loadShapeScreen(int shapeIndex, bool clear) {
 		g_shapeClueSprite1 = new C3DSprite();
 		if (!g_shapeClueSprite1->Load(g_cImageFileName[shapeIndex + colorShifter]))
 			ABORT("Platform image %s not found.", g_cImageFileName[shapeIndex + colorShifter]);
-	}	
+	}
 
 	else if (counterShape == 2) {
 		g_shapeClueSprite2 = new C3DSprite();
@@ -246,8 +262,8 @@ void DrawBriefcase() {
 		else
 			g_pBriefcaseSprite->Draw(Vector3(515, y - 40, 450));
 	}
-	else if (currLocation == 5){
-		g_StageTwo->Draw(Vector3(515, y+50, 700));	
+	else if (currLocation == 5) {
+		g_StageTwo->Draw(Vector3(515, y + 50, 700));
 	}
 	else
 		g_pBriefcaseSprite->Draw(Vector3(515, y, 450));
@@ -258,7 +274,7 @@ void DrawBriefcase() {
 	if (currLocation == 4) {
 		g_numberBarcodeSprite0->Draw(Vector3(780, y - 50, 445));
 		g_numberBarcodeSprite1->Draw(Vector3(795, y - 50, 445));
-	}											  
+	}
 	else {
 		g_numberBarcodeSprite0->Draw(Vector3(780, y - 40, 6000));
 		g_numberBarcodeSprite1->Draw(Vector3(781, y - 40, 6000));
@@ -396,7 +412,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		int y = yPos;
 
 		// Menu Screen
-		if ( menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497 )
+		if (menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497)
 			menu_Screen = false;
 		// Stage One rotation mouse methods briefcase
 		if (!stage1Complete && !menu_Screen)
@@ -409,7 +425,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			checkStageOne(mainController.checkStage1());
 		// Check Stage one win
 		if (xPos >= 224 && xPos <= 392 && yPos <= 463 && yPos >= 350 && stage1Complete && counterShape <= 4) {
-			loadShapeScreen(mainController.shapeScreen(x, y), clearShapes);
+			loadShapeScreen(mainController.shapeScreen(x, y));
 		}
 		// Clear Shape Screen
 		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen) {
@@ -419,10 +435,11 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			g_shapeClueSprite3->Release();
 			g_shapeClueSprite4->Release();
 			clearShapes = true;
+			shapeResult = 0;
 		}
 		// Submit Shape Screen
-		/*if (xPos >= 224 && xPos <= 392 && yPos <= 463 && yPos >= 350 && stage1Complete && shapeOnScreen)
-			counterShape = 0;*/
+		if (xPos >= 606 && xPos <= 690 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen)
+			checkStage2("CheckShape");
 	}
 	break;
 	case WM_DESTROY: //on exit
