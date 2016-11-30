@@ -10,7 +10,9 @@ GameController::GameController(){
 	lockNum2 = 9;
 	lockNum3 = 9;
 	strike = 0;
-	randomNumGen(9, 0);
+	randomNumGen(9, 0, "barcode");
+	randomNumGen(23, 40, "shapes");
+	fixShapeIndex();
 }					 
 GameController::~GameController(){
 
@@ -130,11 +132,102 @@ void GameController::getBarcodeArr(int arr[]) {
 		arr[i] = barcodeNum[i];
 }
 
-void GameController::randomNumGen(int range_max, int range_min){
+void GameController::randomNumGen(int range_max, int range_min, string clue){
 	srand((unsigned)time(0));
 	// Generate random numbers in the half-closed interval  
 	// [range_min, range_max). In other words,  
 	// range_min <= random number < range_max  
-	for (int i = 0; i < 5; i++)
-		barcodeNum[i] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
+	if(clue == "barcode")
+		for (int i = 0; i < 5; i++)
+			barcodeNum[i] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
+	else if (clue == "shapes") {
+		for (int i = 0; i < 5; i++)
+			shapeResult[i] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
+	}
+}
+
+int GameController::shapeScreen(int x, int y) {
+	int shapeIndex = -1;
+	// Circle
+	if (x >= 232 && x <= 265 && y >= 363 && y <= 394)
+		shapeIndex = 29;// "Circle";  29 - 31
+	// Triangle
+	if (x >= 288 && x <= 320 && y >= 363 && y <= 394)
+		shapeIndex = 35;// "Triangle";  35 - 37
+	// Star
+	if (x >= 345 && x <= 380 && y >= 363 && y <= 394)
+		shapeIndex = 32;// "Star";  32 - 34
+	// Trapezoid
+	if (x >= 232 && x <= 265 && y >= 420 && y <= 449)
+		shapeIndex = 38;// "Trapezoid";  38 - 40
+	// Plus
+	if (x >= 288 && x <= 320 && y >= 420 && y <= 449)
+		shapeIndex = 26;// "Plus";  26 - 28
+	// Square
+	if (x >= 345 && x <= 380 && y >= 420 && y <= 449)
+		shapeIndex = 23;// "Square";  23 - 25
+
+	return shapeIndex;
+}
+
+// Return 0: green 1: yellow 2: red
+string GameController::isShapeResult(int shapeIndex, int position, bool& clear) {
+	static int shapeRep[6];
+	static int x = 0;
+	
+	x++;
+	if (clear == true) {
+		x = 0;
+		clear = false;
+	}
+	if (x <= 1) {
+		for (int i = 0; i < 6; i++)
+			shapeRep[i] = shapeRepeats[i];
+	}
+
+	for (int i = 0; i < 5; i++) {
+		if (shapeIndex == shapeResult[i] && i == (position - 1)) {
+			//shapeRep[i]--;
+			return "Green";
+		}
+	}
+	for (int i = 0; i < 5; i++){
+		if (shapeIndex == shapeResult[i]/* && shapeRep[i] >= 1*/)
+			return "Yellow";
+	}
+
+	return "Red";
+}
+
+void GameController::fixShapeIndex() {
+	int shapeResultInt = 0;
+
+	for (int i = 0; i < 4; i++) {
+		if (shapeResult[i] >= 23 && shapeResult[i] <= 25) {			// Square
+			shapeResult[i] = 23;
+			shapeRepeats[0]++;
+		}
+		else if (shapeResult[i] >= 26 && shapeResult[i] <= 28) {	//Plus
+			shapeResult[i] = 26;
+			shapeRepeats[1]++;
+		}
+		else if (shapeResult[i] >= 29 && shapeResult[i] <= 31) {	// Circle
+			shapeResult[i] = 29;
+			shapeRepeats[2]++;
+		}
+		else if (shapeResult[i] >= 32 && shapeResult[i] <= 34) {	// Star
+			shapeResult[i] = 32;
+			shapeRepeats[3]++;
+		}
+		else if (shapeResult[i] >= 35 && shapeResult[i] <= 37) {	// Triangle
+			shapeResult[i] = 35;
+			shapeRepeats[4]++;
+		}
+		else if (shapeResult[i] >= 38 && shapeResult[i] <= 40) {	// Trapezoid
+			shapeResult[i] = 38;
+			shapeRepeats[5]++;
+		}
+		else
+			shapeResult[i] = -1;
+	}
 }

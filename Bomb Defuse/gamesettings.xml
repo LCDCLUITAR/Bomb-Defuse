@@ -16,31 +16,54 @@
     <images>
       <image src="Images\background.png" />
       <image src="Images\floor.png" />
-      <image src="Images\mainMenu.png" />  <!-- Main Menu 2 -->
+      <image src="Images\mainMenu.png" />              <!-- Main Menu 2 -->
       <image src="Images\clues.png" />
-      <image src="Images\briefcase.png" /> <!-- Front 4 -->
-      <image src="Images\caseFront.png" /> <!-- Top   5 -->
-      <image src="Images\caseRight.png" /> <!-- Right 6 -->
-      <image src="Images\caseLeft.png" />  <!-- Left  7-->
-      <image src="Images\caseBottom.png" /> <!-- Bottom  8-->
-      <image src="Images\Font\0.png" />      <!-- Number 0: 9 -->
-      <image src="Images\Font\1.png" />      <!-- Number 1: 10 -->
-      <image src="Images\Font\2.png" />      <!-- Number 2: 11 -->
-      <image src="Images\Font\3.png" />      <!-- Number 3: 12 -->
-      <image src="Images\Font\4.png" />      <!-- Number 4: 13 -->
-      <image src="Images\Font\5.png" />      <!-- Number 5: 14 -->
-      <image src="Images\Font\6.png" />      <!-- Number 6: 15 -->
-      <image src="Images\Font\7.png" />      <!-- Number 7: 16 -->
-      <image src="Images\Font\8.png" />      <!-- Number 8: 17 -->
-      <image src="Images\Font\9.png" />      <!-- Number 9: 18 -->
-      <image src="Images\Clues\barcodeClue.png"/> <!-- Barcode Clue 19 -->
-      <image src="Images\Clues\barcodeCase.png"/><!-- Barcode Clue 20 -->
-      <image src="Images\testCaseOpen.png"/>      <!-- 21 -->
-      <image src="Images\fail.png"/>      <!-- 22 -->
-      <image src="Images\Shapes\square.png"/> <!-- 23 -->
-      <image src="Images\Shapes\square.png"/> <!-- 24 -->
-      <image src="Images\Shapes\square.png"/> <!-- 25 -->
-      <image src="Images\Shapes\square.png"/> <!-- 26 -->
+      <image src="Images\Briefcase\caseFront.png" />   <!-- Front 4 -->
+      <image src="Images\Briefcase\caseTop.png" />     <!-- Top   5 -->
+      <image src="Images\Briefcase\caseRight.png" />   <!-- Right 6 -->
+      <image src="Images\Briefcase\caseLeft.png" />    <!-- Left  7-->
+      <image src="Images\Briefcase\caseBottom.png" />  <!-- Bottom  8-->
+      <!-- Fonts -->
+      <image src="Images\Font\0.png" />                <!-- Number 0: 9 -->
+      <image src="Images\Font\1.png" />                <!-- Number 1: 10 -->
+      <image src="Images\Font\2.png" />                <!-- Number 2: 11 -->
+      <image src="Images\Font\3.png" />                <!-- Number 3: 12 -->
+      <image src="Images\Font\4.png" />                <!-- Number 4: 13 -->
+      <image src="Images\Font\5.png" />                <!-- Number 5: 14 -->
+      <image src="Images\Font\6.png" />                <!-- Number 6: 15 -->
+      <image src="Images\Font\7.png" />                <!-- Number 7: 16 -->
+      <image src="Images\Font\8.png" />                <!-- Number 8: 17 -->
+      <image src="Images\Font\9.png" />                <!-- Number 9: 18 -->
+      <!-- END of FONTS -->
+      <image src="Images\Clues\barcodeClue.png"/>      <!-- Barcode Clue 19 -->
+      <image src="Images\Clues\barcodeCase.png"/>      <!-- Barcode Clue 20 -->
+      <image src="Images\Briefcase\caseOpen.png"/>     <!-- 21 -->
+      <image src="Images\fail.png"/>                   <!-- 22 -->
+      <!-- Shapes -->
+      <image src="Images\Shapes\SquareGreen.png"/>     <!-- 23 -->
+      <image src="Images\Shapes\SquareYellow.png"/>    <!-- 24 -->
+      <image src="Images\Shapes\SquareRed.png"/>       <!-- 25 -->
+      
+      <image src="Images\Shapes\plusGreen.png"/>       <!-- 26 -->
+      <image src="Images\Shapes\plusYellow.png"/>      <!-- 27 -->
+      <image src="Images\Shapes\plusRed.png"/>         <!-- 28 -->
+      
+      <image src="Images\Shapes\circleGreen.png"/>     <!-- 29 -->
+      <image src="Images\Shapes\circleYellow.png"/>    <!-- 30 -->
+      <image src="Images\Shapes\circleRed.png"/>       <!-- 31 -->
+      
+      <image src="Images\Shapes\starGreen.png"/>       <!-- 32 -->
+      <image src="Images\Shapes\starYellow.png"/>      <!-- 33 -->
+      <image src="Images\Shapes\starRed.png"/>         <!-- 34 -->
+      
+      <image src="Images\Shapes\triangleGreen.png"/>   <!-- 35 -->
+      <image src="Images\Shapes\triangleYellow.png"/>  <!-- 36 -->
+      <image src="Images\Shapes\triangleRed.png"/>     <!-- 37 -->
+      
+      <image src="Images\Shapes\trapezoidGreen.png"/>  <!-- 38 -->
+      <image src="Images\Shapes\trapezoidYellow.png"/> <!-- 39 -->
+      <image src="Images\Shapes\trapezoidRed.png"/>    <!-- 40 -->
+      <!-- END of SHAPES -->
     </images>
   
   <!-- debugger settings -->

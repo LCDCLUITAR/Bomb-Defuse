@@ -22,6 +22,11 @@ private:
 	int lockNum2;
 	int lockNum3;
 	int barcodeNum[5];
+
+	int shapeResult[4];
+	int shapeToDraw;
+	int shapeRepeats[6];
+
 	int strike;
 public:
 	GameController();
@@ -30,10 +35,17 @@ public:
 	int caseRotation(int, int, int&);
 	int lockNumberCtrl(int, int, int&, int&);
 	int checkStage1();
-	void randomNumGen(int range_max, int range_min);
+	void randomNumGen(int range_max, int range_min, string);
 
 	void getBarcodeArr(int arr[]);
 	void setCaseLocation(int newLoc) {
 		caseLocation = newLoc;
+	}
+
+	string isShapeResult(int, int, bool&);
+	int shapeScreen(int, int);
+	void fixShapeIndex();
+	int getShapeToDraw() {
+		return shapeToDraw;
 	}
 };

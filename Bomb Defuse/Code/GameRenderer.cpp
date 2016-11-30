@@ -17,6 +17,7 @@
 extern int g_nScreenWidth;
 extern int g_nScreenHeight;
 extern bool stage1Complete;
+extern bool shapeOnScreen;
 extern BOOL g_bWireFrame;
 extern bool menu_Screen;
 extern C3DSprite* g_pBriefcaseSprite;
@@ -29,17 +30,21 @@ extern C3DSprite* g_numberBarcodeSprite0;
 extern C3DSprite* g_numberBarcodeSprite1;
 extern C3DSprite* g_numberBarcodeSprite2;
 extern C3DSprite* g_numberBarcodeSprite3;
-extern C3DSprite* g_shapeClueSprite;
+extern C3DSprite* g_shapeClueSprite1;
+extern C3DSprite* g_shapeClueSprite2;
+extern C3DSprite* g_shapeClueSprite3;
+extern C3DSprite* g_shapeClueSprite4;
 extern C3DSprite* g_StageTwo;
 extern C3DSprite* g_failScreen;
 extern C3DSprite* g_pBarcodeCaseSprite;
 extern CImageFileNameList g_cImageFileName;
-extern C3DSprite* g_pPlaneSprite;
+extern C3DSprite* g_pTopCluesBannerSprite;
 void briefcaseRotation(int x, int y);
 void DrawBriefcase();
 void drawMenuScreen();
-void drawStageTwoClues();
-extern CGameObject* g_pPlane; 
+void loadShapeScreen(int);
+extern void drawShapeScreen();
+extern CGameObject* g_pTopClues; 
 extern CGameObject* g_pBarcode;
 extern CGameObject* g_pBarcodeCase;
 extern GameController mainController;
@@ -160,7 +165,7 @@ void CGameRenderer::LoadTextures(){
 /// of like a destructor for DirectX entities, which are COM objects.
 
 void CGameRenderer::Release(){ 
-  g_pPlaneSprite->Release();
+  g_pTopCluesBannerSprite->Release();
   g_pBriefcaseSprite->Release();
   g_numberSprite0->Release();
   g_numberSprite1->Release();
@@ -182,7 +187,7 @@ void CGameRenderer::Release(){
 /// \return TRUE if it succeeded
 
 void CGameRenderer::ComposeFrame(){
-  g_pPlane->move(); //move plane 
+  g_pTopClues->move(); //move plane 
 
   //prepare to draw
   m_pDC2->OMSetRenderTargets(1, &m_pRTV, m_pDSV);
@@ -194,13 +199,11 @@ void CGameRenderer::ComposeFrame(){
   DrawBackground(); //draw background 
   if(!menu_Screen) {
 	  DrawBriefcase();
-	  g_pPlane->draw(); //draw plane
+	  g_pTopClues->draw(); //draw plane
 	  g_pBarcode->draw(); // draw barcode
 	  g_pBarcodeCase->draw();//Draw barcode on case
-	  
-	  if (stage1Complete) {
-		  drawStageTwoClues(); // Draw Stage 2 clues
-	  }
+	  if(stage1Complete && drawShapeScreen)
+		  drawShapeScreen();
   }
   else {
 	  drawMenuScreen();

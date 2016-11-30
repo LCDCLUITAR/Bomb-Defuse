@@ -48,9 +48,12 @@ bool stage1Complete = false;
 bool win = false;
 bool fail = false;
 bool menu_Screen = true;
-C3DSprite* g_pPlaneSprite = nullptr; ///< Pointer to the plane sprite.
+bool shapeOnScreen = false;
+bool clearShapes = false;
+static int counterShape = 0;
+C3DSprite* g_pTopCluesBannerSprite = nullptr; ///< Pointer to the plane sprite.
 C3DSprite* g_pBarcodeSprite = nullptr; ///< Pointer to the barcode sprite
-CGameObject* g_pPlane = nullptr; ///< Pointer to the plane object.
+CGameObject* g_pTopClues = nullptr; ///< Pointer to the plane object.
 C3DSprite* g_mainMenu = nullptr;
 
 CGameObject* g_pBarcode = nullptr;
@@ -69,7 +72,10 @@ C3DSprite* g_numberBarcodeSprite1 = nullptr;
 C3DSprite* g_numberBarcodeSprite2 = nullptr;
 C3DSprite* g_numberBarcodeSprite3 = nullptr;
 
-C3DSprite* g_shapeClueSprite = nullptr;
+C3DSprite* g_shapeClueSprite1 = nullptr;
+C3DSprite* g_shapeClueSprite2 = nullptr;
+C3DSprite* g_shapeClueSprite3 = nullptr;
+C3DSprite* g_shapeClueSprite4 = nullptr;
 
 C3DSprite* g_StageTwo = nullptr;
 C3DSprite* g_failScreen = nullptr;
@@ -96,31 +102,58 @@ void CreateObjects();
 
 HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
 
-void drawStageTwoClues() {
+void drawShapeScreen() {
 	float y = g_nScreenHeight - 410;
 
-	g_shapeClueSprite = new C3DSprite();
-	if (!g_shapeClueSprite->Load(g_cImageFileName[23]))
-		ABORT("Platform image %s not found.", g_cImageFileName[23]);
-	g_shapeClueSprite->Draw(Vector3(290, y+177, 500));
+	if(counterShape >= 1)
+		g_shapeClueSprite1->Draw(Vector3(502, y + 20, 500));
+	if (counterShape >= 2)
+		g_shapeClueSprite2->Draw(Vector3(562, y + 20, 500));
+	if (counterShape >= 3)
+		g_shapeClueSprite3->Draw(Vector3(622, y + 20, 500));
+	if (counterShape >= 4)
+		g_shapeClueSprite4->Draw(Vector3(682, y + 20, 500));
+}
 
+void loadShapeScreen(int shapeIndex, bool clear) {
+	if (shapeIndex == -1)
+		return;
 
-	g_shapeClueSprite = new C3DSprite();
-	if (!g_shapeClueSprite->Load(g_cImageFileName[24]))
-		ABORT("Platform image %s not found.", g_cImageFileName[24]);
-	g_shapeClueSprite->Draw(Vector3(340, y + 177, 500));
+	int colorShifter = 0;
+	counterShape++;
+	shapeOnScreen = true;
 
+	string indexColor = mainController.isShapeResult(shapeIndex, counterShape, clear);
+	if (indexColor == "Green")
+		colorShifter = 0;
+	else if (indexColor == "Yellow")
+		colorShifter = 1;
+	else if (indexColor == "Red")
+		colorShifter = 2;
 
-	g_shapeClueSprite = new C3DSprite();
-	if (!g_shapeClueSprite->Load(g_cImageFileName[25]))
-		ABORT("Platform image %s not found.", g_cImageFileName[25]);
-	g_shapeClueSprite->Draw(Vector3(390, y + 177, 500));
+	if (counterShape == 1) {
+		g_shapeClueSprite1 = new C3DSprite();
+		if (!g_shapeClueSprite1->Load(g_cImageFileName[shapeIndex + colorShifter]))
+			ABORT("Platform image %s not found.", g_cImageFileName[shapeIndex + colorShifter]);
+	}	
 
+	else if (counterShape == 2) {
+		g_shapeClueSprite2 = new C3DSprite();
+		if (!g_shapeClueSprite2->Load(g_cImageFileName[shapeIndex + colorShifter]))
+			ABORT("Platform image %s not found.", g_cImageFileName[shapeIndex + colorShifter]);
+	}
 
-	g_shapeClueSprite = new C3DSprite();
-	if (!g_shapeClueSprite->Load(g_cImageFileName[26]))
-		ABORT("Platform image %s not found.", g_cImageFileName[26]);
-	g_shapeClueSprite->Draw(Vector3(440, y + 177, 500));
+	else if (counterShape == 3) {
+		g_shapeClueSprite3 = new C3DSprite();
+		if (!g_shapeClueSprite3->Load(g_cImageFileName[shapeIndex + colorShifter]))
+			ABORT("Platform image %s not found.", g_cImageFileName[shapeIndex + colorShifter]);
+	}
+
+	else if (counterShape == 4) {
+		g_shapeClueSprite4 = new C3DSprite();
+		if (!g_shapeClueSprite4->Load(g_cImageFileName[shapeIndex + colorShifter]))
+			ABORT("Platform image %s not found.", g_cImageFileName[shapeIndex + colorShifter]);
+	}
 }
 
 
@@ -289,9 +322,9 @@ void LoadGameSettings() {
 
 void CreateObjects() {
 	float y = g_nScreenHeight - 410;
-	g_pPlane = new CGameObject(
+	g_pTopClues = new CGameObject(
 		Vector3((float)g_nScreenWidth / 2.0f, 718, 580),
-		Vector3(0, 0, 0), g_pPlaneSprite);
+		Vector3(0, 0, 0), g_pTopCluesBannerSprite);
 
 	g_pBarcode = new CGameObject(
 		Vector3(150, 720, 579),
@@ -332,7 +365,7 @@ BOOL KeyboardHandler(WPARAM keystroke) {
 		GameRenderer.SetWireFrameMode(g_bWireFrame);
 		break;
 	case VK_SPACE:
-		g_pPlane->jump();
+		g_pTopClues->jump();
 		break;
 	} //switch
 
@@ -362,9 +395,9 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		int x = xPos;
 		int y = yPos;
 
-		if ( menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497 ) {
+		// Menu Screen
+		if ( menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497 )
 			menu_Screen = false;
-		}
 		// Stage One rotation mouse methods briefcase
 		if (!stage1Complete && !menu_Screen)
 			briefcaseRotation(mainController.caseRotation(xPos, yPos, currLocation));
@@ -372,14 +405,30 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		if (currLocation == 1 && !stage1Complete)
 			lockNumCtrl(lockNum, mainController.lockNumberCtrl(xPos, yPos, currLocation, lockNum));
 		// Check Stage one win
-		if (xPos >= 555 && xPos <= 600 && yPos <= 450 && yPos >= 380 && currLocation == 1)
+		if (xPos >= 555 && xPos <= 600 && yPos <= 450 && yPos >= 380 && currLocation == 1 && !stage1Complete)
 			checkStageOne(mainController.checkStage1());
+		// Check Stage one win
+		if (xPos >= 224 && xPos <= 392 && yPos <= 463 && yPos >= 350 && stage1Complete && counterShape <= 4) {
+			loadShapeScreen(mainController.shapeScreen(x, y), clearShapes);
+		}
+		// Clear Shape Screen
+		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen) {
+			counterShape = 0;
+			g_shapeClueSprite1->Release();
+			g_shapeClueSprite2->Release();
+			g_shapeClueSprite3->Release();
+			g_shapeClueSprite4->Release();
+			clearShapes = true;
+		}
+		// Submit Shape Screen
+		/*if (xPos >= 224 && xPos <= 392 && yPos <= 463 && yPos >= 350 && stage1Complete && shapeOnScreen)
+			counterShape = 0;*/
 	}
 	break;
 	case WM_DESTROY: //on exit
 		GameRenderer.Release(); //release textures
-		delete g_pPlane; //delete the plane object
-		delete g_pPlaneSprite; //delete the plane sprite
+		delete g_pTopClues; //delete the plane object
+		delete g_pTopCluesBannerSprite; //delete the plane sprite
 		delete g_pBriefcaseSprite;
 		PostQuitMessage(0); //this is the last thing to do on exit
 		break;
@@ -419,12 +468,12 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	g_HwndApp = hwnd; //save window handle
 
 	InitGraphics(); //initialize graphics
-	g_pPlaneSprite = new C3DSprite(); //make a sprite
+	g_pTopCluesBannerSprite = new C3DSprite(); //make a sprite
 	g_pBarcodeSprite = new C3DSprite();
 	g_pBarcodeCaseSprite = new C3DSprite();
 	GameRenderer.LoadTextures(); //load images
 
-	if (!g_pPlaneSprite->Load(g_cImageFileName[3])) // Top Clues Banner
+	if (!g_pTopCluesBannerSprite->Load(g_cImageFileName[3])) // Top Clues Banner
 		ABORT("Plane image %s not found.", g_cImageFileName[3]);
 
 	if (!g_pBarcodeSprite->Load(g_cImageFileName[19]))
