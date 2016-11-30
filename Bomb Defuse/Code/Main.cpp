@@ -69,6 +69,8 @@ C3DSprite* g_numberBarcodeSprite1 = nullptr;
 C3DSprite* g_numberBarcodeSprite2 = nullptr;
 C3DSprite* g_numberBarcodeSprite3 = nullptr;
 
+C3DSprite* g_shapeClueSprite = nullptr;
+
 C3DSprite* g_StageTwo = nullptr;
 C3DSprite* g_failScreen = nullptr;
 
@@ -93,6 +95,34 @@ void InitGraphics();
 void CreateObjects();
 
 HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
+
+void drawStageTwoClues() {
+	float y = g_nScreenHeight - 410;
+
+	g_shapeClueSprite = new C3DSprite();
+	if (!g_shapeClueSprite->Load(g_cImageFileName[23]))
+		ABORT("Platform image %s not found.", g_cImageFileName[23]);
+	g_shapeClueSprite->Draw(Vector3(290, y+177, 500));
+
+
+	g_shapeClueSprite = new C3DSprite();
+	if (!g_shapeClueSprite->Load(g_cImageFileName[24]))
+		ABORT("Platform image %s not found.", g_cImageFileName[24]);
+	g_shapeClueSprite->Draw(Vector3(340, y + 177, 500));
+
+
+	g_shapeClueSprite = new C3DSprite();
+	if (!g_shapeClueSprite->Load(g_cImageFileName[25]))
+		ABORT("Platform image %s not found.", g_cImageFileName[25]);
+	g_shapeClueSprite->Draw(Vector3(390, y + 177, 500));
+
+
+	g_shapeClueSprite = new C3DSprite();
+	if (!g_shapeClueSprite->Load(g_cImageFileName[26]))
+		ABORT("Platform image %s not found.", g_cImageFileName[26]);
+	g_shapeClueSprite->Draw(Vector3(440, y + 177, 500));
+}
+
 
 void drawMenuScreen() {
 	float y = g_nScreenHeight - 410;

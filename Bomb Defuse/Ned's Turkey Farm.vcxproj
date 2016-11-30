@@ -124,7 +124,9 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="gamesettings.xml" />
+    <Xml Include="gamesettings.xml">
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Ned%27s Turkey Farm.rc" />

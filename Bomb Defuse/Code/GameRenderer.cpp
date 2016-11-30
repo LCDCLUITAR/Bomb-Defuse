@@ -16,6 +16,7 @@
 
 extern int g_nScreenWidth;
 extern int g_nScreenHeight;
+extern bool stage1Complete;
 extern BOOL g_bWireFrame;
 extern bool menu_Screen;
 extern C3DSprite* g_pBriefcaseSprite;
@@ -28,6 +29,7 @@ extern C3DSprite* g_numberBarcodeSprite0;
 extern C3DSprite* g_numberBarcodeSprite1;
 extern C3DSprite* g_numberBarcodeSprite2;
 extern C3DSprite* g_numberBarcodeSprite3;
+extern C3DSprite* g_shapeClueSprite;
 extern C3DSprite* g_StageTwo;
 extern C3DSprite* g_failScreen;
 extern C3DSprite* g_pBarcodeCaseSprite;
@@ -36,6 +38,7 @@ extern C3DSprite* g_pPlaneSprite;
 void briefcaseRotation(int x, int y);
 void DrawBriefcase();
 void drawMenuScreen();
+void drawStageTwoClues();
 extern CGameObject* g_pPlane; 
 extern CGameObject* g_pBarcode;
 extern CGameObject* g_pBarcodeCase;
@@ -194,6 +197,10 @@ void CGameRenderer::ComposeFrame(){
 	  g_pPlane->draw(); //draw plane
 	  g_pBarcode->draw(); // draw barcode
 	  g_pBarcodeCase->draw();//Draw barcode on case
+	  
+	  if (stage1Complete) {
+		  drawStageTwoClues(); // Draw Stage 2 clues
+	  }
   }
   else {
 	  drawMenuScreen();

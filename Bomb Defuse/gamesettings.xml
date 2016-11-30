@@ -16,7 +16,7 @@
     <images>
       <image src="Images\background.png" />
       <image src="Images\floor.png" />
-      <image src="Images\mainMenu.png" />
+      <image src="Images\mainMenu.png" />  <!-- Main Menu 2 -->
       <image src="Images\clues.png" />
       <image src="Images\briefcase.png" /> <!-- Front 4 -->
       <image src="Images\caseFront.png" /> <!-- Top   5 -->
@@ -35,8 +35,12 @@
       <image src="Images\Font\9.png" />      <!-- Number 9: 18 -->
       <image src="Images\Clues\barcodeClue.png"/> <!-- Barcode Clue 19 -->
       <image src="Images\Clues\barcodeCase.png"/><!-- Barcode Clue 20 -->
-      <image src="Images\caseOpen.png"/>      <!-- 21 -->
+      <image src="Images\testCaseOpen.png"/>      <!-- 21 -->
       <image src="Images\fail.png"/>      <!-- 22 -->
+      <image src="Images\Shapes\square.png"/> <!-- 23 -->
+      <image src="Images\Shapes\square.png"/> <!-- 24 -->
+      <image src="Images\Shapes\square.png"/> <!-- 25 -->
+      <image src="Images\Shapes\square.png"/> <!-- 26 -->
     </images>
   
   <!-- debugger settings -->

@@ -112,7 +112,8 @@ int GameController::lockNumberCtrl(int x, int y, int& currLoc, int& step){
 }
 
 int GameController::checkStage1(){
-	if ((lockNum0 == barcodeNum[4]+9) && (lockNum1 == barcodeNum[1]+9) && (lockNum2 == barcodeNum[2]+9) && (lockNum3 == barcodeNum[3]+9)) {
+	//if ((lockNum0 == barcodeNum[4]+9) && (lockNum1 == barcodeNum[1]+9) && (lockNum2 == barcodeNum[2]+9) && (lockNum3 == barcodeNum[3]+9)) {
+	if ((lockNum0 == 9) && (lockNum1 == 9) && (lockNum2 == 9) && (lockNum3 == 10)) {
 		return 1;
 	}
 	else if(strike >= 2) {
