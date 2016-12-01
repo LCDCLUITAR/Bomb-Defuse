@@ -17,7 +17,7 @@
       <image src="Images\background.png" />
       <image src="Images\floor.png" />
       <image src="Images\mainMenu.png" />              <!-- Main Menu 2 -->
-      <image src="Images\clues.png" />
+      <image src="Images\clueBar.png" />
       <image src="Images\Briefcase\caseFront.png" />   <!-- Front 4 -->
       <image src="Images\Briefcase\caseTop.png" />     <!-- Top   5 -->
       <image src="Images\Briefcase\caseRight.png" />   <!-- Right 6 -->
@@ -64,6 +64,12 @@
       <image src="Images\Shapes\trapezoidYellow.png"/> <!-- 39 -->
       <image src="Images\Shapes\trapezoidRed.png"/>    <!-- 40 -->
       <!-- END of SHAPES -->
+      
+      <image src="Images\Briefcase\arrowBoarder.png"/>     <!-- 41 -->
+      <image src="Images\Briefcase\arrowDown.png"/>    <!-- 42 -->
+      <image src="Images\Briefcase\arrowLeft.png"/>    <!-- 43 -->
+      <image src="Images\Briefcase\arrowRight.png"/>   <!-- 44 -->
+      <image src="Images\Briefcase\arrowUp.png"/>     <!-- 45 -->
     </images>
   
   <!-- debugger settings -->

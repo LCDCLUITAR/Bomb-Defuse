@@ -64,6 +64,8 @@ CGameObject* g_pBarcodeCase = nullptr;
 C3DSprite* g_pBarcodeCaseSprite = nullptr;
 
 C3DSprite* g_pBriefcaseSprite = nullptr;
+C3DSprite* g_pArrows = nullptr;
+
 C3DSprite* g_numberSprite0 = nullptr;
 C3DSprite* g_numberSprite1 = nullptr;
 C3DSprite* g_numberSprite2 = nullptr;
@@ -229,6 +231,11 @@ void briefcaseRotation(int caseImage) {
 		g_pBriefcaseSprite = new C3DSprite();
 		if (!g_pBriefcaseSprite->Load(g_cImageFileName[caseImage]))
 			ABORT("Platform image %s not found.", g_cImageFileName[caseImage]);
+
+		g_pArrows = new C3DSprite();
+		if (!g_pArrows->Load(g_cImageFileName[caseImage + 37]))
+			ABORT("Platform image %s not found.", g_cImageFileName[caseImage + 37]);
+
 		CreateObjects();
 	}
 }
@@ -242,6 +249,10 @@ void DrawBriefcase() {
 			g_numberSprite1->Draw(Vector3(476, 360, 450));
 			g_numberSprite2->Draw(Vector3(508, 360, 450));
 			g_numberSprite3->Draw(Vector3(541, 360, 450));
+			g_pArrows->Draw(Vector3(515, y - 270, 470));
+		}
+		else if (currLocation == 4) {
+			g_pArrows->Draw(Vector3(515, y + 190, 400));
 		}
 		// If player advances to stage 2
 		if (win == true) {
@@ -256,17 +267,26 @@ void DrawBriefcase() {
 			g_numberSprite3->Release();
 			g_pBarcodeCaseSprite->Release();
 			g_pBriefcaseSprite->Release();
+			g_pArrows->Release();
 		}
 		else if (fail == true)
 			g_failScreen->Draw(Vector3(515, y, 445));
-		else
+		else{
 			g_pBriefcaseSprite->Draw(Vector3(515, y - 40, 450));
+		}
 	}
 	else if (currLocation == 5) {
 		g_StageTwo->Draw(Vector3(515, y + 50, 700));
 	}
-	else
+	else {
 		g_pBriefcaseSprite->Draw(Vector3(515, y, 450));
+		if(currLocation == 0)
+			g_pArrows->Draw(Vector3(515, y-50, 581));
+		else if (currLocation == 2)
+			g_pArrows->Draw(Vector3(774, y, 449));
+		else if (currLocation == 3)
+			g_pArrows->Draw(Vector3(250, y, 449));
+	}
 
 
 	g_numberBarcodeSprite2->Draw(Vector3(200, 690, 556));
@@ -504,6 +524,9 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	g_pBriefcaseSprite = new C3DSprite();				// Briefcase 
 	if (!g_pBriefcaseSprite->Load(g_cImageFileName[4]))
 		ABORT("Platform image %s not found.", g_cImageFileName[4]);
+	g_pArrows = new C3DSprite();
+	if (!g_pArrows->Load(g_cImageFileName[41]))
+		ABORT("Platform image %s not found.", g_cImageFileName[41]);
 
 	g_numberSprite0 = new C3DSprite();				// digits 
 	if (!g_numberSprite0->Load(g_cImageFileName[lockNum]))

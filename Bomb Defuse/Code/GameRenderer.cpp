@@ -21,6 +21,7 @@ extern bool shapeOnScreen;
 extern BOOL g_bWireFrame;
 extern bool menu_Screen;
 extern C3DSprite* g_pBriefcaseSprite;
+extern C3DSprite* g_pArrows;
 extern C3DSprite* g_mainMenu;
 extern C3DSprite* g_numberSprite0;
 extern C3DSprite* g_numberSprite1;

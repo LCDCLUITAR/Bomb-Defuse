@@ -46,7 +46,7 @@ int GameController::caseRotation(int x, int y, int &currLoc) {
 	// Rotations from Top View
 	else if (currLoc == 1) {
 		// Bottom Arrow Selected
-		if (x >= 0 && y >= 600 && y <= 768) {			// Briefcase Front
+		if (x >= 0 && y >= 500 && y <= 768) {			// Briefcase Front
 			caseLocation = currLoc = 0;
 			return 4;
 		}
@@ -54,7 +54,7 @@ int GameController::caseRotation(int x, int y, int &currLoc) {
 	// Rotations from Left View
 	else if (currLoc == 2) {
 		// Right Arrow Selected
-		if (x >= 800 && y >= 100 && y <= 768) {			// Briefcase Front
+		if (x >= 730 && y >= 100 && y <= 768) {			// Briefcase Front
 			caseLocation = currLoc = 0;
 			return 4;
 		}
@@ -62,7 +62,7 @@ int GameController::caseRotation(int x, int y, int &currLoc) {
 	// Rotations from Right View
 	else if (currLoc == 3) {
 		// Left Arrow Selected
-		if (x <= 160 && y >= 100 && y <= 768) {			// Briefcase Front
+		if (x <= 300 && y >= 100 && y <= 768) {			// Briefcase Front
 			caseLocation = currLoc = 0;
 			return 4;
 		}
@@ -70,7 +70,7 @@ int GameController::caseRotation(int x, int y, int &currLoc) {
 	// Rotations from Bottom View
 	else if (currLoc == 4) {
 		// Top Arrow Selected
-		if (x >= 0 && y >= 100 && y <= 160) {				// Briefcase Front
+		if (x >= 0 && y >= 100 && y <= 310) {				// Briefcase Front
 			caseLocation = currLoc = 0;
 			return 4;
 		}
