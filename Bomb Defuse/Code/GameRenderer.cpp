@@ -20,9 +20,11 @@ extern bool stage1Complete;
 extern bool shapeOnScreen;
 extern BOOL g_bWireFrame;
 extern bool menu_Screen;
+extern bool fail;
 extern C3DSprite* g_pBriefcaseSprite;
 extern C3DSprite* g_pArrows;
 extern C3DSprite* g_mainMenu;
+extern C3DSprite* g_pLedLitSprite;
 extern C3DSprite* g_numberSprite0;
 extern C3DSprite* g_numberSprite1;
 extern C3DSprite* g_numberSprite2;
@@ -35,14 +37,22 @@ extern C3DSprite* g_shapeClueSprite1;
 extern C3DSprite* g_shapeClueSprite2;
 extern C3DSprite* g_shapeClueSprite3;
 extern C3DSprite* g_shapeClueSprite4;
+extern C3DSprite* g_pStrike1;
+extern C3DSprite* g_pStrike2;
+extern C3DSprite* g_pStrike3;
 extern C3DSprite* g_StageTwo;
 extern C3DSprite* g_failScreen;
+extern C3DSprite* g_pMinuteRightSprite;
+extern C3DSprite* g_pSecondsRightSprite;
+extern C3DSprite* g_pSecondsLefttSprite;
 extern C3DSprite* g_pBarcodeCaseSprite;
 extern CImageFileNameList g_cImageFileName;
 extern C3DSprite* g_pTopCluesBannerSprite;
 void briefcaseRotation(int x, int y);
-void DrawBriefcase();
+void DrawBriefcase();	
 void drawMenuScreen();
+void DrawStrikes();
+void DrawTimer();
 void loadShapeScreen(int);
 extern void drawShapeScreen();
 extern CGameObject* g_pTopClues; 
@@ -159,7 +169,7 @@ void CGameRenderer::DrawBackground(){
 void CGameRenderer::LoadTextures(){ 
   LoadTexture(m_pWallTexture, g_cImageFileName[0]);
   LoadTexture(m_pFloorTexture, g_cImageFileName[1]);
-  LoadTexture(m_pWireframeTexture, g_cImageFileName[2]); //black for wireframe
+  //LoadTexture(m_pWireframeTexture, g_cImageFileName[2]); //black for wireframe
 } //LoadTextures
 
 /// All textures used in the game are released - the release function is kind
@@ -187,8 +197,7 @@ void CGameRenderer::Release(){
 /// Move all objects, then draw them.
 /// \return TRUE if it succeeded
 
-void CGameRenderer::ComposeFrame(){
-  g_pTopClues->move(); //move plane 
+void CGameRenderer::ComposeFrame(){ 
 
   //prepare to draw
   m_pDC2->OMSetRenderTargets(1, &m_pRTV, m_pDSV);
@@ -203,8 +212,13 @@ void CGameRenderer::ComposeFrame(){
 	  g_pTopClues->draw(); //draw plane
 	  g_pBarcode->draw(); // draw barcode
 	  g_pBarcodeCase->draw();//Draw barcode on case
-	  if(stage1Complete && drawShapeScreen)
-		  drawShapeScreen();
+	  DrawStrikes(); // Draw Bomb Strikes
+	  if(!fail)
+		  DrawTimer();
+	  if(stage1Complete) {
+		  if(drawShapeScreen)
+			  drawShapeScreen();
+	  }
   }
   else {
 	  drawMenuScreen();

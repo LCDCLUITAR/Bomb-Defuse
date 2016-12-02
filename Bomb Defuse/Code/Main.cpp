@@ -53,6 +53,7 @@ bool shapeOnScreen = false;
 bool clearShapes = false;
 static int counterShape = 0;
 int shapeResult = 0;
+bool shapesPuzzleSolved = false;
 C3DSprite* g_pTopCluesBannerSprite = nullptr; ///< Pointer to the plane sprite.
 C3DSprite* g_pBarcodeSprite = nullptr; ///< Pointer to the barcode sprite
 CGameObject* g_pTopClues = nullptr; ///< Pointer to the plane object.
@@ -65,6 +66,12 @@ C3DSprite* g_pBarcodeCaseSprite = nullptr;
 
 C3DSprite* g_pBriefcaseSprite = nullptr;
 C3DSprite* g_pArrows = nullptr;
+
+C3DSprite* g_pLedLitSprite = nullptr;
+
+C3DSprite* g_pStrike1 = nullptr;
+C3DSprite* g_pStrike2 = nullptr;
+C3DSprite* g_pStrike3 = nullptr;
 
 C3DSprite* g_numberSprite0 = nullptr;
 C3DSprite* g_numberSprite1 = nullptr;
@@ -84,6 +91,9 @@ C3DSprite* g_shapeClueSprite4 = nullptr;
 C3DSprite* g_StageTwo = nullptr;
 C3DSprite* g_failScreen = nullptr;
 
+C3DSprite* g_pMinuteRightSprite = nullptr;
+C3DSprite* g_pSecondsRightSprite = nullptr;
+C3DSprite* g_pSecondsLefttSprite = nullptr;
 
 //graphics settings
 int g_nScreenWidth; ///< Screen width.
@@ -110,11 +120,97 @@ void checkStage2(string clue) {
 	if (clue == "CheckShape") {
 		if (shapeResult != 4) {
 			mainController.addStrike();
-			strikes = mainController.getStrikes();
 		}
 		else {
-			// Puzzle solved
+			shapesPuzzleSolved = true;
+			g_pLedLitSprite = new C3DSprite();
+			if (!g_pLedLitSprite->Load(g_cImageFileName[47]))
+				ABORT("Platform image %s not found.", g_cImageFileName[47]);
 		}
+	}
+}
+
+void DrawTimer() {
+	bool started = false;
+	int timerTime, time, elapsedTime, minutes, seconds, secondsLeft;
+	float y = g_nScreenHeight - 410;
+
+	if (!menu_Screen && started) {
+		g_cTimer.start();
+	}
+
+	timerTime = 300; // 5 Minutes in seconds
+	time = g_cTimer.time() / 1000; // Convert Current Time to Seconds
+	elapsedTime = timerTime - time; // Seconds Left untl time out
+
+	if (elapsedTime <= 0) {
+		mainController.addStrike();
+		mainController.addStrike();
+		mainController.addStrike();
+		fail = true;
+		return;
+	}
+	minutes = elapsedTime / 60;
+	secondsLeft = ( (elapsedTime % 120) % 60 ) / 10;
+	seconds = elapsedTime % 10;
+
+	if (minutes == 0)
+		minutes = 10;
+	if (seconds == 0)
+		seconds = 10;
+	if (secondsLeft == 0)
+		secondsLeft = 10;
+
+	if (stage1Complete) {
+		if (started) {
+			g_pMinuteRightSprite->Release();
+			g_pSecondsRightSprite->Release();
+			g_pSecondsLefttSprite->Release();
+		}
+
+		g_pMinuteRightSprite = new C3DSprite();
+		if (!g_pMinuteRightSprite->Load(g_cImageFileName[minutes + 50]))
+			ABORT("Platform image %s not found.", g_cImageFileName[minutes + 50]);
+
+		g_pSecondsRightSprite = new C3DSprite();
+		if (!g_pSecondsRightSprite->Load(g_cImageFileName[secondsLeft + 50]))
+			ABORT("Platform image %s not found.", g_cImageFileName[secondsLeft + 50]);
+
+		g_pSecondsLefttSprite = new C3DSprite();
+		if (!g_pSecondsLefttSprite->Load(g_cImageFileName[seconds + 50]))
+			ABORT("Platform image %s not found.", g_cImageFileName[seconds + 50]);
+
+		g_pMinuteRightSprite->Draw(Vector3(450, y - 140, 550));
+		g_pSecondsRightSprite->Draw(Vector3(520, y - 140, 550));
+		g_pSecondsLefttSprite->Draw(Vector3(570, y - 140, 550));
+	}
+	started = true;
+}
+
+void DrawStrikes(){
+	float y = g_nScreenHeight - 410;
+
+	strikes = mainController.getStrikes();
+	if (strikes >= 0) {
+		if (strikes < 3)
+			g_pStrike1->Draw(Vector3(900, 70, 500));
+		if(strikes < 2)
+			g_pStrike2->Draw(Vector3(850, 70, 500));
+		if(strikes < 1)
+			g_pStrike3->Draw(Vector3(800, 70, 500));
+	}
+	if (strikes >= 3) {
+		g_failScreen = new C3DSprite();
+		if (!g_failScreen->Load(g_cImageFileName[22]))
+			ABORT("Platform image %s not found.", g_cImageFileName[22]);
+		fail = true;
+	}
+	if (fail == true) {
+		g_failScreen->Draw(Vector3(515, y, 445));
+
+		g_pStrike1->Release();
+		g_pStrike2->Release();
+		g_pStrike3->Release();
 	}
 }
 
@@ -277,11 +373,13 @@ void DrawBriefcase() {
 	}
 	else if (currLocation == 5) {
 		g_StageTwo->Draw(Vector3(515, y + 50, 700));
+		g_pLedLitSprite->Draw(Vector3(750, y + 50, 500));
+		
 	}
 	else {
 		g_pBriefcaseSprite->Draw(Vector3(515, y, 450));
-		if(currLocation == 0)
-			g_pArrows->Draw(Vector3(515, y-50, 581));
+		if (currLocation == 0)
+			int x = 0;//g_pArrows->Draw(Vector3(515, y-50, 445));
 		else if (currLocation == 2)
 			g_pArrows->Draw(Vector3(774, y, 449));
 		else if (currLocation == 3)
@@ -432,8 +530,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		int y = yPos;
 
 		// Menu Screen
-		if (menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497)
+		if (menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497) {
 			menu_Screen = false;
+			g_cTimer.start(); //start game timer
+		}
 		// Stage One rotation mouse methods briefcase
 		if (!stage1Complete && !menu_Screen)
 			briefcaseRotation(mainController.caseRotation(xPos, yPos, currLocation));
@@ -448,7 +548,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			loadShapeScreen(mainController.shapeScreen(x, y));
 		}
 		// Clear Shape Screen
-		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen) {
+		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved) {
 			counterShape = 0;
 			g_shapeClueSprite1->Release();
 			g_shapeClueSprite2->Release();
@@ -458,7 +558,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			shapeResult = 0;
 		}
 		// Submit Shape Screen
-		if (xPos >= 606 && xPos <= 690 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen)
+		if (xPos >= 606 && xPos <= 690 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved)
 			checkStage2("CheckShape");
 	}
 	break;
@@ -495,7 +595,6 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 #endif //DEBUG_ON
 
 	g_hInstance = hInst;
-	g_cTimer.start(); //start game timer
 	InitXMLSettings(); //initialize XML settings reader
 	LoadGameSettings();
 
@@ -558,6 +657,20 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 		if (!g_numberBarcodeSprite3->Load(g_cImageFileName[arr[3] + 9]))
 			ABORT("Platform image %s not found.", g_cImageFileName[arr[3] + 9]);
 	}
+	g_pLedLitSprite = new C3DSprite();
+	if (!g_pLedLitSprite->Load(g_cImageFileName[46]))
+		ABORT("Platform image %s not found.", g_cImageFileName[46]);
+
+
+	g_pStrike1 = new C3DSprite();
+	if (!g_pStrike1->Load(g_cImageFileName[48]))
+		ABORT("Platform image %s not found.", g_cImageFileName[48]);
+	g_pStrike2 = new C3DSprite();
+	if (!g_pStrike2->Load(g_cImageFileName[49]))
+		ABORT("Platform image %s not found.", g_cImageFileName[49]);
+	g_pStrike3 = new C3DSprite();
+	if (!g_pStrike3->Load(g_cImageFileName[50]))
+		ABORT("Platform image %s not found.", g_cImageFileName[50]);
 
 	//message loop
 	while (TRUE)

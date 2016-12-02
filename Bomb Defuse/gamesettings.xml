@@ -65,11 +65,29 @@
       <image src="Images\Shapes\trapezoidRed.png"/>    <!-- 40 -->
       <!-- END of SHAPES -->
       
-      <image src="Images\Briefcase\arrowBoarder.png"/>     <!-- 41 -->
+      <image src="Images\Briefcase\arrowAll.png"/> <!-- 41 -->
       <image src="Images\Briefcase\arrowDown.png"/>    <!-- 42 -->
       <image src="Images\Briefcase\arrowLeft.png"/>    <!-- 43 -->
       <image src="Images\Briefcase\arrowRight.png"/>   <!-- 44 -->
-      <image src="Images\Briefcase\arrowUp.png"/>     <!-- 45 -->
+      <image src="Images\Briefcase\arrowUp.png"/>      <!-- 45 -->
+      <image src="Images\ledOff.png"/>                 <!-- 46 -->
+      <image src="Images\ledOn.png"/>                  <!-- 47 -->
+      
+      <image src="Images\bomb.png"/>                   <!-- 48 -->
+      <image src="Images\bomb.png"/>                   <!-- 49 -->
+      <image src="Images\bomb.png"/>                   <!-- 50 -->
+      <!-- Fonts Timer-->
+      <image src="Images\ClockFont\1.png" />                <!-- Number 1: 51 -->
+      <image src="Images\ClockFont\2.png" />                <!-- Number 2: 52 -->
+      <image src="Images\ClockFont\3.png" />                <!-- Number 3: 53 -->
+      <image src="Images\ClockFont\4.png" />                <!-- Number 4: 54 -->
+      <image src="Images\ClockFont\5.png" />                <!-- Number 5: 55 -->
+      <image src="Images\ClockFont\6.png" />                <!-- Number 6: 56 -->
+      <image src="Images\ClockFont\7.png" />                <!-- Number 7: 57 -->
+      <image src="Images\ClockFont\8.png" />                <!-- Number 8: 58 -->
+      <image src="Images\ClockFont\9.png" />                <!-- Number 9: 59 -->
+      <image src="Images\ClockFont\0.png" />                <!-- Number 0: 60-->
+      <!-- END of FONTS Timer-->
     </images>
   
   <!-- debugger settings -->
