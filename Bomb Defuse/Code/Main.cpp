@@ -83,6 +83,17 @@ C3DSprite* g_numberBarcodeSprite1 = nullptr;
 C3DSprite* g_numberBarcodeSprite2 = nullptr;
 C3DSprite* g_numberBarcodeSprite3 = nullptr;
 
+C3DSprite* g_pTimerNumber0 = nullptr;
+C3DSprite* g_pTimerNumber1 = nullptr;
+C3DSprite* g_pTimerNumber2 = nullptr;
+C3DSprite* g_pTimerNumber3 = nullptr;
+C3DSprite* g_pTimerNumber4 = nullptr;
+C3DSprite* g_pTimerNumber5 = nullptr;
+C3DSprite* g_pTimerNumber6 = nullptr;
+C3DSprite* g_pTimerNumber7 = nullptr;
+C3DSprite* g_pTimerNumber8 = nullptr;
+C3DSprite* g_pTimerNumber9 = nullptr;
+
 C3DSprite* g_shapeClueSprite1 = nullptr;
 C3DSprite* g_shapeClueSprite2 = nullptr;
 C3DSprite* g_shapeClueSprite3 = nullptr;
@@ -131,17 +142,14 @@ void checkStage2(string clue) {
 }
 
 void DrawTimer() {
-	bool started = false;
-	int timerTime, time, elapsedTime, minutes, seconds, secondsLeft;
+	int timerTime, currTime, elapsedTime, minutes, seconds, secondsLeft;
 	float y = g_nScreenHeight - 410;
 
-	if (!menu_Screen && started) {
-		g_cTimer.start();
-	}
+	int TimerTotalMinutes = 5;				// Timer in minutes
 
-	timerTime = 300; // 5 Minutes in seconds
-	time = g_cTimer.time() / 1000; // Convert Current Time to Seconds
-	elapsedTime = timerTime - time; // Seconds Left untl time out
+	timerTime = TimerTotalMinutes * 60;		// 5 Minutes in seconds
+	currTime = g_cTimer.time() / 1000;		// Convert Current Time to Seconds
+	elapsedTime = timerTime - currTime;		// Seconds Left untl time out
 
 	if (elapsedTime <= 0) {
 		mainController.addStrike();
@@ -153,38 +161,79 @@ void DrawTimer() {
 	minutes = elapsedTime / 60;
 	secondsLeft = ( (elapsedTime % 120) % 60 ) / 10;
 	seconds = elapsedTime % 10;
-
-	if (minutes == 0)
-		minutes = 10;
-	if (seconds == 0)
-		seconds = 10;
-	if (secondsLeft == 0)
-		secondsLeft = 10;
-
+	// If stage 1 is complete draw timer
 	if (stage1Complete) {
-		if (started) {
-			g_pMinuteRightSprite->Release();
-			g_pSecondsRightSprite->Release();
-			g_pSecondsLefttSprite->Release();
+		// Draw Minutes on screen
+		switch (minutes) {
+			case 1: g_pTimerNumber1->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 2:	g_pTimerNumber2->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 3:	g_pTimerNumber3->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 4:	g_pTimerNumber4->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 5:	g_pTimerNumber5->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 6:	g_pTimerNumber6->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 7:	g_pTimerNumber7->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 8:	g_pTimerNumber8->Draw(Vector3(450, y - 140, 550));
+				break;
+			case 9:	g_pTimerNumber9->Draw(Vector3(450, y - 140, 550));
+				break;
+			default:
+				g_pTimerNumber0->Draw(Vector3(450, y - 140, 550));
+				break;
 		}
-
-		g_pMinuteRightSprite = new C3DSprite();
-		if (!g_pMinuteRightSprite->Load(g_cImageFileName[minutes + 50]))
-			ABORT("Platform image %s not found.", g_cImageFileName[minutes + 50]);
-
-		g_pSecondsRightSprite = new C3DSprite();
-		if (!g_pSecondsRightSprite->Load(g_cImageFileName[secondsLeft + 50]))
-			ABORT("Platform image %s not found.", g_cImageFileName[secondsLeft + 50]);
-
-		g_pSecondsLefttSprite = new C3DSprite();
-		if (!g_pSecondsLefttSprite->Load(g_cImageFileName[seconds + 50]))
-			ABORT("Platform image %s not found.", g_cImageFileName[seconds + 50]);
-
-		g_pMinuteRightSprite->Draw(Vector3(450, y - 140, 550));
-		g_pSecondsRightSprite->Draw(Vector3(520, y - 140, 550));
-		g_pSecondsLefttSprite->Draw(Vector3(570, y - 140, 550));
+		// Draw Seconds Left on screen
+		switch (secondsLeft) {
+			case 1: g_pTimerNumber1->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 2: g_pTimerNumber2->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 3: g_pTimerNumber3->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 4: g_pTimerNumber4->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 5: g_pTimerNumber5->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 6: g_pTimerNumber6->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 7: g_pTimerNumber7->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 8: g_pTimerNumber8->Draw(Vector3(520, y - 140, 550));
+				break;
+			case 9: g_pTimerNumber9->Draw(Vector3(520, y - 140, 550));
+				break;
+			default: g_pTimerNumber0->Draw(Vector3(520, y - 140, 550));
+				break;
+		}
+		// Draw Seconds Right on screen
+		switch (seconds) {
+			case 1: g_pTimerNumber1->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 2: g_pTimerNumber2->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 3: g_pTimerNumber3->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 4: g_pTimerNumber4->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 5: g_pTimerNumber5->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 6: g_pTimerNumber6->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 7: g_pTimerNumber7->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 8: g_pTimerNumber8->Draw(Vector3(570, y - 140, 550));
+				break;
+			case 9: g_pTimerNumber9->Draw(Vector3(570, y - 140, 550));
+				break;
+			default: g_pTimerNumber0->Draw(Vector3(570, y - 140, 550));
+				break;
+		}
 	}
-	started = true;
 }
 
 void DrawStrikes(){
@@ -322,6 +371,12 @@ void lockNumCtrl(int step, int fieldLoc) {
 	}
 }
 void briefcaseRotation(int caseImage) {
+	bool rotationStart = false;
+
+	if (rotationStart) {
+		g_pBriefcaseSprite->Release();
+		g_pArrows->Release();
+	}
 	// Briefcase Rotations
 	if (caseImage != -1) {
 		g_pBriefcaseSprite = new C3DSprite();
@@ -331,7 +386,7 @@ void briefcaseRotation(int caseImage) {
 		g_pArrows = new C3DSprite();
 		if (!g_pArrows->Load(g_cImageFileName[caseImage + 37]))
 			ABORT("Platform image %s not found.", g_cImageFileName[caseImage + 37]);
-
+		rotationStart = true;
 		CreateObjects();
 	}
 }
@@ -671,6 +726,37 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	g_pStrike3 = new C3DSprite();
 	if (!g_pStrike3->Load(g_cImageFileName[50]))
 		ABORT("Platform image %s not found.", g_cImageFileName[50]);
+
+	g_pTimerNumber0 = new C3DSprite();
+	if (!g_pTimerNumber0->Load(g_cImageFileName[60]))
+		ABORT("Platform image %s not found.", g_cImageFileName[60]);
+	g_pTimerNumber1 = new C3DSprite();
+	if (!g_pTimerNumber1->Load(g_cImageFileName[51]))
+		ABORT("Platform image %s not found.", g_cImageFileName[51]);
+	g_pTimerNumber2 = new C3DSprite();
+	if (!g_pTimerNumber2->Load(g_cImageFileName[52]))
+		ABORT("Platform image %s not found.", g_cImageFileName[52]);
+	g_pTimerNumber3 = new C3DSprite();
+	if (!g_pTimerNumber3->Load(g_cImageFileName[53]))
+		ABORT("Platform image %s not found.", g_cImageFileName[53]);
+	g_pTimerNumber4 = new C3DSprite();
+	if (!g_pTimerNumber4->Load(g_cImageFileName[54]))
+		ABORT("Platform image %s not found.", g_cImageFileName[54]);
+	g_pTimerNumber5 = new C3DSprite();
+	if (!g_pTimerNumber5->Load(g_cImageFileName[55]))
+		ABORT("Platform image %s not found.", g_cImageFileName[55]);
+	g_pTimerNumber6 = new C3DSprite();
+	if (!g_pTimerNumber6->Load(g_cImageFileName[56]))
+		ABORT("Platform image %s not found.", g_cImageFileName[56]);
+	g_pTimerNumber7 = new C3DSprite();
+	if (!g_pTimerNumber7->Load(g_cImageFileName[57]))
+		ABORT("Platform image %s not found.", g_cImageFileName[57]);
+	g_pTimerNumber8 = new C3DSprite();
+	if (!g_pTimerNumber8->Load(g_cImageFileName[58]))
+		ABORT("Platform image %s not found.", g_cImageFileName[58]);
+	g_pTimerNumber9 = new C3DSprite();
+	if (!g_pTimerNumber9->Load(g_cImageFileName[59]))
+		ABORT("Platform image %s not found.", g_cImageFileName[59]);
 
 	//message loop
 	while (TRUE)

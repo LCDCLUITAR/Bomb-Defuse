@@ -17,6 +17,7 @@
 extern int g_nScreenWidth;
 extern int g_nScreenHeight;
 extern bool stage1Complete;
+extern bool shapesPuzzleSolved;
 extern bool shapeOnScreen;
 extern BOOL g_bWireFrame;
 extern bool menu_Screen;
@@ -33,6 +34,18 @@ extern C3DSprite* g_numberBarcodeSprite0;
 extern C3DSprite* g_numberBarcodeSprite1;
 extern C3DSprite* g_numberBarcodeSprite2;
 extern C3DSprite* g_numberBarcodeSprite3;
+
+extern C3DSprite* g_pTimerNumber0;
+extern C3DSprite* g_pTimerNumber1;
+extern C3DSprite* g_pTimerNumber2;
+extern C3DSprite* g_pTimerNumber3;
+extern C3DSprite* g_pTimerNumber4;
+extern C3DSprite* g_pTimerNumber5;
+extern C3DSprite* g_pTimerNumber6;
+extern C3DSprite* g_pTimerNumber7;
+extern C3DSprite* g_pTimerNumber8;
+extern C3DSprite* g_pTimerNumber9;
+
 extern C3DSprite* g_shapeClueSprite1;
 extern C3DSprite* g_shapeClueSprite2;
 extern C3DSprite* g_shapeClueSprite3;
@@ -59,6 +72,7 @@ extern CGameObject* g_pTopClues;
 extern CGameObject* g_pBarcode;
 extern CGameObject* g_pBarcodeCase;
 extern GameController mainController;
+extern CTimer g_cTimer; ///< The game timer
 
 CGameRenderer::CGameRenderer(): m_bCameraDefaultMode(TRUE){
 } //constructor
@@ -206,15 +220,17 @@ void CGameRenderer::ComposeFrame(){
   m_pDC2->ClearDepthStencilView(m_pDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
   //draw
-  DrawBackground(); //draw background 
   if(!menu_Screen) {
+	  DrawBackground(); //draw background 
 	  DrawBriefcase();
 	  g_pTopClues->draw(); //draw plane
 	  g_pBarcode->draw(); // draw barcode
 	  g_pBarcodeCase->draw();//Draw barcode on case
 	  DrawStrikes(); // Draw Bomb Strikes
-	  if(!fail)
+	  if (!fail) {
+		  g_cTimer.start();
 		  DrawTimer();
+	  }
 	  if(stage1Complete) {
 		  if(drawShapeScreen)
 			  drawShapeScreen();
