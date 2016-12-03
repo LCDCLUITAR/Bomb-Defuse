@@ -142,10 +142,14 @@ void checkStage2(string clue) {
 }
 
 void DrawTimer() {
+	bool started = false;
 	int timerTime, currTime, elapsedTime, minutes, seconds, secondsLeft;
 	float y = g_nScreenHeight - 410;
 
 	int TimerTotalMinutes = 5;				// Timer in minutes
+	
+	if(started)
+		g_cTimer.start();
 
 	timerTime = TimerTotalMinutes * 60;		// 5 Minutes in seconds
 	currTime = g_cTimer.time() / 1000;		// Convert Current Time to Seconds
@@ -234,6 +238,7 @@ void DrawTimer() {
 				break;
 		}
 	}
+	started = true;
 }
 
 void DrawStrikes(){
@@ -242,11 +247,11 @@ void DrawStrikes(){
 	strikes = mainController.getStrikes();
 	if (strikes >= 0) {
 		if (strikes < 3)
-			g_pStrike1->Draw(Vector3(900, 70, 500));
+			g_pStrike1->Draw(Vector3(900, 90, 449));
 		if(strikes < 2)
-			g_pStrike2->Draw(Vector3(850, 70, 500));
+			g_pStrike2->Draw(Vector3(850, 90, 449));
 		if(strikes < 1)
-			g_pStrike3->Draw(Vector3(800, 70, 500));
+			g_pStrike3->Draw(Vector3(800, 90, 449));
 	}
 	if (strikes >= 3) {
 		g_failScreen = new C3DSprite();

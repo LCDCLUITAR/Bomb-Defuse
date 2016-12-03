@@ -227,10 +227,8 @@ void CGameRenderer::ComposeFrame(){
 	  g_pBarcode->draw(); // draw barcode
 	  g_pBarcodeCase->draw();//Draw barcode on case
 	  DrawStrikes(); // Draw Bomb Strikes
-	  if (!fail) {
-		  g_cTimer.start();
+	  if (!fail)
 		  DrawTimer();
-	  }
 	  if(stage1Complete) {
 		  if(drawShapeScreen)
 			  drawShapeScreen();
