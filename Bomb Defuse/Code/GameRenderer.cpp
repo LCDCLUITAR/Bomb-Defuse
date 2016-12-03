@@ -34,7 +34,10 @@ extern C3DSprite* g_numberBarcodeSprite0;
 extern C3DSprite* g_numberBarcodeSprite1;
 extern C3DSprite* g_numberBarcodeSprite2;
 extern C3DSprite* g_numberBarcodeSprite3;
-
+extern C3DSprite* g_pArrows0;
+extern C3DSprite* g_pArrows1;
+extern C3DSprite* g_pArrows2;
+extern C3DSprite* g_pArrows3;
 extern C3DSprite* g_pTimerNumber0;
 extern C3DSprite* g_pTimerNumber1;
 extern C3DSprite* g_pTimerNumber2;

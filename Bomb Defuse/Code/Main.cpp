@@ -73,6 +73,11 @@ C3DSprite* g_pStrike1 = nullptr;
 C3DSprite* g_pStrike2 = nullptr;
 C3DSprite* g_pStrike3 = nullptr;
 
+C3DSprite* g_pArrows0 = nullptr;
+C3DSprite* g_pArrows1 = nullptr;
+C3DSprite* g_pArrows2 = nullptr;
+C3DSprite* g_pArrows3 = nullptr;
+
 C3DSprite* g_numberSprite0 = nullptr;
 C3DSprite* g_numberSprite1 = nullptr;
 C3DSprite* g_numberSprite2 = nullptr;
@@ -424,6 +429,10 @@ void DrawBriefcase() {
 			g_pBarcodeCaseSprite->Release();
 			g_pBriefcaseSprite->Release();
 			g_pArrows->Release();
+			g_pArrows0->Release();
+			g_pArrows1->Release();
+			g_pArrows2->Release();
+			g_pArrows3->Release();
 		}
 		else if (fail == true)
 			g_failScreen->Draw(Vector3(515, y, 445));
@@ -438,8 +447,13 @@ void DrawBriefcase() {
 	}
 	else {
 		g_pBriefcaseSprite->Draw(Vector3(515, y, 450));
-		if (currLocation == 0)
-			int x = 0;//g_pArrows->Draw(Vector3(515, y-50, 445));
+		if (currLocation == 0) {
+			g_pArrows0->Draw(Vector3(520, y - 255, 470));	// Bottom
+			g_pArrows1->Draw(Vector3(120, y, 449));			// Left 
+			g_pArrows2->Draw(Vector3(904, y, 449));			// Right
+			g_pArrows3->Draw(Vector3(520, y + 210, 400));	// Top
+			
+		}
 		else if (currLocation == 2)
 			g_pArrows->Draw(Vector3(774, y, 449));
 		else if (currLocation == 3)
@@ -447,15 +461,16 @@ void DrawBriefcase() {
 	}
 
 
-	g_numberBarcodeSprite2->Draw(Vector3(200, 690, 556));
-	g_numberBarcodeSprite3->Draw(Vector3(215, 690, 556));
+	g_numberBarcodeSprite2->Draw(Vector3(210, 698, 556));
+	g_numberBarcodeSprite3->Draw(Vector3(220, 698, 556));
 	if (currLocation == 4) {
-		g_numberBarcodeSprite0->Draw(Vector3(780, y - 50, 445));
-		g_numberBarcodeSprite1->Draw(Vector3(795, y - 50, 445));
+		g_numberBarcodeSprite0->Draw(Vector3(790, y - 54
+			, 445));
+		g_numberBarcodeSprite1->Draw(Vector3(800, y - 54, 445));
 	}
 	else {
-		g_numberBarcodeSprite0->Draw(Vector3(780, y - 40, 6000));
-		g_numberBarcodeSprite1->Draw(Vector3(781, y - 40, 6000));
+		g_numberBarcodeSprite0->Draw(Vector3(780, y - 30, 6000));
+		g_numberBarcodeSprite1->Draw(Vector3(781, y - 30, 6000));
 	}
 } //DrawBriefcase
 
@@ -687,6 +702,19 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	if (!g_pArrows->Load(g_cImageFileName[41]))
 		ABORT("Platform image %s not found.", g_cImageFileName[41]);
 
+	g_pArrows0 = new C3DSprite();				// Arrow Down
+	if (!g_pArrows0->Load(g_cImageFileName[42]))
+		ABORT("Platform image %s not found.", g_cImageFileName[42]);
+	g_pArrows1 = new C3DSprite();				// Arrow Left
+	if (!g_pArrows1->Load(g_cImageFileName[43]))
+		ABORT("Platform image %s not found.", g_cImageFileName[43]);
+	g_pArrows2 = new C3DSprite();				// Arrow Right
+	if (!g_pArrows2->Load(g_cImageFileName[44]))
+		ABORT("Platform image %s not found.", g_cImageFileName[44]);
+	g_pArrows3 = new C3DSprite();				// Arrow up 
+	if (!g_pArrows3->Load(g_cImageFileName[45]))
+		ABORT("Platform image %s not found.", g_cImageFileName[45]);
+
 	g_numberSprite0 = new C3DSprite();				// digits 
 	if (!g_numberSprite0->Load(g_cImageFileName[lockNum]))
 		ABORT("Platform image %s not found.", g_cImageFileName[lockNum]);
@@ -702,20 +730,31 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 
 	if (!stage1Complete) {
 		int arr[5];
+		int spacer0, spacer1, spacer2, spacer3;
+		spacer0 = spacer1 = spacer2 = spacer3 = 0;
 		mainController.getBarcodeArr(arr);
 
+		if (arr[4] == 0)
+			spacer0 = 10;
+		if (arr[1] == 0)
+			spacer1 = 10;
+		if (arr[2] == 0)
+			spacer2 = 10;
+		if (arr[3] == 0)
+			spacer3 = 10;
+
 		g_numberBarcodeSprite0 = new C3DSprite();	//digit
-		if (!g_numberBarcodeSprite0->Load(g_cImageFileName[arr[4] + 9]))
-			ABORT("Platform image %s not found.", g_cImageFileName[arr[4] + 9]);
+		if (!g_numberBarcodeSprite0->Load(g_cImageFileName[arr[4] + 60 + spacer0]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[4] + 60 + spacer0]);
 		g_numberBarcodeSprite1 = new C3DSprite();	//digit
-		if (!g_numberBarcodeSprite1->Load(g_cImageFileName[arr[1] + 9]))
-			ABORT("Platform image %s not found.", g_cImageFileName[arr[1] + 9]);
+		if (!g_numberBarcodeSprite1->Load(g_cImageFileName[arr[1] + 60 + spacer1]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[1] + 60 + spacer1]);
 		g_numberBarcodeSprite2 = new C3DSprite();	//digit
-		if (!g_numberBarcodeSprite2->Load(g_cImageFileName[arr[2] + 9]))
-			ABORT("Platform image %s not found.", g_cImageFileName[arr[2] + 9]);
+		if (!g_numberBarcodeSprite2->Load(g_cImageFileName[arr[2] + 60 + spacer2]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[2] + 60 + spacer2]);
 		g_numberBarcodeSprite3 = new C3DSprite();	//digit
-		if (!g_numberBarcodeSprite3->Load(g_cImageFileName[arr[3] + 9]))
-			ABORT("Platform image %s not found.", g_cImageFileName[arr[3] + 9]);
+		if (!g_numberBarcodeSprite3->Load(g_cImageFileName[arr[3] + 60 + spacer3]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr[3] + 60 + spacer3]);
 	}
 	g_pLedLitSprite = new C3DSprite();
 	if (!g_pLedLitSprite->Load(g_cImageFileName[46]))

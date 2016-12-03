@@ -23,7 +23,7 @@ int GameController::caseRotation(int x, int y, int &currLoc) {
 	// Rotations from Front View
 	if (currLoc == 0) {
 		// Top Arrow Selected from Front View
-		if (x >= 0 && y >= 100 && y <= 144) {				// Briefcase Top
+		if (x >= 0 && y >= 100 && y <= 183) {				// Briefcase Top
 			caseLocation = currLoc = 1; // Top Location
 			return 5;
 		}
@@ -33,7 +33,7 @@ int GameController::caseRotation(int x, int y, int &currLoc) {
 			return 8;
 		}
 		// Left Arrow Selected
-		if (x <= 160 && y >= 100 && y <= 768) {			// Briefcase Left
+		if (x <= 105 && y >= 100 && y <= 768) {			// Briefcase Left
 			caseLocation = currLoc = 2;
 			return 7;
 		}

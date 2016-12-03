@@ -35,8 +35,8 @@
       <image src="Images\Font\8.png" />                <!-- Number 8: 17 -->
       <image src="Images\Font\9.png" />                <!-- Number 9: 18 -->
       <!-- END of FONTS -->
-      <image src="Images\Clues\barcodeClue.png"/>      <!-- Barcode Clue 19 -->
-      <image src="Images\Clues\barcodeCase.png"/>      <!-- Barcode Clue 20 -->
+      <image src="Images\Clues\barcodeClue2.png"/>      <!-- Barcode Clue 19 -->
+      <image src="Images\Clues\barcodeCase2.png"/>      <!-- Barcode Clue 20 -->
       <image src="Images\Briefcase\caseOpen.png"/>     <!-- 21 -->
       <image src="Images\fail.png"/>                   <!-- 22 -->
       <!-- Shapes -->
@@ -88,6 +88,18 @@
       <image src="Images\ClockFont\9.png" />                <!-- Number 9: 59 -->
       <image src="Images\ClockFont\0.png" />                <!-- Number 0: 60-->
       <!-- END of FONTS Timer-->
+      <!-- Small Fonts-->
+      <image src="Images\FontSmall\1.png" />                <!-- Number 1: 61 -->
+      <image src="Images\FontSmall\2.png" />                <!-- Number 2: 62 -->
+      <image src="Images\FontSmall\3.png" />                <!-- Number 3: 63 -->
+      <image src="Images\FontSmall\4.png" />                <!-- Number 4: 64 -->
+      <image src="Images\FontSmall\5.png" />                <!-- Number 5: 65 -->
+      <image src="Images\FontSmall\6.png" />                <!-- Number 6: 66 -->
+      <image src="Images\FontSmall\7.png" />                <!-- Number 7: 67 -->
+      <image src="Images\FontSmall\8.png" />                <!-- Number 8: 68 -->
+      <image src="Images\FontSmall\9.png" />                <!-- Number 9: 69 -->
+      <image src="Images\FontSmall\0.png" />                <!-- Number 0: 70 -->
+      <!-- END of SMALL FONTS-->
     </images>
   
   <!-- debugger settings -->
