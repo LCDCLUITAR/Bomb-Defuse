@@ -1,11 +1,67 @@
-﻿  Main.cpp
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(196): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(294): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(321): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(378): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(424): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(462): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(533): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(673): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Downloads\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.exe
-  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Downloads\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.pdb (Full PDB)
+﻿Build started 12/5/2016 9:57:07 AM.
+     1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" on node 2 (Build target(s)).
+     1>FxCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T ps_4_0_level_9_3 /Fo "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\PixelShader.cso" /Od /Zi PixelShader.hlsl 
+         compilation object save succeeded; see C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\PixelShader.cso
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\fxc.exe /nologo /E"main" /T vs_4_0_level_9_3 /Fo "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\VertexShader.cso" /Od /Zi VertexShader.hlsl 
+         compilation object save succeeded; see C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\VertexShader.cso
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\DirectXTK\Inc /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Code\abort.cpp Code\debug.cpp Code\GameClues.cpp Code\GameController.cpp Code\GameRenderer.cpp Code\ImageFileNameList.cpp Code\IPMgr.cpp Code\Main.cpp Code\Object.cpp Code\Renderer.cpp Code\Shader.cpp Code\Sprite.cpp Code\Timer.cpp Code\tinyxml2.cpp Code\Window.cpp
+         Window.cpp
+         tinyxml2.cpp
+         Timer.cpp
+         Sprite.cpp
+         Shader.cpp
+         Renderer.cpp
+         Object.cpp
+         Main.cpp
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(197): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(295): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(322): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(379): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(425): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(463): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(534): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(674): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(768): warning C4804: '>=': unsafe use of type 'bool' in operation
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(770): warning C4804: '>=': unsafe use of type 'bool' in operation
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(772): warning C4804: '>=': unsafe use of type 'bool' in operation
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(774): warning C4806: '==': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+         IPMgr.cpp
+         ImageFileNameList.cpp
+         GameRenderer.cpp
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\gamerenderer.cpp(257): warning C4551: function call missing argument list
+         GameController.cpp
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\gamecontroller.cpp(154): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\gamecontroller.cpp(157): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\gamecontroller.cpp(166): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\gamecontroller.cpp(169): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+         GameClues.cpp
+         debug.cpp
+         abort.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Debug\Ned's Turkey Farm.res" "Ned's Turkey Farm.rc" 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.exe" /INCREMENTAL /NOLOGO D3DCompiler.lib DXGI.lib D3D11.lib Winmm.lib DirectXTK.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.lib" /MACHINE:X86 "Debug\Ned's Turkey Farm.res"
+         Debug\abort.obj
+         Debug\debug.obj
+         Debug\GameClues.obj
+         Debug\GameController.obj
+         Debug\GameRenderer.obj
+         Debug\ImageFileNameList.obj
+         Debug\IPMgr.obj
+         Debug\Main.obj
+         Debug\Object.obj
+         Debug\Renderer.obj
+         Debug\Shader.obj
+         Debug\Sprite.obj
+         Debug\Timer.obj
+         Debug\tinyxml2.obj
+         Debug\Window.obj
+         Ned's Turkey Farm.vcxproj -> C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.exe
+     1>Done Building Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:11.08

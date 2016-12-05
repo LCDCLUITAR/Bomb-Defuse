@@ -48,6 +48,7 @@ int strikes = 0;
 bool stage1Complete = false;
 bool win = false;
 bool fail = false;
+bool winGame = false;
 bool menu_Screen = true;
 bool shapeOnScreen = false;
 bool cardOnScreen = false;
@@ -749,34 +750,38 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			g_cTimer.start(); //start game timer
 		}
 		// Stage One rotation mouse methods briefcase
-		if (!stage1Complete && !menu_Screen)
+		if (!stage1Complete && !menu_Screen && !fail && !winGame)
 			briefcaseRotation(mainController.caseRotation(xPos, yPos, currLocation));
 		// Stage One lock number controller mouse methods
-		if (currLocation == 1 && !stage1Complete)
+		if (currLocation == 1 && !stage1Complete && !fail && !winGame)
 			lockNumCtrl(lockNum, mainController.lockNumberCtrl(xPos, yPos, currLocation, lockNum));
 		// Check Stage one win
-		if (xPos >= 555 && xPos <= 600 && yPos <= 450 && yPos >= 380 && currLocation == 1 && !stage1Complete)
+		if (xPos >= 555 && xPos <= 600 && yPos <= 450 && yPos >= 380 && currLocation == 1 && !stage1Complete && !fail && !winGame)
 			checkStageOne(mainController.checkStage1());
 		// Check Stage one win
-		if (xPos >= 224 && xPos <= 392 && yPos <= 463 && yPos >= 350 && stage1Complete && counterShape <= 4) {
+		if (xPos >= 224 && xPos <= 392 && yPos <= 463 && yPos >= 350 && stage1Complete && counterShape <= 4 && !fail && !winGame) {
 			loadShapeScreen(mainController.shapeScreen(x, y));
 			
 		}
 		// Clear Shape Screen
-		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved) {
+		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved && !fail && !winGame) {
+			if(shapeOnScreen >= 1)
+				g_shapeClueSprite1->Release();
+			if (shapeOnScreen >= 2)
+				g_shapeClueSprite2->Release();
+			if (shapeOnScreen >= 3)
+				g_shapeClueSprite3->Release();
+			if (shapeOnScreen == 4)
+				g_shapeClueSprite4->Release();
 			counterShape = 0;
-			g_shapeClueSprite1->Release();
-			g_shapeClueSprite2->Release();
-			g_shapeClueSprite3->Release();
-			g_shapeClueSprite4->Release();
 			clearShapes = true;
 			shapeResult = 0;
 		}
 		// Submit Shape Screen
-		if (xPos >= 606 && xPos <= 690 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved)
+		if (xPos >= 606 && xPos <= 690 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved && !fail && !winGame)
 			checkStage2("CheckShape");
 		//card puzzle buttons
-		if (xPos >= 425 && xPos <= 500 && yPos <= 318 && yPos >= 218 && stage1Complete && counterCard <= 4 && !cardPuzzleSolved) {
+		if (xPos >= 425 && xPos <= 500 && yPos <= 318 && yPos >= 218 && stage1Complete && counterCard <= 4 && !cardPuzzleSolved && !fail && !winGame) {
 			if(xPos >= 425 && xPos <= 453 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved)//clear button
 				counterCard = 0;
 			else if(xPos >= 475 && xPos <= 500 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved)//submit button
@@ -786,7 +791,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 
 
 		}
-		if (xPos >= 600 && xPos <= 750 && yPos <= 318 && yPos >= 200 && stage1Complete && !wirePuzzleSolved) {
+		// Wire puzzle
+		if (xPos >= 600 && xPos <= 750 && yPos <= 318 && yPos >= 200 && stage1Complete && !wirePuzzleSolved && !fail && !winGame) {
 			loadWireScreen(mainController.wireScreen(x, y));//otherwise call the button clicked
 			checkStage2("CheckWire");
 		}
