@@ -12,6 +12,8 @@ GameController::GameController() {
 	strike = 0;
 	randomNumGen(9, 0, "barcode");
 	randomNumGen(23, 40, "shapes");
+	randomNumGen(9, 0, "card");
+	randomNumGen(3, 0, "wire");
 	fixShapeIndex();
 }
 GameController::~GameController() {
@@ -113,6 +115,16 @@ int GameController::lockNumberCtrl(int x, int y, int& currLoc, int& step) {
 	return -1;
 }
 
+
+void GameController::getCardArr(int arr1[]) {
+	for (int i = 0; i < 5; i++)
+		arr1[i] = cardResult[i];
+}
+
+void GameController::getWireArr(int arr2[]) {
+		arr2[0] = wireResult[0];
+}
+
 int GameController::checkStage1() {
 	//if ((lockNum0 == barcodeNum[4]+9) && (lockNum1 == barcodeNum[1]+9) && (lockNum2 == barcodeNum[2]+9) && (lockNum3 == barcodeNum[3]+9)) {
 	if ((lockNum0 == 9) && (lockNum1 == 9) && (lockNum2 == 9) && (lockNum3 == 10)) {
@@ -149,6 +161,12 @@ void GameController::randomNumGen(int range_max, int range_min, string clue) {
 		//shapeResult[2] = 26;
 		//shapeResult[3] = 27;
 	}
+	else if (clue == "card")
+		for (int i = 0; i < 5; i++)
+			cardResult[i] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
+	else if (clue == "wire")
+		for (int i = 0; i < 3; i++)
+			wireResult[0] = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
 }
 
 int GameController::shapeScreen(int x, int y) {
@@ -173,6 +191,82 @@ int GameController::shapeScreen(int x, int y) {
 		shapeIndex = 23;// "Square";  23 - 25
 
 	return shapeIndex;
+}
+
+int GameController::cardScreen(int x, int y, int index) {
+	int cardIndex = -1;
+
+	if (x >= 425 && x <= 453 && y >= 220 && y <= 245)
+		cardIndex = 73;// 1
+	if (x >= 450 && x <= 478 && y >= 220 && y <= 245)
+		cardIndex = 74;// 2
+	if (x >= 478 && x <= 503 && y >= 220 && y <= 245)
+		cardIndex = 75;// 3
+	if (x >= 425 && x <= 453 && y >= 245 && y <= 270)
+		cardIndex = 76;// 4
+	if (x >= 450 && x <= 478 && y >= 245 && y <= 270)
+		cardIndex = 77;// 5
+	if (x >= 478 && x <= 503 && y >= 245 && y <= 270)
+		cardIndex = 78;// 6
+	if (x >= 425 && x <= 453 && y >= 270 && y <= 295)
+		cardIndex = 79;// 7
+	if (x >= 450 && x <= 478 && y >= 270 && y <= 295)
+		cardIndex = 80;// 8
+	if (x >= 478 && x <= 503 && y >= 270 && y <= 295)
+		cardIndex = 81;// 9
+	if (x >= 450 && x <= 475 && y >= 295 && y <= 318)
+		cardIndex = 72;// 0
+
+	cardCheck[index] = cardIndex;
+	return cardIndex;
+}
+
+//check card puzzle truth
+int GameController::isCardResult() {
+	if ((cardCheck[0] == cardResult[0]+72) && (cardCheck[1] == cardResult[1]+72) && (cardCheck[2] == cardResult[2]+72) && (cardCheck[3] == cardResult[3]+72)) {
+		return 1;
+	}
+	else if (strike >= 2) {
+		return 2;
+	}
+	else {
+		strike = strike + 1;
+		return 0;
+	}
+
+}
+
+//wire control
+int GameController::wireScreen(int x, int y) {
+	int wireIndex;
+
+	if (x >= 600 && x <= 755 && y >= 200 && y <= 228)
+		wireIndex = 86;// 1
+	if (x >= 600 && x <= 755 && y >= 228 && y <= 256)
+		wireIndex = 87;// 2
+	if (x >= 600 && x <= 755 && y >= 256 && y <= 284)
+		wireIndex = 88;// 3
+	if (x >= 600 && x <= 755 && y >= 284 && y <= 312)
+		wireIndex = 89;// 4
+
+	wireCheck = wireIndex;
+	return wireIndex;
+}
+
+//check card puzzle truth
+int GameController::isWireResult() {
+	wireResult[0] += 86;
+	if (wireCheck == wireResult[0]) {
+		return 1;
+	}
+	else if (strike >= 2) {
+		return 2;
+	}
+	else {
+		strike = strike + 1;
+		return 0;
+	}
+
 }
 
 // Return 0: green 1: yellow 2: red

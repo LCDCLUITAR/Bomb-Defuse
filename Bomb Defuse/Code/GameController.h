@@ -26,7 +26,10 @@ private:
 	int shapeResult[4];
 	int shapeToDraw;
 	int shapeRepeats[6];
-
+	int cardResult[4];
+	int cardCheck[4];
+	int wireResult[2];
+	int wireCheck;
 	int strike;
 public:
 	GameController();
@@ -34,16 +37,23 @@ public:
 
 	int caseRotation(int, int, int&);
 	int lockNumberCtrl(int, int, int&, int&);
+	int cardNumberControl(int, int, int&, int&);
 	int checkStage1();
 	void randomNumGen(int range_max, int range_min, string);
 
 	void getBarcodeArr(int arr[]);
+	void getCardArr(int arr1[]);
+	void getWireArr(int arr2[]);
 	void setCaseLocation(int newLoc) {
 		caseLocation = newLoc;
 	}
 
 	string isShapeResult(int, int, bool&);
+	int isCardResult();
+	int isWireResult();
 	int shapeScreen(int, int);
+	int cardScreen(int, int, int);
+	int wireScreen(int, int);
 	void fixShapeIndex();
 	int getShapeToDraw() {
 		return shapeToDraw;

@@ -50,10 +50,14 @@ bool win = false;
 bool fail = false;
 bool menu_Screen = true;
 bool shapeOnScreen = false;
+bool cardOnScreen = false;
 bool clearShapes = false;
 static int counterShape = 0;
+static int counterCard = 0;
 int shapeResult = 0;
 bool shapesPuzzleSolved = false;
+bool cardPuzzleSolved = false;
+bool wirePuzzleSolved = false;
 C3DSprite* g_pTopCluesBannerSprite = nullptr; ///< Pointer to the plane sprite.
 C3DSprite* g_pBarcodeSprite = nullptr; ///< Pointer to the barcode sprite
 CGameObject* g_pTopClues = nullptr; ///< Pointer to the plane object.
@@ -68,6 +72,8 @@ C3DSprite* g_pBriefcaseSprite = nullptr;
 C3DSprite* g_pArrows = nullptr;
 
 C3DSprite* g_pLedLitSprite = nullptr;
+C3DSprite* g_pLedLitSpriteCard = nullptr;
+C3DSprite* g_pLedLitSpriteWire = nullptr;
 
 C3DSprite* g_pStrike1 = nullptr;
 C3DSprite* g_pStrike2 = nullptr;
@@ -99,10 +105,32 @@ C3DSprite* g_pTimerNumber7 = nullptr;
 C3DSprite* g_pTimerNumber8 = nullptr;
 C3DSprite* g_pTimerNumber9 = nullptr;
 
+C3DSprite* g_cardDigitkey1 = nullptr;
+C3DSprite* g_cardDigitkey2 = nullptr;
+C3DSprite* g_cardDigitkey3 = nullptr;
+C3DSprite* g_cardDigitkey4 = nullptr;
+
+C3DSprite* g_numberCardSprite0 = nullptr;
+C3DSprite* g_numberCardSprite1 = nullptr;
+C3DSprite* g_numberCardSprite2 = nullptr;
+C3DSprite* g_numberCardSprite3 = nullptr;
+
+C3DSprite* g_creditCardClue = nullptr;
+
 C3DSprite* g_shapeClueSprite1 = nullptr;
 C3DSprite* g_shapeClueSprite2 = nullptr;
 C3DSprite* g_shapeClueSprite3 = nullptr;
 C3DSprite* g_shapeClueSprite4 = nullptr;
+
+C3DSprite* g_wireSprite1 = nullptr;
+C3DSprite* g_wireSprite2 = nullptr;
+C3DSprite* g_wireSprite3 = nullptr;
+C3DSprite* g_wireSprite4 = nullptr;
+
+C3DSprite* g_wireSpriteStage1 = nullptr;
+C3DSprite* g_wireSpriteStage2 = nullptr;
+C3DSprite* g_wireSpriteStage3 = nullptr;
+C3DSprite* g_wireSpriteStage4 = nullptr;
 
 C3DSprite* g_StageTwo = nullptr;
 C3DSprite* g_failScreen = nullptr;
@@ -141,6 +169,22 @@ void checkStage2(string clue) {
 			shapesPuzzleSolved = true;
 			g_pLedLitSprite = new C3DSprite();
 			if (!g_pLedLitSprite->Load(g_cImageFileName[47]))
+				ABORT("Platform image %s not found.", g_cImageFileName[47]);
+		}
+	}
+	else if (clue == "CheckCard") {
+		if (mainController.isCardResult() == 1) {
+			cardPuzzleSolved = true;
+			g_pLedLitSpriteCard = new C3DSprite();
+			if (!g_pLedLitSpriteCard->Load(g_cImageFileName[47]))
+				ABORT("Platform image %s not found.", g_cImageFileName[47]);
+		}
+	}
+	else if (clue == "CheckWire") {
+		if (mainController.isWireResult() == 1) {
+			wirePuzzleSolved = true;
+			g_pLedLitSpriteWire = new C3DSprite();
+			if (!g_pLedLitSpriteWire->Load(g_cImageFileName[47]))
 				ABORT("Platform image %s not found.", g_cImageFileName[47]);
 		}
 	}
@@ -193,7 +237,7 @@ void DrawTimer() {
 			case 9:	g_pTimerNumber9->Draw(Vector3(450, y - 140, 550));
 				break;
 			default:
-				g_pTimerNumber0->Draw(Vector3(450, y - 140, 550));
+				g_pTimerNumber0->Draw(Vector3(450, y - 138, 550));
 				break;
 		}
 		// Draw Seconds Left on screen
@@ -330,6 +374,90 @@ void loadShapeScreen(int shapeIndex) {
 }
 
 
+void drawCardScreen() {
+	float y = g_nScreenHeight - 410;
+
+	if (counterCard >= 1)
+		g_cardDigitkey1->Draw(Vector3(265, y + 187, 550));
+	if (counterCard >= 2)
+		g_cardDigitkey2->Draw(Vector3(305, y + 187, 550));
+	if (counterCard >= 3)
+		g_cardDigitkey3->Draw(Vector3(345, y + 187, 550));
+	if (counterCard >= 4)
+		g_cardDigitkey4->Draw(Vector3(385, y + 187, 550));
+
+
+}
+
+void loadCardScreen(int cardIndex) {
+
+	counterCard++;
+	cardOnScreen = true;
+	if (counterCard == 1) {
+		g_cardDigitkey1 = new C3DSprite();				// card digits
+		if (!g_cardDigitkey1->Load(g_cImageFileName[cardIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[cardIndex]);
+	}
+
+	else if (counterCard == 2) {
+		g_cardDigitkey2 = new C3DSprite();				// card digits
+		if (!g_cardDigitkey2->Load(g_cImageFileName[cardIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[cardIndex]);
+	}
+
+	else if (counterCard == 3) {
+		g_cardDigitkey3 = new C3DSprite();				// card digits
+		if (!g_cardDigitkey3->Load(g_cImageFileName[cardIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[cardIndex]);
+	}
+
+	else if (counterCard == 4) {
+		g_cardDigitkey4 = new C3DSprite();				// card digits
+		if (!g_cardDigitkey4->Load(g_cImageFileName[cardIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[cardIndex]);
+	}
+
+}
+
+//wire screen
+void drawWireScreen() {
+	float y = g_nScreenHeight - 410;
+
+		g_wireSpriteStage1->Draw(Vector3(655, y + 190, 550));
+		g_wireSpriteStage2->Draw(Vector3(655, y + 162, 550));
+		g_wireSpriteStage3->Draw(Vector3(655, y + 134, 550));
+		g_wireSpriteStage4->Draw(Vector3(655, y + 108, 550));
+}
+
+void loadWireScreen(int wireIndex) {
+
+
+	if (wireIndex == 86) {
+		g_wireSpriteStage1 = new C3DSprite();				// card digits
+		if (!g_wireSpriteStage1->Load(g_cImageFileName[wireIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
+	}
+
+	else if (wireIndex == 87) {
+		g_wireSpriteStage2 = new C3DSprite();				// card digits
+		if (!g_wireSpriteStage2->Load(g_cImageFileName[wireIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
+	}
+
+	else if (wireIndex == 88) {
+		g_wireSpriteStage3 = new C3DSprite();				// card digits
+		if (!g_wireSpriteStage3->Load(g_cImageFileName[wireIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
+	}
+
+	else if (wireIndex == 89) {
+		g_wireSpriteStage4 = new C3DSprite();				// card digits
+		if (!g_wireSpriteStage4->Load(g_cImageFileName[wireIndex]))
+			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
+	}
+
+}
+
 void drawMenuScreen() {
 	float y = g_nScreenHeight - 410;
 
@@ -443,6 +571,8 @@ void DrawBriefcase() {
 	else if (currLocation == 5) {
 		g_StageTwo->Draw(Vector3(515, y + 50, 700));
 		g_pLedLitSprite->Draw(Vector3(750, y + 50, 500));
+		g_pLedLitSpriteCard->Draw(Vector3(465, y + 197, 500));
+		g_pLedLitSpriteWire->Draw(Vector3(768, y + 145, 500));
 		
 	}
 	else {
@@ -463,9 +593,19 @@ void DrawBriefcase() {
 
 	g_numberBarcodeSprite2->Draw(Vector3(210, 698, 556));
 	g_numberBarcodeSprite3->Draw(Vector3(220, 698, 556));
+	g_numberCardSprite0->Draw(Vector3(370, 690, 556));
+	g_numberCardSprite1->Draw(Vector3(385, 690, 556));
+	g_numberCardSprite2->Draw(Vector3(400, 690, 556));
+	g_numberCardSprite3->Draw(Vector3(415, 690, 556));
+	g_creditCardClue->Draw(Vector3(375, 710, 556));
+	g_numberCardSprite0->Draw(Vector3(370, 690, 556));
+	g_wireSprite1->Draw(Vector3(625, 740, 556));
+	g_wireSprite2->Draw(Vector3(625, 720, 556));
+	g_wireSprite3->Draw(Vector3(625, 700, 556));
+	g_wireSprite4->Draw(Vector3(625, 680, 556));
+
 	if (currLocation == 4) {
-		g_numberBarcodeSprite0->Draw(Vector3(790, y - 54
-			, 445));
+		g_numberBarcodeSprite0->Draw(Vector3(790, y - 54, 445));
 		g_numberBarcodeSprite1->Draw(Vector3(800, y - 54, 445));
 	}
 	else {
@@ -603,7 +743,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		yPos = GET_Y_LPARAM(lParam);
 		int x = xPos;
 		int y = yPos;
-
 		// Menu Screen
 		if (menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497) {
 			menu_Screen = false;
@@ -621,6 +760,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		// Check Stage one win
 		if (xPos >= 224 && xPos <= 392 && yPos <= 463 && yPos >= 350 && stage1Complete && counterShape <= 4) {
 			loadShapeScreen(mainController.shapeScreen(x, y));
+			
 		}
 		// Clear Shape Screen
 		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved) {
@@ -635,6 +775,23 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		// Submit Shape Screen
 		if (xPos >= 606 && xPos <= 690 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved)
 			checkStage2("CheckShape");
+		//card puzzle buttons
+		if (xPos >= 425 && xPos <= 500 && yPos <= 318 && yPos >= 218 && stage1Complete && counterCard <= 4 && !cardPuzzleSolved) {
+			if(xPos >= 425 && xPos <= 453 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved)//clear button
+				counterCard = 0;
+			else if(xPos >= 475 && xPos <= 500 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved)//submit button
+				checkStage2("CheckCard");
+			else
+				loadCardScreen(mainController.cardScreen(x, y, counterCard));//otherwise call the button clicked
+
+
+		}
+		if (xPos >= 600 && xPos <= 750 && yPos <= 318 && yPos >= 200 && stage1Complete && !wirePuzzleSolved) {
+			loadWireScreen(mainController.wireScreen(x, y));//otherwise call the button clicked
+			checkStage2("CheckWire");
+		}
+
+
 	}
 	break;
 	case WM_DESTROY: //on exit
@@ -692,6 +849,9 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 
 	if (!g_pBarcodeCaseSprite->Load(g_cImageFileName[20]))
 		ABORT("Platform image %s not found.", g_cImageFileName[20]);
+	g_creditCardClue = new C3DSprite();
+	if (!g_creditCardClue->Load(g_cImageFileName[71]))
+		ABORT("Platform image %s not found.", g_cImageFileName[71]);
 
 	CreateObjects(); //create game objects
 
@@ -728,11 +888,44 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	if (!g_numberSprite3->Load(g_cImageFileName[lockNum]))
 		ABORT("Platform image %s not found.", g_cImageFileName[lockNum]);
 
+	//clue wires
+	g_wireSprite1 = new C3DSprite();	//digit
+	if (!g_wireSprite1->Load(g_cImageFileName[82]))
+		ABORT("Platform image %s not found.", g_cImageFileName[82]);
+	g_wireSprite2 = new C3DSprite();	//digit
+	if (!g_wireSprite2->Load(g_cImageFileName[83]))
+		ABORT("Platform image %s not found.", g_cImageFileName[83]);
+	g_wireSprite3 = new C3DSprite();	//digit
+	if (!g_wireSprite3->Load(g_cImageFileName[84]))
+		ABORT("Platform image %s not found.", g_cImageFileName[84]);
+	g_wireSprite4 = new C3DSprite();	//digit
+	if (!g_wireSprite4->Load(g_cImageFileName[85]))
+		ABORT("Platform image %s not found.", g_cImageFileName[85]);
+
+	g_wireSpriteStage1 = new C3DSprite();	//digit
+	if (!g_wireSpriteStage1->Load(g_cImageFileName[82]))
+		ABORT("Platform image %s not found.", g_cImageFileName[82]);
+	g_wireSpriteStage2 = new C3DSprite();	//digit
+	if (!g_wireSpriteStage2->Load(g_cImageFileName[83]))
+		ABORT("Platform image %s not found.", g_cImageFileName[83]);
+	g_wireSpriteStage3 = new C3DSprite();	//digit
+	if (!g_wireSpriteStage3->Load(g_cImageFileName[84]))
+		ABORT("Platform image %s not found.", g_cImageFileName[84]);
+	g_wireSpriteStage4 = new C3DSprite();	//digit
+	if (!g_wireSpriteStage4->Load(g_cImageFileName[85]))
+		ABORT("Platform image %s not found.", g_cImageFileName[85]);
+
+
+
 	if (!stage1Complete) {
 		int arr[5];
+		int arr1[5];
+		int arr2[2];
 		int spacer0, spacer1, spacer2, spacer3;
 		spacer0 = spacer1 = spacer2 = spacer3 = 0;
 		mainController.getBarcodeArr(arr);
+		mainController.getCardArr(arr1);
+		mainController.getWireArr(arr2);
 
 		if (arr[4] == 0)
 			spacer0 = 10;
@@ -755,9 +948,53 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 		g_numberBarcodeSprite3 = new C3DSprite();	//digit
 		if (!g_numberBarcodeSprite3->Load(g_cImageFileName[arr[3] + 60 + spacer3]))
 			ABORT("Platform image %s not found.", g_cImageFileName[arr[3] + 60 + spacer3]);
+
+		//creditcard numbers sprites
+		g_numberCardSprite0 = new C3DSprite();	//card
+		if (!g_numberCardSprite0->Load(g_cImageFileName[arr1[0] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr1[0] + 9]);
+		g_numberCardSprite1 = new C3DSprite();	//card
+		if (!g_numberCardSprite1->Load(g_cImageFileName[arr1[1] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr1[1] + 9]);
+		g_numberCardSprite2 = new C3DSprite();	//carad
+		if (!g_numberCardSprite2->Load(g_cImageFileName[arr1[2] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr1[2] + 9]);
+		g_numberCardSprite3 = new C3DSprite();	//card
+		if (!g_numberCardSprite3->Load(g_cImageFileName[arr1[3] + 9]))
+			ABORT("Platform image %s not found.", g_cImageFileName[arr1[3] + 9]);
+
+		if (arr2[0] == 0) {
+			g_wireSprite1 = new C3DSprite();	//digit
+			if (!g_wireSprite1->Load(g_cImageFileName[86]))
+				ABORT("Platform image %s not found.", g_cImageFileName[82]);
+		}
+		else if (arr2[0] == 1) {
+			g_wireSprite2 = new C3DSprite();	//digit
+			if (!g_wireSprite2->Load(g_cImageFileName[87]))
+				ABORT("Platform image %s not found.", g_cImageFileName[83]);
+		}
+		else if (arr2[0] == 2) {
+			g_wireSprite3 = new C3DSprite();	//digit
+			if (!g_wireSprite3->Load(g_cImageFileName[88]))
+				ABORT("Platform image %s not found.", g_cImageFileName[84]);
+			}
+		else if (arr2[0] == 3) {
+			g_wireSprite4 = new C3DSprite();	//digit
+			if (!g_wireSprite4->Load(g_cImageFileName[89]))
+				ABORT("Platform image %s not found.", g_cImageFileName[85]);
+		}
 	}
+	//wires
+
+
 	g_pLedLitSprite = new C3DSprite();
 	if (!g_pLedLitSprite->Load(g_cImageFileName[46]))
+		ABORT("Platform image %s not found.", g_cImageFileName[46]);
+	g_pLedLitSpriteCard = new C3DSprite();
+	if (!g_pLedLitSpriteCard->Load(g_cImageFileName[46]))
+		ABORT("Platform image %s not found.", g_cImageFileName[46]);
+	g_pLedLitSpriteWire = new C3DSprite();
+	if (!g_pLedLitSpriteWire->Load(g_cImageFileName[46]))
 		ABORT("Platform image %s not found.", g_cImageFileName[46]);
 
 

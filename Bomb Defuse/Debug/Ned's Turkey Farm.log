@@ -1,34 +1,11 @@
-﻿Build started 12/2/2016 8:03:13 PM.
-     1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\DirectXTK\Inc /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Code\Main.cpp
-         Main.cpp
-     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(152): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(250): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(277): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(334): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(405): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>c:\users\lcdcluitar\documents\github\bomb-defuse-game\bomb defuse\code\main.cpp(533): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.exe" /INCREMENTAL /NOLOGO D3DCompiler.lib DXGI.lib D3D11.lib Winmm.lib DirectXTK.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.lib" /MACHINE:X86 "Debug\Ned's Turkey Farm.res"
-         Debug\abort.obj
-         Debug\debug.obj
-         Debug\GameClues.obj
-         Debug\GameController.obj
-         Debug\GameRenderer.obj
-         Debug\ImageFileNameList.obj
-         Debug\IPMgr.obj
-         Debug\Main.obj
-         Debug\Object.obj
-         Debug\Renderer.obj
-         Debug\Shader.obj
-         Debug\Sprite.obj
-         Debug\Timer.obj
-         Debug\tinyxml2.obj
-         Debug\Window.obj
-         Ned's Turkey Farm.vcxproj -> C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.exe
-     1>Done Building Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:01.36
+﻿  Main.cpp
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(196): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(294): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(321): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(378): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(424): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(462): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(533): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\iansc\downloads\bomb-defuse-game\bomb defuse\code\main.cpp(673): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Downloads\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.exe
+  Ned's Turkey Farm.vcxproj -> C:\Users\iansc\Downloads\bomb-defuse-game\Bomb Defuse\Debug\Ned's Turkey Farm.pdb (Full PDB)

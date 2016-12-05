@@ -37,7 +37,7 @@
       <!-- END of FONTS -->
       <image src="Images\Clues\barcodeClue2.png"/>      <!-- Barcode Clue 19 -->
       <image src="Images\Clues\barcodeCase2.png"/>      <!-- Barcode Clue 20 -->
-      <image src="Images\Briefcase\caseOpen.png"/>     <!-- 21 -->
+      <image src="Images\Briefcase\caseOpen1.png"/>     <!-- 21 -->
       <image src="Images\fail.png"/>                   <!-- 22 -->
       <!-- Shapes -->
       <image src="Images\Shapes\SquareGreen.png"/>     <!-- 23 -->
@@ -100,6 +100,31 @@
       <image src="Images\FontSmall\9.png" />                <!-- Number 9: 69 -->
       <image src="Images\FontSmall\0.png" />                <!-- Number 0: 70 -->
       <!-- END of SMALL FONTS-->
+      <!-- Credit Card Clues-->
+      <image src="Images\CreditCard\creditCardClue.png" />                <!-- 71 -->
+      <!-- END of CREDIT CARD CLUES-->
+      <!-- Card Fonts -->
+      <image src="Images\CardFont\0.png" />                <!-- Number 0: 72 -->
+      <image src="Images\CardFont\1.png" />                <!-- Number 1: 73 -->
+      <image src="Images\CardFont\2.png" />                <!-- Number 2: 74 -->
+      <image src="Images\CardFont\3.png" />                <!-- Number 3: 75 -->
+      <image src="Images\CardFont\4.png" />                <!-- Number 4: 76 -->
+      <image src="Images\CardFont\5.png" />                <!-- Number 5: 77 -->
+      <image src="Images\CardFont\6.png" />                <!-- Number 6: 78 -->
+      <image src="Images\CardFont\7.png" />                <!-- Number 7: 79 -->
+      <image src="Images\CardFont\8.png" />                <!-- Number 8: 80 -->
+      <image src="Images\CardFont\9.png" />                <!-- Number 9: 81 -->
+      <!-- END of CARD FONTS -->
+      <!-- Wires -->
+      <image src="Images\Wires\BlackWire.png" />                <!-- 82 -->
+      <image src="Images\Wires\YellowWire.png" />                <!-- 83 -->
+      <image src="Images\Wires\RedWire.png" />                  <!-- 84 -->
+      <image src="Images\Wires\WhiteWire.png" />                <!-- 85 -->
+      <image src="Images\Wires\BlackWireBroken.png" />          <!-- 86 -->
+      <image src="Images\Wires\YellowWireBroken.png" />          <!-- 87 -->
+      <image src="Images\Wires\RedWireBroken.png" />            <!-- 88 -->
+      <image src="Images\Wires\WhiteWireBroken.png" />          <!-- 89 -->
+      <!-- END of WIRES -->
     </images>
   
   <!-- debugger settings -->

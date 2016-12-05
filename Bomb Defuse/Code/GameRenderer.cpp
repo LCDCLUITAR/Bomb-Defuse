@@ -26,10 +26,17 @@ extern C3DSprite* g_pBriefcaseSprite;
 extern C3DSprite* g_pArrows;
 extern C3DSprite* g_mainMenu;
 extern C3DSprite* g_pLedLitSprite;
+extern C3DSprite* g_pLedLitSpriteCard;
+extern C3DSprite* g_pLedLitSpriteWire;
 extern C3DSprite* g_numberSprite0;
 extern C3DSprite* g_numberSprite1;
 extern C3DSprite* g_numberSprite2;
 extern C3DSprite* g_numberSprite3;
+extern C3DSprite* g_creditCardClue;
+extern C3DSprite* g_numberCardSprite0;
+extern C3DSprite* g_numberCardSprite1;
+extern C3DSprite* g_numberCardSprite2;
+extern C3DSprite* g_numberCardSprite3;
 extern C3DSprite* g_numberBarcodeSprite0;
 extern C3DSprite* g_numberBarcodeSprite1;
 extern C3DSprite* g_numberBarcodeSprite2;
@@ -48,11 +55,22 @@ extern C3DSprite* g_pTimerNumber6;
 extern C3DSprite* g_pTimerNumber7;
 extern C3DSprite* g_pTimerNumber8;
 extern C3DSprite* g_pTimerNumber9;
-
+extern C3DSprite* g_cardDigitkey1;
+extern C3DSprite* g_cardDigitkey2;
+extern C3DSprite* g_cardDigitkey3;
+extern C3DSprite* g_cardDigitkey4;
 extern C3DSprite* g_shapeClueSprite1;
 extern C3DSprite* g_shapeClueSprite2;
 extern C3DSprite* g_shapeClueSprite3;
 extern C3DSprite* g_shapeClueSprite4;
+extern C3DSprite* g_wireSprite1;
+extern C3DSprite* g_wireSprite2;
+extern C3DSprite* g_wireSprite3;
+extern C3DSprite* g_wireSprite4;
+extern C3DSprite* g_wireSpriteStage1;
+extern C3DSprite* g_wireSpriteStage2;
+extern C3DSprite* g_wireSpriteStage3;
+extern C3DSprite* g_wireSpriteStage4;
 extern C3DSprite* g_pStrike1;
 extern C3DSprite* g_pStrike2;
 extern C3DSprite* g_pStrike3;
@@ -71,6 +89,8 @@ void DrawStrikes();
 void DrawTimer();
 void loadShapeScreen(int);
 extern void drawShapeScreen();
+extern void drawCardScreen();
+extern void drawWireScreen();
 extern CGameObject* g_pTopClues; 
 extern CGameObject* g_pBarcode;
 extern CGameObject* g_pBarcodeCase;
@@ -199,6 +219,7 @@ void CGameRenderer::Release(){
   g_numberSprite1->Release();
   g_numberSprite2->Release();
   g_numberSprite3->Release();
+  g_creditCardClue->Release();
   g_pBarcodeCaseSprite->Release();
 
   SAFE_RELEASE(m_pWallTexture);
@@ -235,6 +256,8 @@ void CGameRenderer::ComposeFrame(){
 	  if(stage1Complete) {
 		  if(drawShapeScreen)
 			  drawShapeScreen();
+			  drawCardScreen();
+			  drawWireScreen();
 	  }
   }
   else {
