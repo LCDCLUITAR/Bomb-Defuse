@@ -21,6 +21,9 @@
 #include "abort.h"
 #include "gamerenderer.h"
 
+#include "Sound.h"
+
+
 #include "imagefilenamelist.h"
 #include "debug.h"
 #include "timer.h"
@@ -39,8 +42,12 @@ CTimer g_cTimer; ///< The game timer
 
 GameController mainController;
 
+CSoundManager* g_pSoundManager; // sound manager declaration
+
 static int currLocation = 0; // 0: Front, 1: Top, 2: Left, 3: Right, 4: Bottom  'Rotation Location of Briefcase
 
+bool loopGame = false;
+int playerTimer = 0;
 int xPos;
 int yPos;
 int lockNum = 9;
@@ -49,6 +56,7 @@ bool stage1Complete = false;
 bool win = false;
 bool fail = false;
 bool winGame = false;
+bool gameWon = false;
 bool menu_Screen = true;
 bool shapeOnScreen = false;
 bool cardOnScreen = false;
@@ -135,12 +143,14 @@ C3DSprite* g_wireSpriteStage4 = nullptr;
 
 C3DSprite* g_StageTwo = nullptr;
 C3DSprite* g_failScreen = nullptr;
+C3DSprite* g_pWinScreen = nullptr;
 
 C3DSprite* g_pMinuteRightSprite = nullptr;
 C3DSprite* g_pSecondsRightSprite = nullptr;
 C3DSprite* g_pSecondsLefttSprite = nullptr;
 
-//graphics settings
+
+//graphics settings	
 int g_nScreenWidth; ///< Screen width.
 int g_nScreenHeight; ///< Screen height.
 BOOL g_bWireFrame = FALSE; ///< TRUE for wireframe rendering.
@@ -161,13 +171,120 @@ void CreateObjects();
 
 HWND CreateDefaultWindow(char* name, HINSTANCE hInstance, int nCmdShow);
 
+
+void resetGame() {
+	currLocation = 0;
+	playerTimer = 0;
+	xPos;
+	yPos;
+	lockNum = 9;
+	strikes = 0;
+	stage1Complete = false;
+	win = false;
+	fail = false;
+	winGame = false;
+	gameWon = false;
+	menu_Screen = true;
+	shapeOnScreen = false;
+	cardOnScreen = false;
+	clearShapes = false;
+	counterShape = 0;
+	counterCard = 0;
+	shapeResult = 0;
+	shapesPuzzleSolved = false;
+	cardPuzzleSolved = false;
+	wirePuzzleSolved = false;
+	mainController.resetController();
+	if(fail)
+		g_failScreen->Release();
+	if(!fail)
+		g_pWinScreen->Release();
+	g_pBriefcaseSprite->Release();
+	g_pArrows->Release();
+	g_mainMenu->Release();
+	g_pLedLitSprite->Release();
+	g_pLedLitSpriteCard->Release();
+	g_pLedLitSpriteWire->Release();
+	g_numberSprite0->Release();
+	g_numberSprite1->Release();
+	g_numberSprite2->Release();
+	g_numberSprite3->Release();
+	g_creditCardClue->Release();
+	g_numberCardSprite0->Release();
+	g_numberCardSprite1->Release();
+	g_numberCardSprite2->Release();
+	g_numberCardSprite3->Release();
+	g_numberBarcodeSprite0->Release();
+	g_numberBarcodeSprite1->Release();
+	g_numberBarcodeSprite2->Release();
+	g_numberBarcodeSprite3->Release();
+	g_pArrows0->Release();
+	g_pArrows1->Release();
+	g_pArrows2->Release();
+	g_pArrows3->Release();
+	g_pTimerNumber0->Release();
+	g_pTimerNumber1->Release();
+	g_pTimerNumber2->Release();
+	g_pTimerNumber3->Release();
+	g_pTimerNumber4->Release();
+	g_pTimerNumber5->Release();
+	g_pTimerNumber6->Release();
+	g_pTimerNumber7->Release();
+	g_pTimerNumber8->Release();
+	g_pTimerNumber9->Release();
+	g_wireSprite1->Release();
+	g_wireSprite2->Release();
+	g_wireSprite3->Release();
+	g_wireSprite4->Release();
+	g_wireSpriteStage1->Release();
+	g_wireSpriteStage2->Release();
+	g_wireSpriteStage3->Release();
+	g_wireSpriteStage4->Release();
+	g_pBarcodeSprite->Release();
+	g_pStrike1->Release();
+	g_pStrike2->Release();
+	g_pStrike3->Release();
+	g_pBarcodeCaseSprite->Release();
+	g_pTopCluesBannerSprite->Release();
+
+	g_pSoundManager->stop(13);
+	loopGame = true;
+}
+
+void exitGame() {
+	GameRenderer.Release(); //release textures
+	delete g_pTopClues; //delete the plane object
+	delete g_pTopCluesBannerSprite; //delete the plane sprite
+	delete g_pBriefcaseSprite;
+	PostQuitMessage(0); //this is the last thing to do on exit
+}
+
+void winGameFunc() {
+	float y = g_nScreenHeight - 410;
+	static int x = 0;
+	g_pSoundManager->stop(10);
+	g_pSoundManager->stop(12);
+
+	if (x <= 0) {
+		g_pSoundManager->play(13);
+		x++;
+	}
+	g_pWinScreen->Draw(Vector3(515, y, 445));
+	if (x == 1500) {
+		x = 1;
+	}
+}
+
 void checkStage2(string clue) {
 	if (clue == "CheckShape") {
 		if (shapeResult != 4) {
 			mainController.addStrike();
+			if (mainController.getStrikes() != 3)
+				g_pSoundManager->play(6);
 		}
 		else {
 			shapesPuzzleSolved = true;
+			g_pSoundManager->play(8);
 			g_pLedLitSprite = new C3DSprite();
 			if (!g_pLedLitSprite->Load(g_cImageFileName[47]))
 				ABORT("Platform image %s not found.", g_cImageFileName[47]);
@@ -176,6 +293,7 @@ void checkStage2(string clue) {
 	else if (clue == "CheckCard") {
 		if (mainController.isCardResult() == 1) {
 			cardPuzzleSolved = true;
+			g_pSoundManager->play(8);
 			g_pLedLitSpriteCard = new C3DSprite();
 			if (!g_pLedLitSpriteCard->Load(g_cImageFileName[47]))
 				ABORT("Platform image %s not found.", g_cImageFileName[47]);
@@ -184,41 +302,46 @@ void checkStage2(string clue) {
 	else if (clue == "CheckWire") {
 		if (mainController.isWireResult() == 1) {
 			wirePuzzleSolved = true;
+			g_pSoundManager->play(8);
 			g_pLedLitSpriteWire = new C3DSprite();
 			if (!g_pLedLitSpriteWire->Load(g_cImageFileName[47]))
 				ABORT("Platform image %s not found.", g_cImageFileName[47]);
 		}
 	}
-}
-
+}	   
+	   
 void DrawTimer() {
-	bool started = false;
-	int timerTime, currTime, elapsedTime, minutes, seconds, secondsLeft;
-	float y = g_nScreenHeight - 410;
+	int elapsedTime;
+	if (!gameWon) {
+		bool started = false;
+		int timerTime, currTime, minutes, seconds, secondsLeft;
+		float y = g_nScreenHeight - 410;
 
-	int TimerTotalMinutes = 5;				// Timer in minutes
-	
-	if(started)
-		g_cTimer.start();
+		int TimerTotalMinutes = 3;				// Timer in minutes
 
-	timerTime = TimerTotalMinutes * 60;		// 5 Minutes in seconds
-	currTime = g_cTimer.time() / 1000;		// Convert Current Time to Seconds
-	elapsedTime = timerTime - currTime;		// Seconds Left untl time out
+		if (started)
+			g_cTimer.start();
 
-	if (elapsedTime <= 0) {
-		mainController.addStrike();
-		mainController.addStrike();
-		mainController.addStrike();
-		fail = true;
-		return;
-	}
-	minutes = elapsedTime / 60;
-	secondsLeft = ( (elapsedTime % 120) % 60 ) / 10;
-	seconds = elapsedTime % 10;
-	// If stage 1 is complete draw timer
-	if (stage1Complete) {
-		// Draw Minutes on screen
-		switch (minutes) {
+		timerTime = TimerTotalMinutes * 60;		// 5 Minutes in seconds
+		currTime = g_cTimer.time() / 1000;		// Convert Current Time to Seconds
+		elapsedTime = timerTime - currTime;		// Seconds Left untl time out
+
+		if (elapsedTime <= 0) {
+			g_pSoundManager->play(1);
+			mainController.addStrike();
+			mainController.addStrike();
+			mainController.addStrike();
+			fail = true;
+			return;
+		}
+		minutes = elapsedTime / 60;
+		secondsLeft = ((elapsedTime % 120) % 60) / 10;
+		seconds = elapsedTime % 10;
+		g_pSoundManager->play(10);
+		// If stage 1 is complete draw timer
+		if (stage1Complete) {
+			// Draw Minutes on screen
+			switch (minutes) {
 			case 1: g_pTimerNumber1->Draw(Vector3(450, y - 140, 550));
 				break;
 			case 2:	g_pTimerNumber2->Draw(Vector3(450, y - 140, 550));
@@ -237,12 +360,11 @@ void DrawTimer() {
 				break;
 			case 9:	g_pTimerNumber9->Draw(Vector3(450, y - 140, 550));
 				break;
-			default:
-				g_pTimerNumber0->Draw(Vector3(450, y - 138, 550));
+			default:g_pTimerNumber0->Draw(Vector3(450, y - 140, 550));
 				break;
-		}
-		// Draw Seconds Left on screen
-		switch (secondsLeft) {
+			}
+			// Draw Seconds Left on screen
+			switch (secondsLeft) {
 			case 1: g_pTimerNumber1->Draw(Vector3(520, y - 140, 550));
 				break;
 			case 2: g_pTimerNumber2->Draw(Vector3(520, y - 140, 550));
@@ -263,32 +385,43 @@ void DrawTimer() {
 				break;
 			default: g_pTimerNumber0->Draw(Vector3(520, y - 140, 550));
 				break;
-		}
-		// Draw Seconds Right on screen
-		switch (seconds) {
+			}
+			// Draw Seconds Right on screen
+			switch (seconds) {
 			case 1: g_pTimerNumber1->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 2: g_pTimerNumber2->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 3: g_pTimerNumber3->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 4: g_pTimerNumber4->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 5: g_pTimerNumber5->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 6: g_pTimerNumber6->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 7: g_pTimerNumber7->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 8: g_pTimerNumber8->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			case 9: g_pTimerNumber9->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
 			default: g_pTimerNumber0->Draw(Vector3(570, y - 140, 550));
+				g_pSoundManager->play(10);
 				break;
+			}
 		}
+		started = true;
 	}
-	started = true;
 }
 
 void DrawStrikes(){
@@ -311,7 +444,6 @@ void DrawStrikes(){
 	}
 	if (fail == true) {
 		g_failScreen->Draw(Vector3(515, y, 445));
-
 		g_pStrike1->Release();
 		g_pStrike2->Release();
 		g_pStrike3->Release();
@@ -391,8 +523,9 @@ void drawCardScreen() {
 }
 
 void loadCardScreen(int cardIndex) {
-
 	counterCard++;
+	if (counterCard >= 5)
+		counterCard = 0;
 	cardOnScreen = true;
 	if (counterCard == 1) {
 		g_cardDigitkey1 = new C3DSprite();				// card digits
@@ -433,25 +566,25 @@ void drawWireScreen() {
 void loadWireScreen(int wireIndex) {
 
 
-	if (wireIndex == 86) {
+	if (wireIndex == 95) {
 		g_wireSpriteStage1 = new C3DSprite();				// card digits
 		if (!g_wireSpriteStage1->Load(g_cImageFileName[wireIndex]))
 			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
 	}
 
-	else if (wireIndex == 87) {
+	else if (wireIndex == 96) {
 		g_wireSpriteStage2 = new C3DSprite();				// card digits
 		if (!g_wireSpriteStage2->Load(g_cImageFileName[wireIndex]))
 			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
 	}
 
-	else if (wireIndex == 88) {
+	else if (wireIndex == 97) {
 		g_wireSpriteStage3 = new C3DSprite();				// card digits
 		if (!g_wireSpriteStage3->Load(g_cImageFileName[wireIndex]))
 			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
 	}
 
-	else if (wireIndex == 89) {
+	else if (wireIndex == 98) {
 		g_wireSpriteStage4 = new C3DSprite();				// card digits
 		if (!g_wireSpriteStage4->Load(g_cImageFileName[wireIndex]))
 			ABORT("Platform image %s not found.", g_cImageFileName[wireIndex]);
@@ -471,6 +604,7 @@ void drawMenuScreen() {
 void checkStageOne(int complete) {
 	if (complete == 1) {
 		g_StageTwo = new C3DSprite();
+		g_pSoundManager->play(5);
 		if (!g_StageTwo->Load(g_cImageFileName[21]))
 			ABORT("Platform image %s not found.", g_cImageFileName[21]);
 		win = true;
@@ -563,8 +697,16 @@ void DrawBriefcase() {
 			g_pArrows2->Release();
 			g_pArrows3->Release();
 		}
-		else if (fail == true)
+		else if (fail == true) {
 			g_failScreen->Draw(Vector3(515, y, 445));
+			static int x = 0;
+			if(x <= 0)
+				g_pSoundManager->play(1);
+			x++;
+			if (x == 1500) {
+				x = 1;
+			}
+		}
 		else{
 			g_pBriefcaseSprite->Draw(Vector3(515, y - 40, 450));
 		}
@@ -744,9 +886,27 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		yPos = GET_Y_LPARAM(lParam);
 		int x = xPos;
 		int y = yPos;
+
+		// Exit Game on win
+		if (xPos >= 85 && xPos <= 400 && yPos <= 768 && yPos >= 582 && cardPuzzleSolved && shapesPuzzleSolved && wirePuzzleSolved) {
+			exitGame();
+		}
+		// Exit Game on fail
+		if (xPos >= 85 && xPos <= 400 && yPos <= 768 && yPos >= 582 && fail) {
+			exitGame();
+		}
+		// Play Again Game on win
+		if (xPos >= 410 && xPos <= 1024 && yPos <= 768 && yPos >= 582 && cardPuzzleSolved && shapesPuzzleSolved && wirePuzzleSolved) {
+			resetGame();
+		}
+		// Play Again Game on fail
+		if (xPos >= 410 && xPos <= 1024 && yPos <= 768 && yPos >= 582 && fail) {
+			resetGame();
+		}
 		// Menu Screen
 		if (menu_Screen && x >= 253 && x <= 767 && y >= 382 && y <= 497) {
 			menu_Screen = false;
+			g_pSoundManager->play(12);
 			g_cTimer.start(); //start game timer
 		}
 		// Stage One rotation mouse methods briefcase
@@ -765,6 +925,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 		}
 		// Clear Shape Screen
 		if (xPos >= 505 && xPos <= 586 && yPos <= 467 && yPos >= 441 && stage1Complete && shapeOnScreen && !shapesPuzzleSolved && !fail && !winGame) {
+			g_pSoundManager->play(3);
 			if(shapeOnScreen >= 1)
 				g_shapeClueSprite1->Release();
 			if (shapeOnScreen >= 2)
@@ -782,11 +943,13 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			checkStage2("CheckShape");
 		//card puzzle buttons
 		if (xPos >= 425 && xPos <= 500 && yPos <= 318 && yPos >= 218 && stage1Complete && counterCard <= 4 && !cardPuzzleSolved && !fail && !winGame) {
-			if(xPos >= 425 && xPos <= 453 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved)//clear button
+			if (xPos >= 425 && xPos <= 453 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved && counterCard > 0) {//clear button
 				counterCard = 0;
-			else if(xPos >= 475 && xPos <= 500 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved)//submit button
+				g_pSoundManager->play(0);
+			}
+			if(xPos >= 475 && xPos <= 500 && yPos <= 318 && yPos >= 288 && stage1Complete && cardOnScreen && !cardPuzzleSolved && counterCard > 0)//submit button
 				checkStage2("CheckCard");
-			else
+			if( !(xPos >= 425 && xPos <= 453 && yPos <= 318 && yPos >= 288) && !(xPos >= 475 && xPos <= 500 && yPos <= 318 && yPos >= 288))
 				loadCardScreen(mainController.cardScreen(x, y, counterCard));//otherwise call the button clicked
 
 
@@ -796,8 +959,6 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 			loadWireScreen(mainController.wireScreen(x, y));//otherwise call the button clicked
 			checkStage2("CheckWire");
 		}
-
-
 	}
 	break;
 	case WM_DESTROY: //on exit
@@ -842,6 +1003,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	g_HwndApp = hwnd; //save window handle
 
 	InitGraphics(); //initialize graphics
+	loop:
 	g_pTopCluesBannerSprite = new C3DSprite(); //make a sprite
 	g_pBarcodeSprite = new C3DSprite();
 	g_pBarcodeCaseSprite = new C3DSprite();
@@ -909,17 +1071,17 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 		ABORT("Platform image %s not found.", g_cImageFileName[85]);
 
 	g_wireSpriteStage1 = new C3DSprite();	//digit
-	if (!g_wireSpriteStage1->Load(g_cImageFileName[82]))
-		ABORT("Platform image %s not found.", g_cImageFileName[82]);
+	if (!g_wireSpriteStage1->Load(g_cImageFileName[91]))
+		ABORT("Platform image %s not found.", g_cImageFileName[91]);
 	g_wireSpriteStage2 = new C3DSprite();	//digit
-	if (!g_wireSpriteStage2->Load(g_cImageFileName[83]))
-		ABORT("Platform image %s not found.", g_cImageFileName[83]);
+	if (!g_wireSpriteStage2->Load(g_cImageFileName[92]))
+		ABORT("Platform image %s not found.", g_cImageFileName[92]);
 	g_wireSpriteStage3 = new C3DSprite();	//digit
-	if (!g_wireSpriteStage3->Load(g_cImageFileName[84]))
-		ABORT("Platform image %s not found.", g_cImageFileName[84]);
+	if (!g_wireSpriteStage3->Load(g_cImageFileName[93]))
+		ABORT("Platform image %s not found.", g_cImageFileName[93]);
 	g_wireSpriteStage4 = new C3DSprite();	//digit
-	if (!g_wireSpriteStage4->Load(g_cImageFileName[85]))
-		ABORT("Platform image %s not found.", g_cImageFileName[85]);
+	if (!g_wireSpriteStage4->Load(g_cImageFileName[94]))
+		ABORT("Platform image %s not found.", g_cImageFileName[94]);
 
 
 
@@ -1045,6 +1207,25 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 	if (!g_pTimerNumber9->Load(g_cImageFileName[59]))
 		ABORT("Platform image %s not found.", g_cImageFileName[59]);
 
+	g_pWinScreen = new C3DSprite();
+	if (!g_pWinScreen->Load(g_cImageFileName[90]))
+		ABORT("Platform image %s not found.", g_cImageFileName[90]);
+	//sound Files
+	g_pSoundManager = new CSoundManager(14);
+	g_pSoundManager->Load("sound\\creditCardButtons.wav", 1);	//0
+	g_pSoundManager->Load("sound\\explosion.wav", 1);			//1
+	g_pSoundManager->Load("sound\\rotateCase.wav" , 1);			//2
+	g_pSoundManager->Load("sound\\ShapeButtons.wav", 1);		//3
+	g_pSoundManager->Load("sound\\stage1Buttons.wav" , 1);		//4
+	g_pSoundManager->Load("sound\\stage1Finished.wav", 1);		//5
+	g_pSoundManager->Load("sound\\strike.wav", 1);				//6
+	g_pSoundManager->Load("sound\\strike2.wav", 1);				//7
+	g_pSoundManager->Load("sound\\submit.wav", 1);				//8
+	g_pSoundManager->Load("sound\\ticking.wav", 1);				//9
+	g_pSoundManager->Load("sound\\ticking2.wav", 1);			//10
+	g_pSoundManager->Load("sound\\wireCut.wav", 1);				//11
+	g_pSoundManager->Load("sound\\backgroundMusic.wav", 1);		//12
+	g_pSoundManager->Load("sound\\clapping.wav", 1);			//13
 	//message loop
 	while (TRUE)
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE)) { //if message waiting
@@ -1052,7 +1233,12 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nS
 			TranslateMessage(&msg); DispatchMessage(&msg); //translate it
 		} //if
 		else
-			if (g_bActiveApp)
+			if (g_bActiveApp) {
 				GameRenderer.ProcessFrame();
+				if (loopGame) {
+					loopGame = false;
+					goto loop;
+				}
+			}
 			else WaitMessage();
 } //WinMain

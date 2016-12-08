@@ -35,6 +35,7 @@ public:
 	GameController();
 	~GameController();
 
+	void resetController();
 	int caseRotation(int, int, int&);
 	int lockNumberCtrl(int, int, int&, int&);
 	int cardNumberControl(int, int, int&, int&);

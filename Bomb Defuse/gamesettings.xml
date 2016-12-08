@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Settings for Ned's Turkey Farm -->
+<!-- Settings for Bomb Defuse -->
 
 <settings>
 
   <!-- general settings -->
 
-  <game name="Bomb Diffuse Game" />
+  <game name="Bomb Diffuse" />
   
   <!-- renderer settings -->
 
@@ -38,7 +38,7 @@
       <image src="Images\Clues\barcodeClue2.png"/>      <!-- Barcode Clue 19 -->
       <image src="Images\Clues\barcodeCase2.png"/>      <!-- Barcode Clue 20 -->
       <image src="Images\Briefcase\caseOpen1.png"/>     <!-- 21 -->
-      <image src="Images\fail.png"/>                   <!-- 22 -->
+      <image src="Images\failGame.png"/>                   <!-- 22 -->
       <!-- Shapes -->
       <image src="Images\Shapes\SquareGreen.png"/>     <!-- 23 -->
       <image src="Images\Shapes\SquareYellow.png"/>    <!-- 24 -->
@@ -124,6 +124,17 @@
       <image src="Images\Wires\YellowWireBroken.png" />          <!-- 87 -->
       <image src="Images\Wires\RedWireBroken.png" />            <!-- 88 -->
       <image src="Images\Wires\WhiteWireBroken.png" />          <!-- 89 -->
+      <!-- END of WIRES -->
+      <image src="Images\winGame.png" />                        <!-- 90 -->
+            <!-- Wires -->
+      <image src="Images\Wires\BlackWire1.png" />                <!-- 91 -->
+      <image src="Images\Wires\YellowWire1.png" />                <!-- 92 -->
+      <image src="Images\Wires\RedWire1.png" />                  <!-- 93 -->
+      <image src="Images\Wires\WhiteWire1.png" />                <!-- 94 -->
+      <image src="Images\Wires\BlackWireBroken1.png" />          <!-- 95 -->
+      <image src="Images\Wires\YellowWireBroken1.png" />          <!-- 96 -->
+      <image src="Images\Wires\RedWireBroken1.png" />            <!-- 97 -->
+      <image src="Images\Wires\WhiteWireBroken1.png" />          <!-- 98 -->
       <!-- END of WIRES -->
     </images>
   

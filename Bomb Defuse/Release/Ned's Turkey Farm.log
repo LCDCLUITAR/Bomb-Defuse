@@ -1,16 +1,28 @@
-﻿Build started 12/2/2016 3:22:00 AM.
+﻿Build started 12/7/2016 7:58:37 PM.
      1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\DirectXTK\Inc /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Code\Main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\DirectXTK\Inc /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt Code\GameController.cpp Code\Main.cpp
+         GameController.cpp
+     1>Code\GameController.cpp(188): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     1>Code\GameController.cpp(191): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     1>Code\GameController.cpp(200): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+     1>Code\GameController.cpp(202): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
          Main.cpp
-     1>Code\Main.cpp(136): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>Code\Main.cpp(191): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>Code\Main.cpp(218): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>Code\Main.cpp(275): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>Code\Main.cpp(340): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-     1>Code\Main.cpp(458): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(263): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(318): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(428): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(454): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(511): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(558): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(596): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(668): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(816): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+     1>Code\Main.cpp(929): warning C4804: '>=': unsafe use of type 'bool' in operation
+     1>Code\Main.cpp(931): warning C4804: '>=': unsafe use of type 'bool' in operation
+     1>Code\Main.cpp(933): warning C4804: '>=': unsafe use of type 'bool' in operation
+     1>Code\Main.cpp(935): warning C4806: '==': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.exe" /INCREMENTAL:NO /NOLOGO D3DCompiler.lib DXGI.lib D3D11.lib Winmm.lib DirectXTK.lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.lib" /MACHINE:X86 /SAFESEH "Release\Ned's Turkey Farm.res"
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.exe" /INCREMENTAL:NO /NOLOGO D3DCompiler.lib DXGI.lib D3D11.lib Winmm.lib DirectXTK.lib ws2_32.lib DirectXTKAudioWin8.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.lib" /MACHINE:X86 /SAFESEH "Release\Ned's Turkey Farm.res"
          Release\abort.obj
          Release\debug.obj
          Release\GameClues.obj
@@ -22,18 +34,19 @@
          Release\Object.obj
          Release\Renderer.obj
          Release\Shader.obj
+         Release\Sound.obj
          Release\Sprite.obj
          Release\Timer.obj
          Release\tinyxml2.obj
          Release\Window.obj
          Generating code
-         2 of 517 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+         4 of 1555 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
            0 functions were new in current compilation
-           1 functions had inline decision re-evaluated but remain unchanged
+           2 functions had inline decision re-evaluated but remain unchanged
          Finished generating code
          Ned's Turkey Farm.vcxproj -> C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Release\Ned's Turkey Farm.exe
      1>Done Building Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\Bomb Defuse\Ned's Turkey Farm.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.73
+Time Elapsed 00:00:04.50

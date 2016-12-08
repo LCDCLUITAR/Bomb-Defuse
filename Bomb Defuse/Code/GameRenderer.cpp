@@ -18,6 +18,9 @@ extern int g_nScreenWidth;
 extern int g_nScreenHeight;
 extern bool stage1Complete;
 extern bool shapesPuzzleSolved;
+extern bool cardPuzzleSolved;
+extern bool wirePuzzleSolved;
+extern bool gameWon;
 extern bool shapeOnScreen;
 extern BOOL g_bWireFrame;
 extern bool menu_Screen;
@@ -76,17 +79,19 @@ extern C3DSprite* g_pStrike2;
 extern C3DSprite* g_pStrike3;
 extern C3DSprite* g_StageTwo;
 extern C3DSprite* g_failScreen;
+extern C3DSprite* g_pWinScreen;
 extern C3DSprite* g_pMinuteRightSprite;
 extern C3DSprite* g_pSecondsRightSprite;
 extern C3DSprite* g_pSecondsLefttSprite;
 extern C3DSprite* g_pBarcodeCaseSprite;
-extern CImageFileNameList g_cImageFileName;
 extern C3DSprite* g_pTopCluesBannerSprite;
+extern CImageFileNameList g_cImageFileName;
 void briefcaseRotation(int x, int y);
 void DrawBriefcase();	
 void drawMenuScreen();
 void DrawStrikes();
 void DrawTimer();
+void winGameFunc();
 void loadShapeScreen(int);
 extern void drawShapeScreen();
 extern void drawCardScreen();
@@ -213,14 +218,52 @@ void CGameRenderer::LoadTextures(){
 /// of like a destructor for DirectX entities, which are COM objects.
 
 void CGameRenderer::Release(){ 
-  g_pTopCluesBannerSprite->Release();
   g_pBriefcaseSprite->Release();
+  g_pArrows->Release();
+  g_mainMenu->Release();
+  g_pLedLitSprite->Release();
+  g_pLedLitSpriteCard->Release();
+  g_pLedLitSpriteWire->Release();
   g_numberSprite0->Release();
   g_numberSprite1->Release();
   g_numberSprite2->Release();
   g_numberSprite3->Release();
   g_creditCardClue->Release();
+  g_numberCardSprite0->Release();
+  g_numberCardSprite1->Release();
+  g_numberCardSprite2->Release();
+  g_numberCardSprite3->Release();
+  g_numberBarcodeSprite0->Release();
+  g_numberBarcodeSprite1->Release();
+  g_numberBarcodeSprite2->Release();
+  g_numberBarcodeSprite3->Release();
+  g_pArrows0->Release();
+  g_pArrows1->Release();
+  g_pArrows2->Release();
+  g_pArrows3->Release();
+  g_pTimerNumber0->Release();
+  g_pTimerNumber1->Release();
+  g_pTimerNumber2->Release();
+  g_pTimerNumber3->Release();
+  g_pTimerNumber4->Release();
+  g_pTimerNumber5->Release();
+  g_pTimerNumber6->Release();
+  g_pTimerNumber7->Release();
+  g_pTimerNumber8->Release();
+  g_pTimerNumber9->Release();
+  g_wireSprite1->Release();
+  g_wireSprite2->Release();
+  g_wireSprite3->Release();
+  g_wireSprite4->Release();
+  g_wireSpriteStage1->Release();
+  g_wireSpriteStage2->Release();
+  g_wireSpriteStage3->Release();
+  g_wireSpriteStage4->Release();
+  g_pStrike1->Release();
+  g_pStrike2->Release();
+  g_pStrike3->Release();
   g_pBarcodeCaseSprite->Release();
+  g_pTopCluesBannerSprite->Release();
 
   SAFE_RELEASE(m_pWallTexture);
   SAFE_RELEASE(m_pFloorTexture);
@@ -262,6 +305,10 @@ void CGameRenderer::ComposeFrame(){
   }
   else {
 	  drawMenuScreen();
+  }
+  if (shapesPuzzleSolved == true && cardPuzzleSolved == true && wirePuzzleSolved == true) {
+	  winGameFunc();
+	  gameWon = true;
   }
 } //ComposeFrame
  

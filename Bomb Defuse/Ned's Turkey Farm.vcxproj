@@ -41,12 +41,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>..\DirectXTK\Bin\Desktop_2013\Win32\Release;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <LibraryPath>..\DirectXTK\Audio\Bin\Desktop_2013\Win32\Release;..\DirectXTK\Bin\Desktop_2013\Win32\Release;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <SourcePath>Code;$(VC_SourcePath);</SourcePath>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>..\DirectXTK\Bin\Desktop_2013\Win32\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\DirectXTK\Audio\Bin\Desktop_2013\Win32\Debug;..\DirectXTK\Bin\Desktop_2013\Win32\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -57,7 +57,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>D3DCompiler.lib;DXGI.lib;D3D11.lib;Winmm.lib;DirectXTK.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>D3DCompiler.lib;DXGI.lib;D3D11.lib;Winmm.lib;DirectXTK.lib;ws2_32.lib;DirectXTKAudioWin8.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -75,7 +75,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>D3DCompiler.lib;DXGI.lib;D3D11.lib;Winmm.lib;DirectXTK.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>D3DCompiler.lib;DXGI.lib;D3D11.lib;Winmm.lib;DirectXTK.lib;ws2_32.lib;DirectXTKAudioWin8.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -91,6 +91,7 @@
     <ClCompile Include="Code\Object.cpp" />
     <ClCompile Include="Code\Renderer.cpp" />
     <ClCompile Include="Code\Shader.cpp" />
+    <ClCompile Include="Code\Sound.cpp" />
     <ClCompile Include="Code\Sprite.cpp" />
     <ClCompile Include="Code\Timer.cpp" />
     <ClCompile Include="Code\tinyxml2.cpp" />
@@ -108,6 +109,7 @@
     <ClInclude Include="Code\Object.h" />
     <ClInclude Include="Code\Renderer.h" />
     <ClInclude Include="Code\Shader.h" />
+    <ClInclude Include="Code\Sound.h" />
     <ClInclude Include="Code\Sprite.h" />
     <ClInclude Include="Code\Timer.h" />
     <ClInclude Include="Code\tinyxml2.h" />

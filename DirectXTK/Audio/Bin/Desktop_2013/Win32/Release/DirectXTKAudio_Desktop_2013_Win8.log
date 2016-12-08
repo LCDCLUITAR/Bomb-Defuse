@@ -1,12 +1,31 @@
-﻿  AudioEngine.cpp
-AudioEngine.cpp(1021): warning C4838: conversion from 'int' to 'UINT32' requires a narrowing conversion
-  DynamicSoundEffectInstance.cpp
-  SoundCommon.cpp
-  SoundEffect.cpp
-  SoundEffectInstance.cpp
-  WaveBank.cpp
-  WaveBankReader.cpp
-WaveBankReader.cpp(824): warning C4456: declaration of 'params' hides previous local declaration
-  WaveBankReader.cpp(521): note: see declaration of 'params'
-  WAVFileReader.cpp
-  DirectXTKAudio_Desktop_2013_Win8.vcxproj -> C:\Users\ldc0119\Desktop\luisRepo\DirectXTK\Audio\Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.lib
+﻿Build started 12/7/2016 7:54:24 PM.
+     1>Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\DirectXTK\Audio\DirectXTKAudio_Desktop_2013_Win8.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\Inc /I..\Src /Zi /nologo /W4 /WX- /O2 /Oi /Oy- /GL /D _WIN32_WINNT=0x0602 /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /Zc:inline /Yc"pch.h" /Fp"Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.pch" /Fo"Bin\Desktop_2013\Win32\Release\\" /Fd"Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.pdb" /Gd /TP /analyze- /errorReport:prompt AudioEngine.cpp
+         AudioEngine.cpp
+     1>AudioEngine.cpp(1021): warning C4838: conversion from 'int' to 'UINT32' requires a narrowing conversion
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I..\Inc /I..\Src /Zi /nologo /W4 /WX- /O2 /Oi /Oy- /GL /D _WIN32_WINNT=0x0602 /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /Zc:inline /Yu"pch.h" /Fp"Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.pch" /Fo"Bin\Desktop_2013\Win32\Release\\" /Fd"Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.pdb" /Gd /TP /analyze- /errorReport:prompt DynamicSoundEffectInstance.cpp SoundCommon.cpp SoundEffect.cpp SoundEffectInstance.cpp WaveBank.cpp WaveBankReader.cpp WAVFileReader.cpp
+         DynamicSoundEffectInstance.cpp
+         SoundCommon.cpp
+         SoundEffect.cpp
+         SoundEffectInstance.cpp
+         WaveBank.cpp
+         WaveBankReader.cpp
+     1>WaveBankReader.cpp(824): warning C4456: declaration of 'params' hides previous local declaration
+         WaveBankReader.cpp(521): note: see declaration of 'params'
+         WAVFileReader.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\Lib.exe /OUT:"Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.lib" /NOLOGO /LTCG Bin\Desktop_2013\Win32\Release\AudioEngine.obj
+         Bin\Desktop_2013\Win32\Release\DynamicSoundEffectInstance.obj
+         Bin\Desktop_2013\Win32\Release\SoundCommon.obj
+         Bin\Desktop_2013\Win32\Release\SoundEffect.obj
+         Bin\Desktop_2013\Win32\Release\SoundEffectInstance.obj
+         Bin\Desktop_2013\Win32\Release\WaveBank.obj
+         Bin\Desktop_2013\Win32\Release\WaveBankReader.obj
+         Bin\Desktop_2013\Win32\Release\WAVFileReader.obj
+         DirectXTKAudio_Desktop_2013_Win8.vcxproj -> C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\DirectXTK\Audio\Bin\Desktop_2013\Win32\Release\DirectXTKAudioWin8.lib
+     1>Done Building Project "C:\Users\LCDCLUITAR\Documents\GitHub\bomb-defuse-game\DirectXTK\Audio\DirectXTKAudio_Desktop_2013_Win8.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:24.81
