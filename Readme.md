@@ -24,6 +24,7 @@ Stages Walkthrough
  - After rotating to the top of the briefcase a combination lock is revealed. **(Player must find the combination by rotating the briefcase and using the top clues)**
  - After rotating the briefcase to its bottom location the player shall find a broken piece of a barcode. The player then can make the assumption that the other piece of the barcode should be on the clues bar. Going back to the combination lock the player shall enter the combination. **(enter combination)**
  **Case Opens**
+ 
 ##### Stage Two (Timer is revealed in addition to three puzzles)
 - The player shall now be able to see a timer and three distinct puzzles:
   * Number Pad Puzzle
