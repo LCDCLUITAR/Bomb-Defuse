@@ -30,10 +30,13 @@ Stages Walkthrough
   * Wire Puzzle
   * Shapes Puzzle
 - **Each Puzzle comes with an LED light attached to it. If the light turns green the puzzle is correct and finished, and the player shall be able to move on to the next puzzle.**
+
 ##### Number Pad Puzzle (ATM)
 - The player must be able to relate the number pad with the credit card clue displayed at the top in order to solve the puzzle. **(If the player inputs the credit card number into the puzzle and submits the LED shall turn green indicating the puzzle was solved)**
+
 ##### Wires Puzzle
 - The player must find out which wire to cut based on the clues displayed at the top. If the wront wire is cut the player shall get a strike, otherwise the LED shall turn green and the player shall be able to move into the main and final puzzle.
+
 ##### Shapes Puzzle (Main Puzzle)
 - The main puzzle does not rely on clues, instead the player must use his best intuition to solve the puzzle.
 - Each shape is a button that when clicked shall display the shape on the screen as the color, red, yellow, or green.  
