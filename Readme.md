@@ -1,4 +1,8 @@
 # BOMB DEFUSE
+### Credits
+**Luis Chaparro**
+**Ian Schramm**
+**Cameron Cook**
 Game Overview
 -----
 The objective of the game is to defuse a bomb inside a briefcase using the given clues.
