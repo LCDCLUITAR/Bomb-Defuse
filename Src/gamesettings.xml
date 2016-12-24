@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Settings for Bomb Defuse -->
+
+<settings>
+
+  <!-- general settings -->
+
+  <game name="Bomb Defuse" />
+  
+  <!-- renderer settings -->
+
+  <renderer width="1024" height="768" shadermodel="5_0"/>
+
+  <!-- image file names -->
+
+    <images>
+      <image src="Images\background.png" />
+      <image src="Images\floor.png" />
+      <image src="Images\mainMenu.png" />              <!-- Main Menu 2 -->
+      <image src="Images\clueBar.png" />
+      <image src="Images\Briefcase\caseFront.png" />   <!-- Front 4 -->
+      <image src="Images\Briefcase\caseTop.png" />     <!-- Top   5 -->
+      <image src="Images\Briefcase\caseRight.png" />   <!-- Right 6 -->
+      <image src="Images\Briefcase\caseLeft.png" />    <!-- Left  7-->
+      <image src="Images\Briefcase\caseBottom.png" />  <!-- Bottom  8-->
+      <!-- Fonts -->
+      <image src="Images\Font\0.png" />                <!-- Number 0: 9 -->
+      <image src="Images\Font\1.png" />                <!-- Number 1: 10 -->
+      <image src="Images\Font\2.png" />                <!-- Number 2: 11 -->
+      <image src="Images\Font\3.png" />                <!-- Number 3: 12 -->
+      <image src="Images\Font\4.png" />                <!-- Number 4: 13 -->
+      <image src="Images\Font\5.png" />                <!-- Number 5: 14 -->
+      <image src="Images\Font\6.png" />                <!-- Number 6: 15 -->
+      <image src="Images\Font\7.png" />                <!-- Number 7: 16 -->
+      <image src="Images\Font\8.png" />                <!-- Number 8: 17 -->
+      <image src="Images\Font\9.png" />                <!-- Number 9: 18 -->
+      <!-- END of FONTS -->
+      <image src="Images\Clues\barcodeClue2.png"/>      <!-- Barcode Clue 19 -->
+      <image src="Images\Clues\barcodeCase2.png"/>      <!-- Barcode Clue 20 -->
+      <image src="Images\Briefcase\caseOpen1.png"/>     <!-- 21 -->
+      <image src="Images\failGame.png"/>                   <!-- 22 -->
+      <!-- Shapes -->
+      <image src="Images\Shapes\SquareGreen.png"/>     <!-- 23 -->
+      <image src="Images\Shapes\SquareYellow.png"/>    <!-- 24 -->
+      <image src="Images\Shapes\SquareRed.png"/>       <!-- 25 -->
+      
+      <image src="Images\Shapes\plusGreen.png"/>       <!-- 26 -->
+      <image src="Images\Shapes\plusYellow.png"/>      <!-- 27 -->
+      <image src="Images\Shapes\plusRed.png"/>         <!-- 28 -->
+      
+      <image src="Images\Shapes\circleGreen.png"/>     <!-- 29 -->
+      <image src="Images\Shapes\circleYellow.png"/>    <!-- 30 -->
+      <image src="Images\Shapes\circleRed.png"/>       <!-- 31 -->
+      
+      <image src="Images\Shapes\starGreen.png"/>       <!-- 32 -->
+      <image src="Images\Shapes\starYellow.png"/>      <!-- 33 -->
+      <image src="Images\Shapes\starRed.png"/>         <!-- 34 -->
+      
+      <image src="Images\Shapes\triangleGreen.png"/>   <!-- 35 -->
+      <image src="Images\Shapes\triangleYellow.png"/>  <!-- 36 -->
+      <image src="Images\Shapes\triangleRed.png"/>     <!-- 37 -->
+      
+      <image src="Images\Shapes\trapezoidGreen.png"/>  <!-- 38 -->
+      <image src="Images\Shapes\trapezoidYellow.png"/> <!-- 39 -->
+      <image src="Images\Shapes\trapezoidRed.png"/>    <!-- 40 -->
+      <!-- END of SHAPES -->
+      
+      <image src="Images\Briefcase\arrowAll.png"/> <!-- 41 -->
+      <image src="Images\Briefcase\arrowDown.png"/>    <!-- 42 -->
+      <image src="Images\Briefcase\arrowLeft.png"/>    <!-- 43 -->
+      <image src="Images\Briefcase\arrowRight.png"/>   <!-- 44 -->
+      <image src="Images\Briefcase\arrowUp.png"/>      <!-- 45 -->
+      <image src="Images\ledOff.png"/>                 <!-- 46 -->
+      <image src="Images\ledOn.png"/>                  <!-- 47 -->
+      
+      <image src="Images\bomb.png"/>                   <!-- 48 -->
+      <image src="Images\bomb.png"/>                   <!-- 49 -->
+      <image src="Images\bomb.png"/>                   <!-- 50 -->
+      <!-- Fonts Timer-->
+      <image src="Images\ClockFont\1.png" />                <!-- Number 1: 51 -->
+      <image src="Images\ClockFont\2.png" />                <!-- Number 2: 52 -->
+      <image src="Images\ClockFont\3.png" />                <!-- Number 3: 53 -->
+      <image src="Images\ClockFont\4.png" />                <!-- Number 4: 54 -->
+      <image src="Images\ClockFont\5.png" />                <!-- Number 5: 55 -->
+      <image src="Images\ClockFont\6.png" />                <!-- Number 6: 56 -->
+      <image src="Images\ClockFont\7.png" />                <!-- Number 7: 57 -->
+      <image src="Images\ClockFont\8.png" />                <!-- Number 8: 58 -->
+      <image src="Images\ClockFont\9.png" />                <!-- Number 9: 59 -->
+      <image src="Images\ClockFont\0.png" />                <!-- Number 0: 60-->
+      <!-- END of FONTS Timer-->
+      <!-- Small Fonts-->
+      <image src="Images\FontSmall\1.png" />                <!-- Number 1: 61 -->
+      <image src="Images\FontSmall\2.png" />                <!-- Number 2: 62 -->
+      <image src="Images\FontSmall\3.png" />                <!-- Number 3: 63 -->
+      <image src="Images\FontSmall\4.png" />                <!-- Number 4: 64 -->
+      <image src="Images\FontSmall\5.png" />                <!-- Number 5: 65 -->
+      <image src="Images\FontSmall\6.png" />                <!-- Number 6: 66 -->
+      <image src="Images\FontSmall\7.png" />                <!-- Number 7: 67 -->
+      <image src="Images\FontSmall\8.png" />                <!-- Number 8: 68 -->
+      <image src="Images\FontSmall\9.png" />                <!-- Number 9: 69 -->
+      <image src="Images\FontSmall\0.png" />                <!-- Number 0: 70 -->
+      <!-- END of SMALL FONTS-->
+      <!-- Credit Card Clues-->
+      <image src="Images\CreditCard\creditCardClue.png" />                <!-- 71 -->
+      <!-- END of CREDIT CARD CLUES-->
+      <!-- Card Fonts -->
+      <image src="Images\CardFont\0.png" />                <!-- Number 0: 72 -->
+      <image src="Images\CardFont\1.png" />                <!-- Number 1: 73 -->
+      <image src="Images\CardFont\2.png" />                <!-- Number 2: 74 -->
+      <image src="Images\CardFont\3.png" />                <!-- Number 3: 75 -->
+      <image src="Images\CardFont\4.png" />                <!-- Number 4: 76 -->
+      <image src="Images\CardFont\5.png" />                <!-- Number 5: 77 -->
+      <image src="Images\CardFont\6.png" />                <!-- Number 6: 78 -->
+      <image src="Images\CardFont\7.png" />                <!-- Number 7: 79 -->
+      <image src="Images\CardFont\8.png" />                <!-- Number 8: 80 -->
+      <image src="Images\CardFont\9.png" />                <!-- Number 9: 81 -->
+      <!-- END of CARD FONTS -->
+      <!-- Wires -->
+      <image src="Images\Wires\BlackWire.png" />                <!-- 82 -->
+      <image src="Images\Wires\YellowWire.png" />                <!-- 83 -->
+      <image src="Images\Wires\RedWire.png" />                  <!-- 84 -->
+      <image src="Images\Wires\WhiteWire.png" />                <!-- 85 -->
+      <image src="Images\Wires\BlackWireBroken.png" />          <!-- 86 -->
+      <image src="Images\Wires\YellowWireBroken.png" />          <!-- 87 -->
+      <image src="Images\Wires\RedWireBroken.png" />            <!-- 88 -->
+      <image src="Images\Wires\WhiteWireBroken.png" />          <!-- 89 -->
+      <!-- END of WIRES -->
+      <image src="Images\winGame.png" />                        <!-- 90 -->
+            <!-- Wires -->
+      <image src="Images\Wires\BlackWire1.png" />                <!-- 91 -->
+      <image src="Images\Wires\YellowWire1.png" />                <!-- 92 -->
+      <image src="Images\Wires\RedWire1.png" />                  <!-- 93 -->
+      <image src="Images\Wires\WhiteWire1.png" />                <!-- 94 -->
+      <image src="Images\Wires\BlackWireBroken1.png" />          <!-- 95 -->
+      <image src="Images\Wires\YellowWireBroken1.png" />          <!-- 96 -->
+      <image src="Images\Wires\RedWireBroken1.png" />            <!-- 97 -->
+      <image src="Images\Wires\WhiteWireBroken1.png" />          <!-- 98 -->
+      <!-- END of WIRES -->
+    </images>
+  
+  <!-- debugger settings -->
+
+    <debug linenumber="1" header="1">
+      <file select="1" name="debug.txt"/>
+      <debugger select="1"/>
+      <ip select="1" address="127.0.0.1" port="1617"/>
+    </debug>
+
+</settings>

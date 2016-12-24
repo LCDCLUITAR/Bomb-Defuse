@@ -1,0 +1,39 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Ned's Turkey Farm.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  compilation object save succeeded; see C:\Users\ldc0119\Desktop\Group8\Src\Debug\PixelShader.cso
+  compilation object save succeeded; see C:\Users\ldc0119\Desktop\Group8\Src\Debug\VertexShader.cso
+  Window.cpp
+  tinyxml2.cpp
+  Timer.cpp
+  Sprite.cpp
+  Sound.cpp
+  Shader.cpp
+  Renderer.cpp
+  Object.cpp
+  Main.cpp
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(265): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(320): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(430): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(456): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(513): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(560): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(598): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(670): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(818): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(931): warning C4804: '>=': unsafe use of type 'bool' in operation
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(933): warning C4804: '>=': unsafe use of type 'bool' in operation
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(935): warning C4804: '>=': unsafe use of type 'bool' in operation
+c:\users\ldc0119\desktop\group8\src\code\main.cpp(937): warning C4806: '==': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+  IPMgr.cpp
+  ImageFileNameList.cpp
+  GameRenderer.cpp
+c:\users\ldc0119\desktop\group8\src\code\gamerenderer.cpp(300): warning C4551: function call missing argument list
+  GameController.cpp
+c:\users\ldc0119\desktop\group8\src\code\gamecontroller.cpp(190): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\gamecontroller.cpp(193): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\gamecontroller.cpp(202): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\ldc0119\desktop\group8\src\code\gamecontroller.cpp(204): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  debug.cpp
+  abort.cpp
+  Generating Code...
+  Ned's Turkey Farm.vcxproj -> C:\Users\ldc0119\Desktop\Group8\Src\Debug\Bomb Defuse.exe
+  Ned's Turkey Farm.vcxproj -> C:\Users\ldc0119\Desktop\Group8\Src\Debug\Bomb Defuse.pdb (Full PDB)

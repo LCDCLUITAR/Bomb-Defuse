@@ -1,1 +1,13 @@
-﻿  DirectXTKAudio_Desktop_2013_Win8.vcxproj -> C:\Users\ldc0119\Desktop\bomb-defuse-game-master - 2\DirectXTK\Audio\Bin\Desktop_2013\Win32\Debug\DirectXTKAudioWin8.lib
+﻿  AudioEngine.cpp
+c:\users\ldc0119\desktop\group8\directxtk\audio\audioengine.cpp(1021): warning C4838: conversion from 'int' to 'UINT32' requires a narrowing conversion
+  WAVFileReader.cpp
+  WaveBankReader.cpp
+c:\users\ldc0119\desktop\group8\directxtk\audio\wavebankreader.cpp(824): warning C4456: declaration of 'params' hides previous local declaration
+  c:\users\ldc0119\desktop\group8\directxtk\audio\wavebankreader.cpp(521): note: see declaration of 'params'
+  WaveBank.cpp
+  SoundEffectInstance.cpp
+  SoundEffect.cpp
+  SoundCommon.cpp
+  DynamicSoundEffectInstance.cpp
+  Generating Code...
+  DirectXTKAudio_Desktop_2013_Win8.vcxproj -> C:\Users\ldc0119\Desktop\Group8\DirectXTK\Audio\Bin\Desktop_2013\Win32\Debug\DirectXTKAudioWin8.lib
